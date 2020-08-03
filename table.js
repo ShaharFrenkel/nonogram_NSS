@@ -1,10 +1,15 @@
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
+const c = document.getElementById("myCanvas");
+const ctx = c.getContext("2d");
 ctx.lineWidth = 2;
 ctx.strokeStyle = "black";
-var square_size = 50;
-var start_point_x = 150;
-var start_point_y = 150;
+const square_size = 50;
+const start_point_x = 150;
+const start_point_y = 150;
+var rect_img = document.getElementById("rect_img");
+var x_img = document.getElementById("x_img");
+var fill_img = rect_img; //the img that will replace the empty image of a square objefct when the player clicks on the square
+var is_filled = true; //the bool value that will replace the square's bool value when the player clicks the square
+
 //בניית הטבלה של המשחק
 for (var i = start_point_x; i < 10 * square_size + 1 + start_point_x; i = i + square_size) {
     ctx.moveTo(i, start_point_y);
@@ -125,3 +130,52 @@ numbery1 = 0;
 }
 }
 }
+
+//display of a x/rect button
+function fill_button(is_rect_pressed){
+    //is_rect_pressed is bool - true if the rectengel is pressed, false if the X pressed
+    ctx.clearRect(145,695,130,130)
+    ctx.beginPath();
+    if(is_rect_pressed){
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillRect(150, 700, 60, 60);
+        ctx.lineWidth = 5;
+        ctx.strokeRect(150, 700, square_size+10, square_size+10);
+        ctx.lineWidth = 1;
+        ctx.strokeRect(210, 700, square_size+10, square_size+10);
+        
+    }
+    else{
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillRect(210, 700, 60, 60);
+        ctx.lineWidth = 5;
+        ctx.strokeRect(210, 700, square_size+10, square_size+10);
+        ctx.lineWidth = 1;
+        ctx.strokeRect(150, 700, square_size+10, square_size+10);
+    }
+    ctx.drawImage(rect_img, 155, 705, square_size, square_size);
+    ctx.drawImage(x_img, 215, 705, square_size, square_size);
+    ctx.stroke();
+}
+fill_button(true);
+
+function clickEvent(event) {
+    //gets the coordenits of the mouse click and the canvas position on screen and detirmins x and y within canvas
+    var rect = c.getBoundingClientRect();
+    var x = event.clientX - rect.left;
+    var y = event.clientY - rect.top;
+    if (x >= 150 && x <= 210 && y >= 700 && y < 760){
+        fill_button(true);
+        fill_img = rect_img;
+        is_filled = true;
+    }
+    if (x >= 210 && x <= 270 && y >= 700 && y < 760){
+        fill_button(false);
+        fill_img = x_img;
+        is_filled = false;
+    }
+    //alert(x+" "+y);
+}
+
+//the event listener activates the right functions according to the place on the canvas the user clicked and the boolain veriables which determine the cerrunt geaphics of the screen
+c.addEventListener("click", clickEvent)
