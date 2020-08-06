@@ -5,8 +5,10 @@ ctx.strokeStyle = "black";
 const square_size = 50;
 const start_point_x = 150;
 const start_point_y = 150;
+var board_len_in_squares = 10;
 var rect_img = document.getElementById("rect_img");
 var x_img = document.getElementById("x_img");
+var empty_img = document.getElementById("empty_img");
 var fill_img = rect_img; //the img that will replace the empty image of a square objefct when the player clicks on the square
 var is_filled = true; //the bool value that will replace the square's bool value when the player clicks the square
 
@@ -174,7 +176,37 @@ function clickEvent(event) {
         fill_img = x_img;
         is_filled = false;
     }
-    //alert(x+" "+y);
+    
+    //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
+    var found_clicked_square = false;
+    var clicked_on_the_board = x>start_point_x && x<start_point_x+board_len_in_squares*square_size && y>start_point_y && y<start_point_y+board_len_in_squares*square_size;
+    var line = 0;
+    var coulmn = 0;
+    //an array for example to check my code, will later on be replaced by the array of the board
+    const temp_array = [
+        [new Square(start_point_x, start_point_y, empty_img, false),new Square(start_point_x+square_size,start_point_y, empty_img, false)],
+        [new Square(start_point_x, start_point_y+square_size, empty_img, false),new Square(start_point_x+square_size,start_point_y+square_size, empty_img, false)]
+    ];
+    //alert("x="+x+" y="+y+" "+ temp_array[line][coulmn]);
+
+    if(clicked_on_the_board){
+        while(!found_clicked_square){
+            //in this ine the console shows an error but the action
+            if(x>temp_array[line][coulmn].x && x<temp_array[line][coulmn].x+square_size && y>temp_array[line][coulmn].y && y<temp_array[line][coulmn].y+square_size){
+                temp_array[line][coulmn].img = fill_img;
+                temp_array[line][coulmn].boolean = is_filled;
+                temp_array[line][coulmn].show();
+                found_clicked_squre = true;
+            }
+            if(coulmn<temp_array[0].length-1){
+                coulmn++;
+            }
+            else{
+                coulmn = 0;
+                line++;
+            }
+        }
+    }
 }
 
 //the event listener activates the right functions according to the place on the canvas the user clicked and the boolain veriables which determine the cerrunt geaphics of the screen

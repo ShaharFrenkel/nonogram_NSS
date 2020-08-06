@@ -1,4 +1,4 @@
-class square {
+class Square {
     constructor(x,y,img,boolean) {
       this.x = x;
       this.y = y;
@@ -6,6 +6,7 @@ class square {
       this.boolean = boolean;
     }
     show() {
-        ctx.drawImage(this.img, this.x, this.y);
+        ctx.beginPath();
+        ctx.drawImage(this.img, this.x, this.y, square_size, square_size);
     }
   }
