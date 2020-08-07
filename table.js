@@ -25,22 +25,26 @@ for (var j = start_point_y; j < square_size * 10 + 1 + start_point_y; j = j + sq
     ctx.stroke();
 }
 
-//יצירת מערך דו ממדי של אובייקט משבצת-הלוח
-var arraySquares = new Array(10);
-for(var i = 0; i < 10; i++)
+function createEmptyBoard()
 {
-    arraySquares[i] = new Array(10);
-    for(var j = 0; j < 10; j++ )
+    //יצירת מערך דו ממדי של אובייקט משבצת-הלוח
+    var arraySquares = new Array(10);
+    for(var i = 0; i < 10; i++)
     {
-      arraySquare[i][j]= new square(150+50*i, 150+50*j,empty_img , false);
-    } 
-}
-for(var i = 0; i < 10; i++)
-{
-    for(var j = 0; j < 10; j++ )
+        arraySquares[i] = new Array(10);
+        for(var j = 0; j < 10; j++ )
+        {
+            arraySquare[i][j]= new square(150+50*i, 150+50*j,empty_img , false);
+        } 
+    }
+    for(var i = 0; i < 10; i++)
     {
-        var boardGame= new board(arraySquares[i][j]);
-    } 
+        for(var j = 0; j < 10; j++ )
+        {   
+            var boardGame= new board(arraySquares[i][j]);
+        } 
+    }
+
 }
 
 //מערך דו מימדי של המשחק
