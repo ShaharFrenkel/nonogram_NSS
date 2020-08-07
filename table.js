@@ -33,7 +33,13 @@ for(var i = 0; i < 10; i++)
       arraySquare[i][j]= new square(150+50*i, 150+50*j,fill_img, is_filled);
     } 
 }
-
+for(var i = 0; i < 10; i++)
+{
+    for(var j = 0; j < 10; j++ )
+    {
+        var boardGame= new board(arraySquares[i][j]);
+    } 
+}
 
 //מערך דו מימדי של המשחק
 var array_name = [
