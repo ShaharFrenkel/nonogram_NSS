@@ -23,6 +23,18 @@ for (var j = start_point_y; j < square_size * 10 + 1 + start_point_y; j = j + sq
     ctx.stroke();
 }
 
+//יצירת מערך דו ממדי של אובייקט משבצת-הלוח
+var arraySquares = new Array(10);
+for(var i = 0; i < 10; i++)
+{
+    arraySquares[i] = new Array(10);
+    for(var j = 0; j < 10; j++ )
+    {
+      arraySquare[i][j]= new square(150+50*i, 150+50*j,fill_img, is_filled);
+    } 
+}
+
+
 //מערך דו מימדי של המשחק
 var array_name = [
     [false, false, false, false, true, true, false, false, false, false],
@@ -147,7 +159,7 @@ function fill_button(is_rect_pressed){
     }
     else{
         ctx.fillStyle = "#FFFFFF";
-        ctx.fillRect(210, 700, 60, 60);
+        ctx.fillRect(210, 700,60, 60);
         ctx.lineWidth = 5;
         ctx.strokeRect(210, 700, square_size+10, square_size+10);
         ctx.lineWidth = 1;
@@ -157,7 +169,21 @@ function fill_button(is_rect_pressed){
     ctx.drawImage(x_img, 215, 705, square_size, square_size);
     ctx.stroke();
 }
+
+function cleanButten()
+{
+    //מציג את כפתור מחיקת קנבס
+    ctx.fillStyle = "black";
+    ctx.fillRect(650, 20, 130, 100);
+    ctx.lineWidth = 3;    
+    ctx.strokeRect(650, 20, square_size+80, square_size+50);
+    ctx.font = "25px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("נקה לוח",772,80);
+} 
+
 fill_button(true);
+cleanButten();
 
 function clickEvent(event) {
     //gets the coordenits of the mouse click and the canvas position on screen and detirmins x and y within canvas
