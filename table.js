@@ -32,7 +32,7 @@ for(var i = 0; i < 10; i++)
     arraySquares[i] = new Array(10);
     for(var j = 0; j < 10; j++ )
     {
-      arraySquare[i][j]= new square(150+50*i, 150+50*j,fill_img, is_filled);
+      arraySquare[i][j]= new square(150+50*i, 150+50*j,empty_img , false);
     } 
 }
 for(var i = 0; i < 10; i++)
