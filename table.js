@@ -192,19 +192,19 @@ function clickEvent(event) {
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;
     var isClick = false;
-    if (x >= 150 && x <= 210 && y >= 700 && y < 760){
+    if (x >= 150 && x < 210 && y >= 700 && y < 760){
         fill_button(true);
         fill_img = rect_img;
         is_filled = true;
         isClick = true;
     }
-    if (x >= 210 && x <= 270 && y >= 700 && y < 760){
+    if (x >= 210 && x < 270 && y >= 700 && y < 760){
         fill_button(false);
         fill_img = x_img;
         is_filled = false;
         isClick = true;
     }
-    if(x >= 650 && x <= 780 && y >= 20 && y <= 120 )
+    if(x >= 650 && x < 780 && y >= 20 && y < 120 )
     {
         first_board.cleanBoard();
         isClick = true;
