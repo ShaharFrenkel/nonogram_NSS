@@ -28,13 +28,13 @@ for (var j = start_point_y; j < square_size * 10 + 1 + start_point_y; j = j + sq
 function createEmptyBoard()
 {
     //יצירת מערך דו ממדי של אובייקט משבצת-הלוח
-    var arraySquares = new Array(10);
+    var arrayOfSquares = new Array(10);
     for(var i = 0; i < 10; i++)
     {
-        arraySquares[i] = new Array(10);
+        arrayOfSquares[i] = new Array(10);
         for(var j = 0; j < 10; j++ )
         {
-            arraySquare[i][j]= new square(start_point_x + 50*i, start_point_y + 50*j, empty_img, false);
+            arrayOfSquares[i][j]= new Square( start_point_x + 50*i, start_point_y + 50*j, empty_img, false);
         } 
     }
     var boardGame;
@@ -42,11 +42,12 @@ function createEmptyBoard()
     {
         for(var j = 0; j < 10; j++ )
         {   
-            boardGame= new board(arraySquares[i][j]);
+            boardGame = new board(arrayOfSquares[i][j]);
         } 
     }
     return boardGame;
 }
+createEmptyBoard();
 
 //מערך דו מימדי של המשחק
 var array_name = [
@@ -212,6 +213,10 @@ function clickEvent(event) {
         fill_button(false);
         fill_img = x_img;
         is_filled = false;
+    }
+    if(x >= 650 && x <= 780 && y >= 20 && y <= 120 )
+    {
+        boardGame.cleanBoard();
     }
     
     //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
