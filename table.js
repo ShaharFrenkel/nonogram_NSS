@@ -205,20 +205,24 @@ function clickEvent(event) {
     var rect = c.getBoundingClientRect();
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;
+    var isClick = false;
     if (x >= 150 && x <= 210 && y >= 700 && y < 760){
         fill_button(true);
         fill_img = rect_img;
         is_filled = true;
+        isClick = true;
     }
     if (x >= 210 && x <= 270 && y >= 700 && y < 760){
         fill_button(false);
         fill_img = x_img;
         is_filled = false;
+        isClick = true;
     }
     if(x >= 650 && x <= 780 && y >= 20 && y <= 120 )
     {
         boardGame1.cleanBoard();
         //boardGame1.showBoard();
+        isClick = true;
     }
     
     //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
@@ -241,6 +245,7 @@ function clickEvent(event) {
                 temp_array[line][coulmn].boolean = is_filled;
                 temp_array[line][coulmn].show();
                 found_clicked_squre = true;
+                isClick = true;
             }
             if(coulmn<temp_array[0].length-1){
                 coulmn++;
@@ -251,7 +256,13 @@ function clickEvent(event) {
             }
         }
     }
+    if( !isClick )
+    {
+        //אם המשחק לחץ בעכבר על מקום שלא אמור ללחוץ כותב הודעה לידע אותו
+        alert("לחצתם על מקום עם העכבר שהוא לא קשור למשחק (לא הגיוני)");
+    }
 }
 
 //the event listener activates the right functions according to the place on the canvas the user clicked and the boolain veriables which determine the cerrunt geaphics of the screen
-c.addEventListener("click", clickEvent)
+c.addEventListener("click", clickEvent);
+var k = event.keyCode;
