@@ -26,6 +26,31 @@ for (var j = start_point_y; j < square_size * 10 + 1 + start_point_y; j = j + sq
     ctx.stroke();
 }
 
+function createEmptyBoard()
+{
+    //יצירת מערך דו ממדי של אובייקט משבצת-הלוח
+    var arrayOfSquares = new Array(10);
+    for(var i = 0; i < 10; i++)
+    {
+        arrayOfSquares[i] = new Array(10);
+        for(var j = 0; j < 10; j++ )
+        {
+            arrayOfSquares[i][j]= new Square( start_point_x + 50*i, start_point_y + 50*j, empty_img, false);
+        } 
+    }
+    //var boardGame = new board(arrayOfSquares);
+    var boardGame;
+    for(var i = 0; i < 10; i++)
+    {
+        for(var j = 0; j < 10; j++ )
+        {   
+            boardGame = new board(arrayOfSquares[i][j]);
+        } 
+    }
+    return boardGame;
+}
+var boardGame1 = createEmptyBoard();
+
 //מערך דו מימדי של המשחק
 var array_name = [
     [false, false, false, false, true, true, false, false, false, false],
@@ -150,7 +175,7 @@ function fill_button(is_rect_pressed){
     }
     else{
         ctx.fillStyle = "#FFFFFF";
-        ctx.fillRect(210, 700, 60, 60);
+        ctx.fillRect(210, 700,60, 60);
         ctx.lineWidth = 5;
         ctx.strokeRect(210, 700, square_size+10, square_size+10);
         ctx.lineWidth = 1;
@@ -160,22 +185,45 @@ function fill_button(is_rect_pressed){
     ctx.drawImage(x_img, 215, 705, square_size, square_size);
     ctx.stroke();
 }
+
+function cleanButten()
+{
+    //מציג את כפתור מחיקת קנבס
+    ctx.fillStyle = "black";
+    ctx.fillRect(650, 20, 130, 100);
+    ctx.lineWidth = 3;    
+    ctx.strokeRect(650, 20, square_size+80, square_size+50);
+    ctx.font = "25px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("נקה לוח",772,80);
+} 
+
 fill_button(true);
+cleanButten();
 
 function clickEvent(event) {
     //gets the coordenits of the mouse click and the canvas position on screen and detirmins x and y within canvas
     var rect = c.getBoundingClientRect();
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;
+    var isClick = false;
     if (x >= 150 && x <= 210 && y >= 700 && y < 760){
         fill_button(true);
         fill_img = rect_img;
         is_filled = true;
+        isClick = true;
     }
     if (x >= 210 && x <= 270 && y >= 700 && y < 760){
         fill_button(false);
         fill_img = x_img;
         is_filled = false;
+        isClick = true;
+    }
+    if(x >= 650 && x <= 780 && y >= 20 && y <= 120 )
+    {
+        boardGame1.cleanBoard();
+        //boardGame1.showBoard();
+        isClick = true;
     }
     
     //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
@@ -198,6 +246,7 @@ function clickEvent(event) {
                 temp_array[line][coulmn].boolean = is_filled;
                 temp_array[line][coulmn].show();
                 found_clicked_squre = true;
+                isClick = true;
             }
             if(coulmn<temp_array[0].length-1){
                 coulmn++;
@@ -208,10 +257,18 @@ function clickEvent(event) {
             }
         }
     }
+    if( !isClick )
+    {
+        //אם המשחק לחץ בעכבר על מקום שלא אמור ללחוץ כותב הודעה לידע אותו
+        alert("לחצתם על מקום עם העכבר שהוא לא קשור למשחק ");
+    }
 }
-
+function keyDownHandler(event)
+{
+    alert("לחצתם על מקש מקלדת- לא קשור למשחק");
+}
 //the event listener activates the right functions according to the place on the canvas the user clicked and the boolain veriables which determine the cerrunt geaphics of the screen
-c.addEventListener("click", clickEvent)
+c.addEventListener("click", clickEvent);
 
 //function openningScreen(){
 //    ctx.clearRect(0, 0, c.width, c.height);
@@ -223,3 +280,5 @@ c.addEventListener("click", clickEvent)
 //}
 
 //openningScreen();
+
+document.addEventListener("keydown", keyDownHandler, false);
