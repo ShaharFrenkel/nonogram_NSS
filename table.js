@@ -262,5 +262,10 @@ function clickEvent(event) {
         alert("לחצתם על מקום עם העכבר שהוא לא קשור למשחק ");
     }
 }
+function keyDownHandler(event)
+{
+    alert("לחצתם על מקש מקלדת- לא קשור למשחק");
+}
 //the event listener activates the right functions according to the place on the canvas the user clicked and the boolain veriables which determine the cerrunt geaphics of the screen
 c.addEventListener("click", clickEvent);
+document.addEventListener("keydown", keyDownHandler, false);
