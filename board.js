@@ -26,7 +26,7 @@ class board {
             }
         }     
     }
-    showBorad() 
+    showBoard() 
     {//הפונקציה עוברת על המערך של המשבצות ומפעילה על כל משבצת את פונקצית show
         for(var i = 0; i < 10; i++)
         {
