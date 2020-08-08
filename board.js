@@ -15,9 +15,8 @@ class board {
         } 
         return arrayOfBool;
     } 
-
     showBorad() 
-    {
+    {//הפונקציה עוברת על המערך של המשבצות ומפעילה על כל משבצת את פונקצית show
         for(var i = 0; i < 10; i++)
         {
             for(var j = 0; j < 10; j++ )
@@ -25,6 +24,16 @@ class board {
                 this.arraySquares[i][j].show(); 
             }
         }     
-        
+    }
+    cleanBoard()
+    {// מוחק לוח- התמונות של המשבצות ריקות, כל המשבצות false
+        for(var i = 0; i < 10; i++)
+        {
+            for(var j = 0; j < 10; j++ )
+            {   
+               this.arraySquares[i][j].img = empty_img;
+               this.arraySquares[i][j].boolean = false;
+            }
+        }     
     }
 }
