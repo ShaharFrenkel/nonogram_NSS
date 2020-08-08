@@ -21,8 +21,8 @@ class board {
         {
             for(var j = 0; j < 10; j++ )
             {   
-               this.arraySquares[i][j].img = empty_img;
-               this.arraySquares[i][j].boolean = false;
+                this.arraySquares[i][j].this.img = empty_img;
+                this.arraySquares[i][j].this.boolean = false;
             }
         }     
     }
