@@ -4,10 +4,10 @@ class Board {
         this.arraySquares = new Array(10);
         for(var i = 0; i < 10; i++)
         {
-            arraySquares[i] = new Array(10);
+            this.arraySquares[i] = new Array(10);
             for(var j = 0; j < 10; j++ )
             {
-                arraySquares[i][j]= new Square( start_point_x + 50*i, start_point_y + 50*j, empty_img, false);
+                this.arraySquares[i][j]= new Square(start_point_x + 50*i, start_point_y + 50*j, empty_img, false);
             } 
         }
     }
@@ -40,7 +40,8 @@ class Board {
         }     
     }
     showBoard() 
-    {//הפונקציה עוברת על המערך של המשבצות ומפעילה על כל משבצת את פונקצית show
+    {
+        //הפונקציה עוברת על המערך של המשבצות ומפעילה על כל משבצת את פונקצית show
         for(var i = 0; i < 10; i++)
         {
             for(var j = 0; j < 10; j++ )
