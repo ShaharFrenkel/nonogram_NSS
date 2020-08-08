@@ -37,15 +37,15 @@ function createEmptyBoard()
             arrayOfSquares[i][j]= new Square( start_point_x + 50*i, start_point_y + 50*j, empty_img, false);
         } 
     }
-    var boardGame = new board(arrayOfSquares);
-    /*var boardGame;
+    //var boardGame = new board(arrayOfSquares);
+    var boardGame;
     for(var i = 0; i < 10; i++)
     {
         for(var j = 0; j < 10; j++ )
         {   
             boardGame = new board(arrayOfSquares[i][j]);
         } 
-    }*/
+    }
     return boardGame;
 }
 var boardGame1 = createEmptyBoard();
@@ -218,6 +218,7 @@ function clickEvent(event) {
     if(x >= 650 && x <= 780 && y >= 20 && y <= 120 )
     {
         boardGame1.cleanBoard();
+        //boardGame1.showBoard();
     }
     
     //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
@@ -235,7 +236,7 @@ function clickEvent(event) {
     if(clicked_on_the_board){
         while(!found_clicked_square){
             //in this ine the console shows an error but the action
-            if(x>boardGame1[line][coulmn].x && x<boardGame1[line][coulmn].x+boardGame1 && y>temp_array[line][coulmn].y && y<temp_array[line][coulmn].y+square_size){
+            if(x>temp_array[line][coulmn].x && x<temp_array[line][coulmn].x+square_size && y>temp_array[line][coulmn].y && y<temp_array[line][coulmn].y+square_size){
                 temp_array[line][coulmn].img = fill_img;
                 temp_array[line][coulmn].boolean = is_filled;
                 temp_array[line][coulmn].show();
