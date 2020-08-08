@@ -12,6 +12,7 @@ var empty_img = document.getElementById("empty_img");
 var fill_img = rect_img; //the img that will replace the empty image of a square objefct when the player clicks on the square
 var is_filled = true; //the bool value that will replace the square's bool value when the player clicks the square
 var inOpenningScreen = true; //bool that states if the player is currantly viewing the opening page where he can begin the game
+var first_board = new Board();
 
 //בניית הטבלה של המשחק
 for (var i = start_point_x; i < 10 * square_size + 1 + start_point_x; i = i + square_size) {
@@ -26,30 +27,6 @@ for (var j = start_point_y; j < square_size * 10 + 1 + start_point_y; j = j + sq
     ctx.stroke();
 }
 
-function createEmptyBoard()
-{
-    //יצירת מערך דו ממדי של אובייקט משבצת-הלוח
-    var arrayOfSquares = new Array(10);
-    for(var i = 0; i < 10; i++)
-    {
-        arrayOfSquares[i] = new Array(10);
-        for(var j = 0; j < 10; j++ )
-        {
-            arrayOfSquares[i][j]= new Square( start_point_x + 50*i, start_point_y + 50*j, empty_img, false);
-        } 
-    }
-    //var boardGame = new board(arrayOfSquares);
-    var boardGame;
-    for(var i = 0; i < 10; i++)
-    {
-        for(var j = 0; j < 10; j++ )
-        {   
-            boardGame = new board(arrayOfSquares[i][j]);
-        } 
-    }
-    return boardGame;
-}
-var boardGame1 = createEmptyBoard();
 
 //מערך דו מימדי של המשחק
 var array_name = [
