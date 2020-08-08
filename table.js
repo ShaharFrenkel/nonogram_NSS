@@ -259,10 +259,8 @@ function clickEvent(event) {
     if( !isClick )
     {
         //אם המשחק לחץ בעכבר על מקום שלא אמור ללחוץ כותב הודעה לידע אותו
-        alert("לחצתם על מקום עם העכבר שהוא לא קשור למשחק (לא הגיוני)");
+        alert("לחצתם על מקום עם העכבר שהוא לא קשור למשחק ");
     }
 }
-
 //the event listener activates the right functions according to the place on the canvas the user clicked and the boolain veriables which determine the cerrunt geaphics of the screen
 c.addEventListener("click", clickEvent);
-var k = event.keyCode;
