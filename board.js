@@ -11,19 +11,22 @@ class Board {
             } 
         }
     }
-    createArrayOfBool()
+    compareBool(arrayOfBool)
     { //יצירת מערך דו ממדי בוליאני של כל המשבצות 
         //לשנות את זה לפונקציית השוואה בין הבוליאני של המערך הזה למערך בוליאנים
-        var arrayOfBool = new Array(10);
+        var isEqual = true;
         for(var i = 0; i < 10; i++)
         {
-            arrayOfBool[i] = new Array(10);
             for(var j = 0; j < 10; j++ )
             {   
-                arrayOfBool[i][j] = this.arraySquares[i][j].boolean;  
+                if(arrayOfBool[i][j] != this.arraySquares[i][j].boolean)
+                {
+                    isEqual = false;
+                    i = 10;
+                }  
             }
         } 
-        return arrayOfBool;
+        return isEqual;
     } 
     cleanBoard()
     {// מוחק לוח- התמונות של המשבצות ריקות, כל המשבצות false
@@ -31,8 +34,8 @@ class Board {
         {
             for(var j = 0; j < 10; j++ )
             {   
-                this.arraySquares[i][j].this.img = empty_img;
-                this.arraySquares[i][j].this.boolean = false;
+                this.arraySquares[i][j].img = empty_img;
+                this.arraySquares[i][j].boolean = false;
             }
         }     
     }
