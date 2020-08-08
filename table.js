@@ -220,14 +220,14 @@ function clickEvent(event) {
     if(clicked_on_the_board){
         while(found_clicked_square==false){
             //in this ine the console shows an error but the action
-            found_clicked_square = true;
-            coulmn++;
-            alert(coulmn);
-            /*if (x>first_board.arraySquares[line][coulmn].x && x<first_board.arraySquares[line][coulmn].x+square_size && y>first_board.arraySquares[line][coulmn].y && y<first_board.arraySquares[line][coulmn].y+square_size){
+            //found_clicked_square = true;
+            //coulmn++;
+            //alert(coulmn);
+            if (x>first_board.arraySquares[line][coulmn].x && x<first_board.arraySquares[line][coulmn].x+square_size && y>first_board.arraySquares[line][coulmn].y && y<first_board.arraySquares[line][coulmn].y+square_size){
                 first_board.arraySquares[line][coulmn].img = fill_img;
                 first_board.arraySquares[line][coulmn].boolean = is_filled;
                 isClick = true;
-                found_clicked_squre = true;
+                found_clicked_square = true;
             }
             if(coulmn<first_board.arraySquares[0].length-1){
                 coulmn++;
@@ -235,7 +235,7 @@ function clickEvent(event) {
             else{
                 coulmn = 0;
                 line++;
-            }*/
+            }
         }
     }
 
