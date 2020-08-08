@@ -34,17 +34,18 @@ function createEmptyBoard()
         arraySquares[i] = new Array(10);
         for(var j = 0; j < 10; j++ )
         {
-            arraySquare[i][j]= new square(150+50*i, 150+50*j,empty_img , false);
+            arraySquare[i][j]= new square(start_point_x + 50*i, start_point_y + 50*j, empty_img, false);
         } 
     }
+    var boardGame;
     for(var i = 0; i < 10; i++)
     {
         for(var j = 0; j < 10; j++ )
         {   
-            var boardGame= new board(arraySquares[i][j]);
+            boardGame= new board(arraySquares[i][j]);
         } 
     }
-
+    return boardGame;
 }
 
 //מערך דו מימדי של המשחק
