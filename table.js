@@ -11,6 +11,7 @@ var x_img = document.getElementById("x_img");
 var empty_img = document.getElementById("empty_img");
 var fill_img = rect_img; //the img that will replace the empty image of a square objefct when the player clicks on the square
 var is_filled = true; //the bool value that will replace the square's bool value when the player clicks the square
+var inOpenningScreen = true; //bool that states if the player is currantly viewing the opening page where he can begin the game
 
 //בניית הטבלה של המשחק
 for (var i = start_point_x; i < 10 * square_size + 1 + start_point_x; i = i + square_size) {
@@ -211,3 +212,14 @@ function clickEvent(event) {
 
 //the event listener activates the right functions according to the place on the canvas the user clicked and the boolain veriables which determine the cerrunt geaphics of the screen
 c.addEventListener("click", clickEvent)
+
+//function openningScreen(){
+//    ctx.clearRect(0, 0, c.width, c.height);
+//    ctx.beginPath();
+//    ctx.fillStyle = "#FFFFFF";
+//    ctx.fillRect(200, 100, 400, 300);
+//    ctx.fill();
+    //ctx.fillText("ברוכים הבאים למשחק", 330, 175)
+//}
+
+//openningScreen();
