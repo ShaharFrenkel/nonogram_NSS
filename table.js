@@ -214,26 +214,31 @@ function clickEvent(event) {
     var clicked_on_the_board = x>start_point_x && x<start_point_x+board_len_in_squares*square_size && y>start_point_y && y<start_point_y+board_len_in_squares*square_size;
     var found_clicked_square = false;
     var line = 0;
-    var coulmn = 0;
-    //alert("x="+x+" y="+y+" "+ first_board.arraySquares[line][coulmn].x);
+    var column = 0;
+    //alert("x="+x+" y="+y+" "+ first_board.arraySquares[line][column].x);
 
     if(clicked_on_the_board){
-        while(found_clicked_square==false){
-            //in this ine the console shows an error but the action
-            //found_clicked_square = true;
-            //coulmn++;
-            //alert(coulmn);
-            if (x>first_board.arraySquares[line][coulmn].x && x<first_board.arraySquares[line][coulmn].x+square_size && y>first_board.arraySquares[line][coulmn].y && y<first_board.arraySquares[line][coulmn].y+square_size){
-                first_board.arraySquares[line][coulmn].img = fill_img;
-                first_board.arraySquares[line][coulmn].boolean = is_filled;
+        //runs on the array and finds the square the player clicked on by comparing the coordonites with each square
+        while(!found_clicked_square){
+            if (x>first_board.arraySquares[line][column].x && x<first_board.arraySquares[line][column].x+square_size && y>first_board.arraySquares[line][column].y && y<first_board.arraySquares[line][column].y+square_size){
+                //checks if the square has already been clicked on with the same img the player currently has, if so, it earases the square
+                if(first_board.arraySquares[line][column].img == fill_img){
+                    first_board.arraySquares[line][column].img = empty_img;
+                    first_board.arraySquares[line][column].boolean = false;
+                }
+                //else, it paints the sqaure with the img
+                else{
+                    first_board.arraySquares[line][column].img = fill_img;
+                    first_board.arraySquares[line][column].boolean = is_filled;
+                    }
                 isClick = true;
                 found_clicked_square = true;
             }
-            if(coulmn<first_board.arraySquares[0].length-1){
-                coulmn++;
+            if(column<first_board.arraySquares[0].length-1){
+                column++;
             }
             else{
-                coulmn = 0;
+                column = 0;
                 line++;
             }
         }
@@ -245,6 +250,7 @@ function clickEvent(event) {
         alert("לחצתם על מקום עם העכבר שהוא לא קשור למשחק, השתמשו בכפתורי המשחק(לחץ על כפתור נקה לוח/ בחר מילוי משבצת ללוח/ לחץ על המשבצת הרצויה לצביעה בצבע או איקס/ לחץ על משבצת צבועה שהתחרטת ואת/ה רוצה שהמשבצת תיהיה לבנה/ סיום משחק");
     }
     else{
+        ctx.linewitdh = 1;
         ctx.clearRect(start_point_x,start_point_y, 500, 500);
         first_board.showBoard();
         drawTable();
