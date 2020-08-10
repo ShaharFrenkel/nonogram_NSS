@@ -1,6 +1,6 @@
 const c = document.getElementById("myCanvas");
 const ctx = c.getContext("2d");
-ctx.lineWidth = 2;
+ctx.lineWidth = 1;
 ctx.strokeStyle = "black";
 const square_size = 50;
 const start_point_x = 150;
@@ -15,6 +15,7 @@ var inOpenningScreen = true; //bool that states if the player is currantly viewi
 var first_board = new Board();
 
 function drawTable(){
+    ctx.lineWidth = 1;
     //בניית הטבלה של המשחק
     for (var i = start_point_x; i < 10 * square_size + 1 + start_point_x; i = i + square_size) {
         ctx.moveTo(i, start_point_y);
@@ -221,6 +222,8 @@ function clickEvent(event) {
         //runs on the array and finds the square the player clicked on by comparing the coordonites with each square
         while(!found_clicked_square){
             if (x>first_board.arraySquares[line][column].x && x<first_board.arraySquares[line][column].x+square_size && y>first_board.arraySquares[line][column].y && y<first_board.arraySquares[line][column].y+square_size){
+                isClick = true;
+                found_clicked_square = true;
                 //checks if the square has already been clicked on with the same img the player currently has, if so, it earases the square
                 if(first_board.arraySquares[line][column].img == fill_img){
                     first_board.arraySquares[line][column].img = empty_img;
@@ -230,9 +233,7 @@ function clickEvent(event) {
                 else{
                     first_board.arraySquares[line][column].img = fill_img;
                     first_board.arraySquares[line][column].boolean = is_filled;
-                    }
-                isClick = true;
-                found_clicked_square = true;
+                }
             }
             if(column<first_board.arraySquares[0].length-1){
                 column++;
@@ -247,18 +248,18 @@ function clickEvent(event) {
     if(!isClick)
     {
         //אם המשחק לחץ בעכבר על מקום שלא אמור ללחוץ כותב הודעה לידע אותו
-        alert("לחצתם על מקום עם העכבר שהוא לא קשור למשחק, השתמשו בכפתורי המשחק(לחץ על כפתור נקה לוח/ בחר מילוי משבצת ללוח/ לחץ על המשבצת הרצויה לצביעה בצבע או איקס/ לחץ על משבצת צבועה שהתחרטת ואת/ה רוצה שהמשבצת תיהיה לבנה/ סיום משחק");
+        alert("לחצתם על מקום עם העכבר שהוא לא קשור למשחק ");
     }
     else{
-        ctx.linewitdh = 1;
         ctx.clearRect(start_point_x,start_point_y, 500, 500);
         first_board.showBoard();
+        ctx.linewitdh = 1;
         drawTable();
     }
 }
 function keyDownHandler(event)
 {
-    alert("לחצתם על מקש מקלדת- לא קשור למשחק, השתמשו בכפתורי המשחק (לחץ על כפתור נקה לוח/ בחר מילוי משבצת ללוח/ לחץ על המשבצת הרצויה לצביעה בצבע או איקס/ לחץ על משבצת צבועה שהתחרטת ואת/ה רוצה שהמשבצת תיהיה לבנה/ סיום משחק ");
+    alert("לחצתם על מקש מקלדת- לא קשור למשחק");
 }
 //the event listener activates the right functions according to the place on the canvas the user clicked and the boolain veriables which determine the cerrunt geaphics of the screen
 c.addEventListener("click", clickEvent);
