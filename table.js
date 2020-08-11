@@ -1,6 +1,6 @@
 const c = document.getElementById("myCanvas");
 const ctx = c.getContext("2d");
-ctx.lineWidth = 2;
+ctx.lineWidth = 1;
 ctx.strokeStyle = "black";
 const square_size = 50;
 const start_point_x = 150;
@@ -19,6 +19,7 @@ var finishLTime = false;
 var instractionTime = false;
 
 function drawTable(){
+    ctx.lineWidth = 1;
     //בניית הטבלה של המשחק
     for (var i = start_point_x; i < 10 * square_size + 1 + start_point_x; i = i + square_size) {
         ctx.moveTo(i, start_point_y);
@@ -166,21 +167,50 @@ function writeSideNumbers(boolArray)
         }
     }
 }
+
+//var board_for_open = [[new Square(335, 360, empty_img, false),new Square(400, 360, empty_img, false)],[new Square(335, 425, empty_img, false),new Square(400, 425, empty_img, false)]];
 function openingPage(){
+    
     
     ctx.clearRect(0,0,c.width,c.height);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, c.width ,c.height);
     ctx.textAlign = "center";
-    ctx.font = "30px Arial";
+    ctx.font = "70px Arial";
     ctx.fillStyle = "white";
     ctx.strokeStyle = "white";
-    ctx.fillText("this is Shor oo Ptor game", 400, 150);
-    ctx.strokeRect(200,400,400,150);
-    ctx.fillText("click", 400, 450);
-    ctx.fillText("to start the game", 400, 520);
+    ctx.fillText("משחק שחור ופתור", 400, 200);
+    ctx.font = "40px Arial";
+    ctx.fillText("מבית שחר, שקד ונרי",400,270);
+    ctx.lineWidth = 5;
+    ctx.strokeRect(200,540,400,150);
+    ctx.font = "30px Arial";
+    ctx.fillText("לחצו", 400, 590);
+    ctx.fillText("להתחלת המשחק", 400, 660);
+    open_img = document.getElementById("nono_img");
+    down_arrow = document.getElementById("downArrow_img");
+    ctx.drawImage(open_img, 100, 300 , 600, 25);
+    ctx.drawImage(open_img, 100, 100 , 600, 25);
+    ctx.drawImage(open_img, 100, 100, 25, 225);
+    ctx.drawImage(open_img, 675, 100, 25, 225);
+   // ctx.drawImage(down_arrow, 350, 360, 100, 150);
+   ctx.lineWidth = 3;
+   ctx.strokeRect(335,360,130,130);
+   ctx.moveTo(335, 425);
+    ctx.lineTo(465, 425);
+    ctx.stroke();
+    ctx.moveTo(400, 360);
+    ctx.lineTo(400, 490);
+    ctx.stroke();
+    ctx.fillRect(335,360,65,65);
+    ctx.fillRect(400,425,65,65);
+
+    ctx.strokeStyle = "black";
+     ctx.fillStyle = "black";
+    first_board.cleanBoard();
     ctx.strokeStyle = "black";
     ctx.fillStyle = "black";
+    
     
 
 }
@@ -195,29 +225,80 @@ function FinishLevel(isok)
         finishLTime = true;
         counter_level++;
         ctx.clearRect(0,0,c.width,c.height);
+        ctx.fillStyle = "black";
         ctx.fillRect(0, 0, c.width ,c.height);
         ctx.strokeStyle = "white";
-        ctx.font = "30px Arial";
+       /* ctx.font = "30px Arial";
         ctx.textAlign = "center";
         ctx.strokeText("you completed the level", 400, 150);
         ctx.strokeText("good job", 400, 250);
         ctx.strokeRect(200,400,400,150);
         ctx.strokeText("click", 400, 450);
         ctx.fillText("for the next level", 400, 520);
+        */
+       ctx.textAlign = "center";
+        ctx.font = "70px Arial";
+        ctx.fillStyle = "white";
+        ctx.strokeStyle = "white";
+        ctx.fillText("!!!! כל הכבוד", 400, 200);
+        ctx.font = "40px Arial";
+        ctx.fillText("סיימת את שלב מספר",400,270);
+        ctx.textAlign = "left";
+        ctx.fillText(counter_level,200,270);
+        ctx.textAlign = "center";
+        ctx.lineWidth = 5;
+        ctx.strokeRect(200,540,400,150);
+        ctx.font = "30px Arial";
+        ctx.fillText("לחצו", 400, 590);
+        ctx.fillText("לשלב הבא", 400, 660);
+        open_img = document.getElementById("nono_img");
+        down_arrow = document.getElementById("downArrow_img");
+        ctx.drawImage(open_img, 100, 300 , 600, 25);
+        ctx.drawImage(open_img, 100, 100 , 600, 25);
+        ctx.drawImage(open_img, 100, 100, 25, 225);
+        ctx.drawImage(open_img, 675, 100, 25, 225);
+        for(i=0; i<10; i++){
+
+            if(counter_level > i)
+            {
+            ctx.fillRect(50 + i *70, 400, 50, 50);
+            }
+            else
+            {
+            ctx.strokeRect(50 + i*70, 400, 50, 50);
+            }
+        }
+       
+       /* var rectX = 50;
+        var rectY = 50;
+        var rectWidth = 50;
+        var rectHeight = 50;
+        var cornerRadius = 20;
+
+// Set faux rounded corners
+        context.lineJoin = "round";
+        context.lineWidth = cornerRadius;
+
+// Change origin and dimensions to match true size (a stroke makes the shape a bit larger)
+        context.strokeRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
+        context.fillRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
+        */
         ctx.strokeStyle = "black";
         ctx.fillStyle = "black";
         first_board.cleanBoard();
+        
     
     
     }
 
     else
     {
-        alert("This is not the correct answer try again please");
+        alert("זאת לא התשובה הנכונה, נסו שוב!");
 
     }
     
 }
+
 //writeSideNumbers(first_level);
 
 //display of a x/rect button
@@ -264,7 +345,7 @@ function finishButton()
     ctx.fillStyle = "black";
     ctx.strokeRect(600, 670, 150, 100);
     ctx.textAlign = "center";
-    ctx.fillText("Finish Level", 675, 730);
+    ctx.fillText("סיום השלב", 675, 730);
 
 
 }
@@ -304,30 +385,44 @@ function clickEvent(event) {
         var clicked_on_the_board = x>start_point_x && x<start_point_x+board_len_in_squares*square_size && y>start_point_y && y<start_point_y+board_len_in_squares*square_size;
         var found_clicked_square = false;
         var line = 0;
-        var coulmn = 0;
+        var column = 0;
         //alert("x="+x+" y="+y+" "+ first_board.arraySquares[line][coulmn].x);
     
-        if(clicked_on_the_board){
-            while(found_clicked_square==false){
-                //in this ine the console shows an error but the action
+    //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
+    //alert("x="+x+" y="+y+" "+ first_board.arraySquares[line][column].x);
+
+    if(clicked_on_the_board)
+    {
+        //runs on the array and finds the square the player clicked on by comparing the coordonites with each square
+        while(!found_clicked_square){
+            //in this ine the console shows an error but the action
                 //found_clicked_square = true;
                 //coulmn++;
                 //alert(coulmn);
-                if (x>first_board.arraySquares[line][coulmn].x && x<first_board.arraySquares[line][coulmn].x+square_size && y>first_board.arraySquares[line][coulmn].y && y<first_board.arraySquares[line][coulmn].y+square_size){
-                    first_board.arraySquares[line][coulmn].img = fill_img;
-                    first_board.arraySquares[line][coulmn].boolean = is_filled;
-                    isClick = true;
-                    found_clicked_square = true;
+            if (x>first_board.arraySquares[line][column].x && x<first_board.arraySquares[line][column].x+square_size && y>first_board.arraySquares[line][column].y && y<first_board.arraySquares[line][column].y+square_size){
+                isClick = true;
+                found_clicked_square = true;
+                //checks if the square has already been clicked on with the same img the player currently has, if so, it earases the square
+                if(first_board.arraySquares[line][column].img == fill_img){
+                    first_board.arraySquares[line][column].img = empty_img;
+                    first_board.arraySquares[line][column].boolean = false;
                 }
-                if(coulmn<first_board.arraySquares[0].length-1){
-                    coulmn++;  
-                }
+                //else, it paints the sqaure with the img
                 else{
-                    coulmn = 0;
-                    line++;
+                    first_board.arraySquares[line][column].img = fill_img;
+                    first_board.arraySquares[line][column].boolean = is_filled;
                 }
             }
+            if(column<first_board.arraySquares[0].length-1){
+                column++;
+            }
+            else{
+                column = 0;
+                line++;
+            }
         }
+
+    }
     
         if(x > 600 && x < 750 && y > 670 && y < 770){
            
@@ -337,8 +432,29 @@ function clickEvent(event) {
     }
 
     if(openingTime){
-        if(x > 200 && x < 600 && y > 400 && y < 550)
+        
+        
+        /*if(x>335 && x<465 && y>360 && y<425){
+            isClick =true;
+            for(i=0; i<2; i++){
+
+                for(j=0; j<2; j++)
+                {
+                    if(x>335 + j*65 && x < 335 +j*65 +65 && y > 360 + i*65 && y <360 + i*65 + 65 )
+                    {
+                        ctx.fillStyle = "white";
+                       ctx.fillRect(335 + j*65, 360 +i*65, 65,65 );
+                       ctx.fillStyle = "black";
+                    }
+                }
+            }
+            
+        }
+        */
+        
+        if(x > 200 && x < 600 && y > 540 && y < 690)
         {
+
             
             openingTime = false;
             levelTime= true;
@@ -356,7 +472,7 @@ function clickEvent(event) {
     }
     if(finishLTime)
     {
-        if(x > 200 && x < 600 && y > 400 && y < 550)
+        if(x > 200 && x < 600 && y > 540 && y < 690)
         {
             finishLTime = false;
             levelTime= true;
@@ -385,15 +501,19 @@ function clickEvent(event) {
         {
             ctx.clearRect(start_point_x,start_point_y, 500, 500);
             first_board.showBoard();
+            ctx.lineWidth = 1;
             drawTable();
         }
                 
-            
+        else
+        {
         
-       
+        ctx.linewitdh = 1;
+      
+        }
     }
-    
-}
+ }
+
 function keyDownHandler(event)
 {
     alert("לחצתם על מקש מקלדת- לא קשור למשחק");
