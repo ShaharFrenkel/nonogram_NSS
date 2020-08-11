@@ -6,6 +6,8 @@ const square_size = 50;
 const start_point_x = 150;
 const start_point_y = 150;
 var board_len_in_squares = 10;
+const example = document.getElementById("nonogram_example");
+const button_img = document.getElementById("button_example")
 const rect_img = document.getElementById("rect_img");
 const x_img = document.getElementById("x_img");
 const empty_img = document.getElementById("empty_img");
@@ -17,6 +19,9 @@ var openingTime = true;
 var levelTime  = false;
 var finishLTime = false;
 var instractionTime = false;
+var inInstructionScreen1 = false; ////bool that states if the player is currantly viewing the instructions page 1
+var inInstructionScreen2 = false; ////bool that states if the player is currantly viewing the instructions page 2
+
 
 function drawTable(){
     ctx.lineWidth = 1;
@@ -499,10 +504,7 @@ function clickEvent(event) {
     {
         if(!finishLTime)
         {
-            ctx.clearRect(start_point_x,start_point_y, 500, 500);
-            first_board.showBoard();
-            ctx.lineWidth = 1;
-            drawTable();
+            redraw_borad();
         }
                 
         else
@@ -511,8 +513,9 @@ function clickEvent(event) {
         ctx.linewitdh = 1;
       
         }
-    }
+    
  }
+}
 
 function keyDownHandler(event)
 {
@@ -534,3 +537,84 @@ c.addEventListener("click", clickEvent);
 
 document.addEventListener("keydown", keyDownHandler, false);
 
+function redraw_borad(){
+    ctx.clearRect(start_point_x,start_point_y, 500, 500);
+    first_board.showBoard();
+    ctx.linewitdh = 1;
+    drawTable();
+}
+
+function draw_game_screen(){
+    ctx.clearRect(0,0,800,800);
+    redraw_borad();
+    writeSideNumbers(first_level);
+    fill_button(is_filled);
+    cleanButten();
+}
+
+function instructionsScreen1(){
+    draw_game_screen();
+    inInstructionScreen1 = true;
+    ctx.beginPath();
+    ctx.globalAlpha = 0.95;
+    ctx.fillStyle = "#BDCFDF";
+    ctx.fillRect(50, 50, 700, 700);
+    ctx.fill();
+    ctx.fillStyle = "#000000";
+    ctx.moveTo(70, 380);
+    ctx.lineTo(70, 420);
+    ctx.lineTo(60, 400);
+    ctx.fill();
+    ctx.drawImage(x_img, 700, 70, 30, 30)
+    ctx.fillStyle = "#FFFFFF";
+    ctx.font = "70px Tahoma Bold";
+    ctx.textAlign = "center";
+    ctx.fillText('הוראות המשחק',400,150);
+    ctx.fillStyle = "#000000";
+    ctx.font = "30px Times New Roman";
+    ctx.fillText('שחור ופתור הוא משחק חשיבה בו עליכם לצבוע משבצות',400,200);
+    ctx.fillText('מסוימות על לוח המשחק, על פי החוקים, על מנת לקבל תמונה',400,230);
+    ctx.font = "25px Times New Roman";
+    ctx.textAlign = "right";
+    ctx.fillText('.בתחילת המשחק מופיע מולכם לוח משחק ריק',730,270);
+    ctx.fillText('בצדו השמאלי של הלוח ומעליו מופיעים מספרים המייצגים רצפים של משבצות',730,300);
+    ctx.fillText('.שעליכם לצבוע על מנת להגיע לפתרון',730,330);
+    ctx.fillText('.על המשבצות על הלוח להתאים לכל רצפי המספרים המופיעים מחוץ ללוח',730,360);
+    ctx.fillText('כל רצף מספרים מופיע על פי הסדר שמצופה מכם לסמן על הלוח',730,390);
+    ctx.fillText('(לדוגמה, בשורה הראשונה כתובים המספרים אחד ושלוש, ומסומנים בהתאם)',730,420);
+    ctx.fillText('.בין כל רצף מספרים חייבת להיות לפחות משבצת אחת ריקה',730,450);
+    ctx.drawImage(example, 100, 470);
+}
+
+function instructionsScreen2(){
+    draw_game_screen();
+    inInstructionScreen2 = true;
+    ctx.beginPath();
+    ctx.globalAlpha = 0.95;
+    ctx.fillStyle = "#BDCFDF";
+    ctx.fillRect(50, 50, 700, 700);
+    ctx.fill();
+    ctx.fillStyle = "#000000";
+    ctx.moveTo(735, 380);
+    ctx.lineTo(735, 420);
+    ctx.lineTo(745, 400);
+    ctx.fill();
+    ctx.fillStyle = "#FFFFFF";
+    ctx.font = "70px Tahoma Bold";
+    ctx.textAlign = "center";
+    ctx.fillText('הוראות המשחק',400,150);
+    ctx.fillStyle = "#000000";
+    ctx.font = "25px Times New Roman";
+    ctx.textAlign = "right";
+    ctx.fillText('במהלך המשחק תוכלו לסמן באיקס משבצות שאתם בטוחים שלא ימולאו בהמשך',730,200);
+    ctx.fillText('(למשל משבצת אחת בסיום כל רצף)',730,230);
+    ctx.fillText('תוכלו לבחור האם לסמן באיקס או בריבוע על ידי לחיצה על הכפתור בתחתית',730,260);
+    ctx.fillText('אם תרצו למחוק משבצת מלאה, לחצו עליה כאשר הכפתור בתחתית עומד על',730,290);
+    ctx.fillText('(הציור שנמצא במשבצת זו (ריבוע או איקס',730,320);
+    ctx.drawImage(button_img, 100, 330, 140, 70);
+    ctx.fillText('.בכל שלב של המשחק תוכלו ללחוץ על כפתור "נקה לוח" ולהתחיל מחדש',730,430);
+    ctx.fillText('"כשסיימתם למלא את כל המשבצות הנדרשות, לחצו על כפתור "סיים משחק',730,560);
+}
+
+instructionsScreen1();
+//instructionsScreen2();
