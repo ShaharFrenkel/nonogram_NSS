@@ -544,7 +544,7 @@ function redraw_borad(){
 function draw_game_screen(){
     ctx.clearRect(0,0,800,800);
     redraw_borad();
-    writeSideNumbers(first_level);
+    writeSideNumbers(Levels[counter_level]);
     fill_button(is_filled);
     cleanButten();
     finishButton();
