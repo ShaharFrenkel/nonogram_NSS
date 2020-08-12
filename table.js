@@ -176,12 +176,12 @@ function cleanButten()
 {
     //מציג את כפתור מחיקת קנבס
     ctx.fillStyle = "black";
-    ctx.fillRect(650, 20, 130, 100);
+    ctx.fillRect(650, 20, 130, 70);
     ctx.lineWidth = 3;    
-    ctx.strokeRect(650, 20, square_size+80, square_size+50);
+    ctx.strokeRect(650, 20, square_size+80, square_size+20);
     ctx.font = "25px Arial";
     ctx.fillStyle = "white";
-    ctx.fillText("נקה לוח",772,80);
+    ctx.fillText("נקה לוח",675,63);
 } 
 
 fill_button(true);
