@@ -13,9 +13,8 @@ const x_img = document.getElementById("x_img");
 const empty_img = document.getElementById("empty_img");
 var fill_img = rect_img; //the img that will replace the empty image of a square objefct when the player clicks on the square
 var is_filled = true; //the bool value that will replace the square's bool value when the player clicks the square
-var inOpenningScreen = true; //bool that states if the player is currantly viewing the opening page where he can begin the game
 var first_board = new Board();
-var openingTime = true;
+var openingTime = true; //bool that states if the player is currantly viewing the opening page where he can begin the game
 var levelTime  = false;
 var finishLTime = false;
 var instractionTime = false;
@@ -40,8 +39,6 @@ function drawTable(){
    
 
 }
-//first_board.showBoard();
-//drawTable();
 
 //מערך דו מימדי של המשחק
 var first_level = [
@@ -175,8 +172,6 @@ function writeSideNumbers(boolArray)
 
 //var board_for_open = [[new Square(335, 360, empty_img, false),new Square(400, 360, empty_img, false)],[new Square(335, 425, empty_img, false),new Square(400, 425, empty_img, false)]];
 function openingPage(){
-    
-    
     ctx.clearRect(0,0,c.width,c.height);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, c.width ,c.height);
@@ -211,15 +206,12 @@ function openingPage(){
     ctx.fillRect(400,425,65,65);
 
     ctx.strokeStyle = "black";
-     ctx.fillStyle = "black";
+    ctx.fillStyle = "black";
     first_board.cleanBoard();
     ctx.strokeStyle = "black";
     ctx.fillStyle = "black";
-    
-    
-
 }
-openingPage();
+//openingPage();
 
 function FinishLevel(isok)
 {
@@ -365,6 +357,39 @@ function clickEvent(event) {
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;
     var isClick = false;
+
+    if (x > 10 && x < 160 && y > 10 && y < 110){
+        instructionsScreen1();
+        isClick = true;
+    }
+
+    if(inInstructionScreen1){
+        if(x<730 && x>700 && y<100 && y>70){
+            inInstructionScreen1 = false;
+            levelTime = true;
+            draw_game_screen();
+            isClick = true;
+        }
+        if(x<70 && x>60 && y<420 && y>380){
+            inInstructionScreen1 = false;
+            instructionsScreen2();
+            isClick = true;
+        }
+    }
+
+    if(inInstructionScreen2){
+        if(x<730 && x>700 && y<100 && y>70){
+            inInstructionScreen2 = false;
+            levelTime = true;
+            draw_game_screen();
+            isClick = true;
+        }
+        if(x<745 && x>735 && y<420 && y>380){
+            inInstructionScreen2 = false;
+            instructionsScreen1();
+            isClick = true;
+        }
+    }
     
     if(levelTime)
     {
@@ -393,41 +418,41 @@ function clickEvent(event) {
         var column = 0;
         //alert("x="+x+" y="+y+" "+ first_board.arraySquares[line][coulmn].x);
     
-    //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
-    //alert("x="+x+" y="+y+" "+ first_board.arraySquares[line][column].x);
+        //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
+        //alert("x="+x+" y="+y+" "+ first_board.arraySquares[line][column].x);
 
-    if(clicked_on_the_board)
-    {
-        //runs on the array and finds the square the player clicked on by comparing the coordonites with each square
-        while(!found_clicked_square){
-            //in this ine the console shows an error but the action
+        if(clicked_on_the_board)
+        {
+            //runs on the array and finds the square the player clicked on by comparing the coordonites with each square
+            while(!found_clicked_square){
+                //in this ine the console shows an error but the action
                 //found_clicked_square = true;
                 //coulmn++;
                 //alert(coulmn);
-            if (x>first_board.arraySquares[line][column].x && x<first_board.arraySquares[line][column].x+square_size && y>first_board.arraySquares[line][column].y && y<first_board.arraySquares[line][column].y+square_size){
-                isClick = true;
-                found_clicked_square = true;
-                //checks if the square has already been clicked on with the same img the player currently has, if so, it earases the square
-                if(first_board.arraySquares[line][column].img == fill_img){
-                    first_board.arraySquares[line][column].img = empty_img;
-                    first_board.arraySquares[line][column].boolean = false;
+                if (x>first_board.arraySquares[line][column].x && x<first_board.arraySquares[line][column].x+square_size && y>first_board.arraySquares[line][column].y && y<first_board.arraySquares[line][column].y+square_size){
+                    isClick = true;
+                    found_clicked_square = true;
+                    //checks if the square has already been clicked on with the same img the player currently has, if so, it earases the square
+                    if(first_board.arraySquares[line][column].img == fill_img){
+                        first_board.arraySquares[line][column].img = empty_img;
+                        first_board.arraySquares[line][column].boolean = false;
+                    }
+                    //else, it paints the sqaure with the img
+                    else{
+                        first_board.arraySquares[line][column].img = fill_img;
+                        first_board.arraySquares[line][column].boolean = is_filled;
+                    }
                 }
-                //else, it paints the sqaure with the img
+                if(column<first_board.arraySquares[0].length-1){
+                    column++;
+                }
                 else{
-                    first_board.arraySquares[line][column].img = fill_img;
-                    first_board.arraySquares[line][column].boolean = is_filled;
+                    column = 0;
+                    line++;
                 }
             }
-            if(column<first_board.arraySquares[0].length-1){
-                column++;
-            }
-            else{
-                column = 0;
-                line++;
-            }
-        }
 
-    }
+        }
     
         if(x > 600 && x < 750 && y > 670 && y < 770){
            
@@ -463,13 +488,7 @@ function clickEvent(event) {
             
             openingTime = false;
             levelTime= true;
-            ctx.clearRect(0,0,c.width,c.height);
-            first_board.showBoard();
-            drawTable();
-            writeSideNumbers(Levels[counter_level]);
-            fill_button(true);
-            cleanButten();
-            finishButton();
+            draw_game_screen();
             isClick = true;
 
 
@@ -481,13 +500,7 @@ function clickEvent(event) {
         {
             finishLTime = false;
             levelTime= true;
-            ctx.clearRect(0,0,c.width,c.height);
-            first_board.showBoard();
-            drawTable();
-            writeSideNumbers(Levels[counter_level]);
-            fill_button(true);
-            cleanButten();
-            finishButton();
+            draw_game_screen();
             isClick = true;
 
 
@@ -502,16 +515,11 @@ function clickEvent(event) {
     }
     else
     {
-        if(!finishLTime)
-        {
-            redraw_borad();
+        if(finishLTime || inInstructionScreen1 || inInstructionScreen2){
+            ctx.linewitdh = 1;
         }
-                
-        else
-        {
-        
-        ctx.linewitdh = 1;
-      
+        else{
+            redraw_borad();
         }
     
  }
@@ -523,17 +531,6 @@ function keyDownHandler(event)
 }
 //the event listener activates the right functions according to the place on the canvas the user clicked and the boolain veriables which determine the cerrunt geaphics of the screen
 c.addEventListener("click", clickEvent);
-
-//function openningScreen(){
-//    ctx.clearRect(0, 0, c.width, c.height);
-//    ctx.beginPath();
-//    ctx.fillStyle = "#FFFFFF";
-//    ctx.fillRect(200, 100, 400, 300);
-//    ctx.fill();
-    //ctx.fillText("ברוכים הבאים למשחק", 330, 175)
-//}
-
-//openningScreen();
 
 document.addEventListener("keydown", keyDownHandler, false);
 
@@ -550,10 +547,13 @@ function draw_game_screen(){
     writeSideNumbers(first_level);
     fill_button(is_filled);
     cleanButten();
+    finishButton();
+    instructionButton();
 }
 
 function instructionsScreen1(){
     draw_game_screen();
+    levelTime = false;
     inInstructionScreen1 = true;
     ctx.beginPath();
     ctx.globalAlpha = 0.95;
@@ -589,6 +589,7 @@ function instructionsScreen1(){
 function instructionsScreen2(){
     draw_game_screen();
     inInstructionScreen2 = true;
+    levelTime = false;
     ctx.beginPath();
     ctx.globalAlpha = 0.95;
     ctx.fillStyle = "#BDCFDF";
@@ -599,6 +600,7 @@ function instructionsScreen2(){
     ctx.lineTo(735, 420);
     ctx.lineTo(745, 400);
     ctx.fill();
+    ctx.drawImage(x_img, 700, 70, 30, 30)
     ctx.fillStyle = "#FFFFFF";
     ctx.font = "70px Tahoma Bold";
     ctx.textAlign = "center";
@@ -616,5 +618,15 @@ function instructionsScreen2(){
     ctx.fillText('"כשסיימתם למלא את כל המשבצות הנדרשות, לחצו על כפתור "סיים משחק',730,560);
 }
 
-instructionsScreen1();
-//instructionsScreen2();
+function instructionButton(){
+    ctx.beginPath();
+    ctx.fillStyle = "black";
+    ctx.rect(10, 10, 150, 100);
+    ctx.fill();
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillText("הוראות", 85, 50);
+    ctx.fillText("המשחק", 85, 80);
+}
+
+openingPage();
