@@ -600,7 +600,7 @@ function clickEvent(event) {
     if(!isClick)
     {
         //אם המשחק לחץ בעכבר על מקום שלא אמור ללחוץ כותב הודעה לידע אותו
-        alert("לחצתם על מקום עם העכבר שהוא לא קשור למשחק ");
+        alert("לחצתם על מקום עם העכבר- לא קשור למשחק לחצתם על מקש מקלדת- לא קשור למשחק, השתמשו בכפתורי המשחק (לחץ על כפתור נקה לוח/ בחר מילוי משבצת ללוח/ לחץ על המשבצת הרצויה לצביעה בצבע או איקס/ לחץ על משבצת צבועה שהתחרטת ואת/ה רוצה שהמשבצת תיהיה לבנה/ סיום משחק");
     }
     else
     {
@@ -616,7 +616,7 @@ function clickEvent(event) {
 
 function keyDownHandler(event)
 {
-    alert("לחצתם על מקש מקלדת- לא קשור למשחק");
+    alert(" לחצתם על מקש מקלדת- לא קשור למשחק לחצתם על מקש מקלדת- לא קשור למשחק, השתמשו בכפתורי המשחק (לחץ על כפתור נקה לוח/ בחר מילוי משבצת ללוח/ לחץ על המשבצת הרצויה לצביעה בצבע או איקס/ לחץ על משבצת צבועה שהתחרטת ואת/ה רוצה שהמשבצת תיהיה לבנה/ סיום משחק");
 }
 //the event listener activates the right functions according to the place on the canvas the user clicked and the boolain veriables which determine the cerrunt geaphics of the screen
 c.addEventListener("click", clickEvent);
