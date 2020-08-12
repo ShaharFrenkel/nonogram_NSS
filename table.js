@@ -337,7 +337,7 @@ function cleanButten()
     ctx.strokeRect(650, 20, square_size+80, square_size+20);
     ctx.font = "25px Arial";
     ctx.fillStyle = "white";
-    ctx.fillText("נקה לוח",675,63);
+    ctx.fillText("נקה לוח",712,63);
 } 
 
 function finishButton()
