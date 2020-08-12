@@ -616,5 +616,52 @@ function instructionsScreen2(){
     ctx.fillText('"כשסיימתם למלא את כל המשבצות הנדרשות, לחצו על כפתור "סיים משחק',730,560);
 }
 
-instructionsScreen1();
+ //instructionsScreen1();
 //instructionsScreen2();
+
+function map_for_game()
+{
+ctx.clearRect(0,0,c.width,c.height);
+ctx.fillStyle = "black";
+ctx.fillRect(0,0,c.width,c.height);
+ctx.fillStyle = "white";
+ctx.strokeStyle = "white";
+cover_img = document.getElementById("cover");
+finish1_img = document.getElementById("finish_1");
+finish2_img = document.getElementById("finish_2");
+ctx.drawImage(finish1_img, 150, 150, 100, 100);
+ctx.drawImage(finish2_img, 150, 350, 100, 100);   
+for(var i = 0; i<3; i++){
+        ctx.strokeRect(150, 150 +200*i, 100,100);
+        ctx.fillText(i+1,200,130 + 200*i);
+     
+       if(!(counter_level>i))
+       {
+           ctx.drawImage(cover_img,150, 150 +200*i, 100,100);
+       }
+    }
+    for(var i = 0; i<3; i++){
+        ctx.strokeRect(550, 150 +200*i, 100,100);
+        ctx.fillText(i+8,600,130 + 200*i);
+
+        if(!(counter_level>i+7))
+        {
+            ctx.drawImage(cover_img,550, 150 +200*i, 100,100);
+        }
+    }
+    
+    for(var i = 0; i<4; i++){
+        ctx.strokeRect(350, 50 +200*i, 100,100);
+        ctx.fillText(i+4,400,30 + 200*i);
+        if(!(counter_level>i+3))
+        {
+            ctx.drawImage(cover_img,350, 50 +200*i, 100,100);
+        } 
+    }
+    
+
+    
+
+
+}
+map_for_game();
