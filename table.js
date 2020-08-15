@@ -20,6 +20,7 @@ var finishLTime = false;
 var instractionTime = false;
 var inInstructionScreen1 = false; ////bool that states if the player is currantly viewing the instructions page 1
 var inInstructionScreen2 = false; ////bool that states if the player is currantly viewing the instructions page 2
+var game_map_time = false;
 
 
 function drawTable(){
@@ -74,6 +75,7 @@ counter_level = 0;
 function writeSideNumbers(boolArray)
 {
     //הוספת המספרים לטבלה לפי שלב כללי
+    ctx.fillStyle = "black";
     var counterx = 0;
     var numberx = 0;
     var countery1 = 0;
@@ -184,9 +186,11 @@ function openingPage(){
     ctx.fillText("מבית שחר, שקד ונרי",400,270);
     ctx.lineWidth = 5;
     ctx.strokeRect(200,540,400,150);
+    ctx.strokeRect(710,20,70,70);        
     ctx.font = "30px Arial";
     ctx.fillText("לחצו", 400, 590);
     ctx.fillText("להתחלת המשחק", 400, 660);
+    ctx.fillText("מפה",745,65);
     open_img = document.getElementById("nono_img");
     down_arrow = document.getElementById("downArrow_img");
     ctx.drawImage(open_img, 100, 300 , 600, 25);
@@ -244,10 +248,12 @@ function FinishLevel(isok)
         ctx.fillText(counter_level,200,270);
         ctx.textAlign = "center";
         ctx.lineWidth = 5;
+        ctx.strokeRect(710,20,70,70); 
         ctx.strokeRect(200,540,400,150);
         ctx.font = "30px Arial";
         ctx.fillText("לחצו", 400, 590);
         ctx.fillText("לשלב הבא", 400, 660);
+        ctx.fillText("מפה",745,65);
         open_img = document.getElementById("nono_img");
         down_arrow = document.getElementById("downArrow_img");
         ctx.drawImage(open_img, 100, 300 , 600, 25);
@@ -295,6 +301,12 @@ function FinishLevel(isok)
     }
     
 }
+function map_button()
+{
+    ctx.strokeStyle = "white";
+    ctx.strokeRect = (770,30,70,70);
+}
+
 
 //writeSideNumbers(first_level);
 
@@ -464,23 +476,6 @@ function clickEvent(event) {
     if(openingTime){
         
         
-        /*if(x>335 && x<465 && y>360 && y<425){
-            isClick =true;
-            for(i=0; i<2; i++){
-
-                for(j=0; j<2; j++)
-                {
-                    if(x>335 + j*65 && x < 335 +j*65 +65 && y > 360 + i*65 && y <360 + i*65 + 65 )
-                    {
-                        ctx.fillStyle = "white";
-                       ctx.fillRect(335 + j*65, 360 +i*65, 65,65 );
-                       ctx.fillStyle = "black";
-                    }
-                }
-            }
-            
-        }
-        */
         
         if(x > 200 && x < 600 && y > 540 && y < 690)
         {
@@ -493,7 +488,21 @@ function clickEvent(event) {
 
 
         }
+        if(x>710 && x<780 && y>20 && y<90)
+        {
+            isClick = true;
+            game_map_time = true;
+            openingTime = false;
+            ctx.clearRect(0,0,c.width,c.height);
+            map_for_game();
+            
+            
+            
+
+        }
+        
     }
+
     if(finishLTime)
     {
         if(x > 200 && x < 600 && y > 540 && y < 690)
@@ -505,6 +514,92 @@ function clickEvent(event) {
 
 
         }
+        if(x>710 && x<780 && y>20 && y<90)
+        {
+            isClick = true;
+            game_map_time = true;
+            finishLTime = false;
+            ctx.clearRect(0,0,c.width,c.height);
+            map_for_game();
+            
+            
+            
+
+        }
+    }
+    if(game_map_time)
+    {
+        for(var i = 0; i<3; i++)
+        {
+            if(x>150 && x<250 && y>150 + 200*i  && y< 250 + 200*i )
+            {
+                if(counter_level >= i)
+                {
+                 isClick = true;
+                 counter_level = i;
+                 game_map_time = false;
+                 levelTime = true;
+                 draw_game_screen();
+                 
+                }
+                else{
+                    isClick = true;
+                    alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
+                }
+            }
+           
+            
+            if(counter_level >= i+7){
+
+                if(x>550 && x<650 && y>150 + 200*i  && y< 250 + 200*i )
+                {
+                    
+                    isClick = true;
+                    counter_level = i+7;
+                    game_map_time = false;
+                    levelTime = true;
+                    draw_game_screen();
+                
+                }
+                else{
+                    isClick = true;
+                    alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
+                }
+               
+                
+            }
+           
+            
+            
+           
+        }
+
+        for(var i = 0; i<4; i++)
+        {
+            if(x>350 && x<450 && y>50 + 200*i  && y< 150 + 200*i )
+            {
+                if(counter_level >= i+3){
+
+                    isClick = true;
+                        counter_level = i+3;
+                        game_map_time = false;
+                        levelTime = true;
+                        draw_game_screen();
+    
+                }
+                else{
+                    isClick = true;
+                    alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
+                }
+
+            }
+            
+            
+           
+        }
+        
+        
+        
     }
     
         
@@ -515,7 +610,7 @@ function clickEvent(event) {
     }
     else
     {
-        if(finishLTime || inInstructionScreen1 || inInstructionScreen2){
+        if(finishLTime || inInstructionScreen1 || inInstructionScreen2 || game_map_time){
             ctx.linewitdh = 1;
         }
         else{
@@ -660,13 +755,10 @@ for(var i = 0; i<3; i++){
             ctx.drawImage(cover_img,350, 50 +200*i, 100,100);
         } 
     }
-    
-
-    
-
-
+ctx.fillStyle = "black";
+ctx.strokeStyle = "black";
 }
-map_for_game();
+//map_for_game();
 function instructionButton(){
     ctx.beginPath();
     ctx.fillStyle = "black";
@@ -679,3 +771,4 @@ function instructionButton(){
 }
 
 openingPage();
+
