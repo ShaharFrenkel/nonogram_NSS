@@ -571,15 +571,15 @@ function clickEvent(event) {
         }
         if(x>710 && x<780 && y>20 && y<90)
         {
-            isClick = true;
-            game_map_time = true;
-            openingTime = false;
-            ctx.clearRect(0,0,c.width,c.height);
-            map_for_game();
+            if(!isClick){
+                isClick = true;
+                game_map_time = true;
+                openingTime = false;
+                ctx.clearRect(0,0,c.width,c.height);
+                map_for_game();
+            }
             
             
-            
-
         }
         
     }
@@ -707,7 +707,7 @@ function clickEvent(event) {
             redraw_borad();
         }
     
- }
+    }
 }
 
 function keyDownHandler(event)
