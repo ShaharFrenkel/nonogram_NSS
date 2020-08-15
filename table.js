@@ -638,23 +638,26 @@ function clickEvent(event) {
                 }
             }
            
-            
-            if(counter_level >= i+7){
-
-                if(x>550 && x<650 && y>150 + 200*i  && y< 250 + 200*i )
+            if(x>550 && x<650 && y>150 + 200*i  && y< 250 + 200*i )
                 {
+                    if(counter_level >= i+7){
+
+                        isClick = true;
+                            counter_level = i+7;
+                            game_map_time = false;
+                            levelTime = true;
+                            draw_game_screen();
+                    }
+                        else{
+                            isClick = true;
+                            alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
+                        }
                     
-                    isClick = true;
-                    counter_level = i+7;
-                    game_map_time = false;
-                    levelTime = true;
-                    draw_game_screen();
                 
                 }
-                else{
-                    isClick = true;
-                    alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
-                }
+           
+           
+            
                
                 
             }
@@ -662,7 +665,7 @@ function clickEvent(event) {
             
             
            
-        }
+        
 
         for(var i = 0; i<4; i++)
         {
@@ -700,7 +703,7 @@ function clickEvent(event) {
     }
     else
     {
-        if(finishLTime || inInstructionScreen1 || inInstructionScreen2 || game_map_time){
+        if(finishLTime || inInstructionScreen1 || inInstructionScreen2 || game_map_time || openingTime){
             ctx.linewitdh = 1;
         }
         else{
