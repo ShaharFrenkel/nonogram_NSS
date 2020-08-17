@@ -220,14 +220,17 @@ function openingPage(){
 }
 //openingPage();
 
-function FinishLevel(isok)
+function FinishLevel(isok, ininstruct)
 {
     ctx.fillStyle = "#000000";
     if(isok)
     {
-        levelTime=false;
+        levelTime = false;
         finishLTime = true;
-        counter_level++;
+        if(!ininstruct){
+            counter_level++;
+        }
+        
         ctx.clearRect(0,0,c.width,c.height);
         
         ctx.fillStyle = "black";
@@ -350,6 +353,7 @@ function cleanButten()
     ctx.strokeRect(650, 20, square_size+80, square_size+20);
     ctx.font = "25px Arial";
     ctx.fillStyle = "white";
+    ctx.textAlign = "center";
     ctx.fillText("נקה לוח",712,63);
 } 
 
@@ -439,12 +443,12 @@ function clickEvent(event) {
             if(x<730 && x>700 && y<100 && y>70){
                 inInstructionScreen1 = false;
                 finishLTime = true;
-                FinishLevel();
+                FinishLevel(true, true);
                 isClick = true;
             }
             if(x<70 && x>60 && y<420 && y>380){
                 inInstructionScreen1 = false;
-                FinishLevel();
+                FinishLevel(true, true);
                 instructionsScreen2();
                 isClick = true;
             }
@@ -453,12 +457,12 @@ function clickEvent(event) {
             if(x<730 && x>700 && y<100 && y>70){
                 inInstructionScreen2 = false;
                 finishLTime = true;
-                FinishLevel();
+                FinishLevel(true, true);
                 isClick = true;
             }
             if(x<745 && x>735 && y<420 && y>380){
                 inInstructionScreen2 = false;
-                FinishLevel();
+                FinishLevel(true, true);
                 instructionsScreen1();
                 isClick = true;
             }
@@ -490,7 +494,7 @@ function clickEvent(event) {
             isClick = true;
         }
         //clean board button
-        if(x >= 650 && x < 780 && y >= 20 && y < 120 )
+        if(x >= 650 && x < 780 && y >= 20 && y < 120 && !isClick)
         {
             first_board.cleanBoard();
             isClick = true;
@@ -541,7 +545,7 @@ function clickEvent(event) {
     
         if(x > 600 && x < 750 && y > 670 && y < 770){
            
-            FinishLevel(first_board.compareBool(Levels[counter_level]));
+            FinishLevel(first_board.compareBool(Levels[counter_level]), false);
             isClick =true;
         }
     }
@@ -588,11 +592,13 @@ function clickEvent(event) {
     {
         //instractions button
         if (x > 10 && x < 160 && y > 10 && y < 110){
-            isClick = true;
-            FinishLevel();
+            
+            FinishLevel(true, true);
             finishLTime = false;
+            inInstructionScreen1 = true;
             instructionsScreen1();
-            instractionsWhereFrom = 'f'
+            instractionsWhereFrom = 'f';
+            isClick = true;
         }
 
         if(x > 200 && x < 600 && y > 540 && y < 690)
@@ -606,14 +612,14 @@ function clickEvent(event) {
         }
         if(x>710 && x<780 && y>20 && y<90)
         {
-            isClick = true;
-            game_map_time = true;
-            finishLTime = false;
-            ctx.clearRect(0,0,c.width,c.height);
-            map_for_game();
-            
-            
-            
+            if(!isClick){
+                isClick = true;
+                game_map_time = true;
+                finishLTime = false;
+                ctx.clearRect(0,0,c.width,c.height);
+                map_for_game();
+            }
+                        
 
         }
     }
