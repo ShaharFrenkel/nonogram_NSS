@@ -217,6 +217,7 @@ function openingPage(){
     ctx.strokeStyle = "black";
     ctx.fillStyle = "black";
     instructionButton();
+    chooseColor();
 }
 //openingPage();
 
@@ -241,6 +242,7 @@ function FinishLevel(isok)
         ctx.strokeText("click", 400, 450);
         ctx.fillText("for the next level", 400, 520);
         */
+        chooseColor();
         ctx.textAlign = "center";
         ctx.font = "70px Arial";
         ctx.fillStyle = "white";
@@ -353,7 +355,24 @@ function cleanButten()
     ctx.textAlign = "center";
     ctx.fillText("נקה לוח",712,63);
 } 
+function chooseColor()
+{
+    // Displays the canvas choose color button
+    // Create gradient
+    var grd = ctx.createLinearGradient(350,0,450,0);
+    grd.addColorStop(0,"#ffff80");
+    grd.addColorStop(0.25,"#00cc99");
+    grd.addColorStop(0.5,"#66a3ff");
+    grd.addColorStop(1,"#e066ff");
+    // Fill with gradient
+    ctx.fillStyle = grd;
+    ctx.fillRect(320,700,140,80);
+    ctx.textAlign = "center";
+    ctx.fillStyle = "black";
+    ctx.font = "25px Arial";
+    ctx.fillText("בחירת צבע",390,748);
 
+} 
 function finishButton()
 {
     ctx.fillStyle = "black";
@@ -559,8 +578,6 @@ function clickEvent(event) {
         
         if(x > 200 && x < 600 && y > 540 && y < 690)
         {
-
-            
             openingTime = false;
             levelTime= true;
             draw_game_screen();
@@ -610,10 +627,7 @@ function clickEvent(event) {
             finishLTime = false;
             ctx.clearRect(0,0,c.width,c.height);
             map_for_game();
-            
-            
-            
-
+    
         }
     }
     if(game_map_time)
@@ -801,6 +815,7 @@ function instructionsScreen2(){
     ctx.fillText('.בכל שלב של המשחק תוכלו ללחוץ על כפתור "נקה לוח" ולהתחיל מחדש',730,430);
     ctx.fillText('"כשסיימתם למלא את כל המשבצות הנדרשות, לחצו על כפתור "סיים משחק',730,560);
 }
+func
 
  //instructionsScreen1();
 //instructionsScreen2();
@@ -858,6 +873,7 @@ function instructionButton(){
     ctx.fillText("הוראות", 85, 50);
     ctx.fillText("המשחק", 85, 80);
 }
+
 
 openingPage();
 
