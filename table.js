@@ -61,17 +61,121 @@ var first_level = [
 var second_level = [
     [true, true, true, true, true, true, true, true, true, true],
     [true, false, false, false, false, false, false, false, false, true],
+    [true, false, false, true, true, false, true, true, false, true],
+    [true, false, false, false, true, false, true, false, false, true],
+    [true, false, false, false, true, false, true, true, false, true],
+    [true, false, true, false, true, false, false, true, false, true],
+    [true, false, true, true, true, false, true, true, false, true],
+    [true, true, false, false, false, false, false, false, true, true],
+    [false, true, true, true, false, false, true, true, true, false],
+    [false, false, false, true, true, true, true, false, false, false],
+];
+
+var third_level = [
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, true, true, false],
+    [false, false, false, false, false, false, true, true, true, false],
+    [false, true, false, false, false, true, true, true, true, false],
+    [false, true, true, false, true, true, false, true, true, false],
+    [false, true, false, true, true, false, false, true, true, false],
+    [false, true, true, false, true, true, false, true, true, false],
+    [false, true, false, false, false, true, true, true, true, false],
+    [false, false, false, false, false, false, true, true, true, false],
+    [false, false, false, false, false, false, false, true, true, false],
+];
+
+var fourth_level = [
+    [false, false, false, true, false, false, false, true, false, false],
+    [false, false, true, true, true, true, true, true, true, false],
+    [false, false, true, true, false, false, false, true, true, false],
+    [false, false, true, true, false, true, true, true, true, false],
+    [false, false, true, true, false, true, false, true, true, false],
+    [false, false, false, true, false, false, false, true, false, false],
+    [true, false, false, false, true, true, true, false, false, false],
+    [false, true, false, true, true, true, true, true, false, false],
+    [false, false, true, true, true, true, true, true, false, false],
+    [false, false, false, true, true, true, true, true, false, false],
+];
+
+var fifth_level = [
+    [false, false, false, false, false, false, true, true, true, true],
+    [false, false, false, false, false, false, true, false, false, true],
+    [false, false, false, false, false, false, false, false, false, true],
+    [true, false, false, false, false, false, true, false, false, true],
+    [true, false, false, false, false, false, true, false, true, true],
+    [true, true, false, true, false, true, true, false, true, true],
+    [false, true, true, true, true, true, false, false, true, true],
+    [false, false, false, false, false, false, false, false, false, true],
+    [false, false, false, false, false, false, true, false, false, true],
+    [false, false, false, false, false, false, true, true, true, true],
+];
+
+var sixth_level = [
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, true, true, true, true, true, true],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, true, true, true, true, true, true, false],
+    [true, false, false, false, false, false, false, false, false, false],
+    [true, false, true, true, true, true, true, true, false, true],
     [true, false, false, false, false, false, false, false, false, true],
-    [true, false, false, false, false, false, false, false, false, true],
-    [true, false, false, false, false, false, false, false, false, true],
-    [true, false, false, false, false, false, false, false, false, true],
-    [true, false, false, false, false, false, false, false, false, true],
-    [true, false, false, false, false, false, false, false, false, true],
+    [true, false, true, true, true, true, true, true, false, true],
     [true, false, false, false, false, false, false, false, false, true],
     [true, true, true, true, true, true, true, true, true, true],
 ];
 
-var Levels = [first_level, second_level];
+var seventh_level = [
+    [true, true, true, true, false, false, false, false, false, false],
+    [true, false, false, false, false, false, false, false, false, false],
+    [true, false, false, false, false, false, false, false, false, false],
+    [true, false, false, false, false, false, false, false, false, false],
+    [true, false, false, false, false, false, true, false, true, false],
+    [true, false, false, false, false, true, true, true, true, true],
+    [true, true, true, true, false, false, true, false, true, false],
+    [false, false, false, false, false, false, true, false, true, false],
+    [false, false, false, false, false, true, true, true, true, true],
+    [false, false, false, false, false, false, true, false, true, false],
+];
+
+var eighth_level = [
+    [false, false, false, false, true, false, false, true, false, false],
+    [false, false, false, true, false, false, true, false, false, false],
+    [false, false, false, true, false, false, true, false, false, false],
+    [false, true, false, false, true, false, false, true, false, false],
+    [true, false, false, false, false, false, false, false, true, true],
+    [true, true, true, true, true, true, true, true, true, true],
+    [false, true, true, true, true, true, true, true, false, true],
+    [false, false, true, true, true, true, true, true, true, true],
+    [true, true, false, false, true, true, false, false, false, false],
+    [true, true, true, true, true, true, true, true, true, true],
+];
+
+var ninth_level = [
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, true, true, true, true, false, false],
+    [false, false, false, true, true, true, false, true, true, false],
+    [false, false, true, true, true, true, true, true, false, false],
+    [false, false, true, true, false, false, false, false, false, false],
+    [false, false, true, true, false, false, false, false, false, false],
+    [false, true, true, true, true, true, true, true, true, false],
+    [false, true, true, true, true, true, true, true, true, false],
+    [true, true, true, true, true, true, true, true, true, true],
+    [true, true, true, true, true, true, true, true, true, true],
+];
+
+var tenth_level = [
+    [false, false, false, false, false, false, true, false, false, false],
+    [false, false, false, false, false, true, false, false, false, false],
+    [false, false, false, false, true, true, true, true, false, false],
+    [false, false, false, true, true, true, true, true, true, false],
+    [false, false, true, true, true, true, true, true, false, false],
+    [false, true, true, true, true, true, true, false, false, false],
+    [false, true, true, true, true, true, true, true, false, false],
+    [false, false, true, true, true, true, true, true, true, false],
+    [false, false, false, true, true, true, true, true, false, false],
+    [false, false, false, false, true, true, true, false, false, false],
+];
+
+var Levels = [first_level, second_level, third_level, fourth_level, fifth_level, sixth_level, seventh_level, eighth_level, ninth_level, tenth_level];
 counter_level = 0;
 
 
@@ -494,7 +598,7 @@ function clickEvent(event) {
             isClickRight = true;
         }
         //clean board button
-        if(x >= 650 && x < 780 && y >= 20 && y < 120 && !isClick)
+        if(x >= 650 && x < 780 && y >= 20 && y < 120 && !isClickRight)
         {
             first_board.cleanBoard();
             isClickRight = true;
@@ -510,7 +614,9 @@ function clickEvent(event) {
 
         if(clicked_on_the_board)
         {
+            
             //runs on the array and finds the square the player clicked on by comparing the coordonites with each square
+            
             for(line = 0; line<first_board.arraySquares.length; line++){
                 for(column = 0; column<first_board.arraySquares[0].length; column++){
                     if (x>first_board.arraySquares[line][column].x && x<first_board.arraySquares[line][column].x+square_size && y>first_board.arraySquares[line][column].y && y<first_board.arraySquares[line][column].y+square_size){
