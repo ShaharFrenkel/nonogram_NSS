@@ -505,39 +505,31 @@ function clickEvent(event) {
         var found_clicked_square = false;
         var line = 0;
         var column = 0;
-        //alert("x="+x+" y="+y+" "+ first_board.arraySquares[line][coulmn].x);
     
         //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
-        //alert("x="+x+" y="+y+" "+ first_board.arraySquares[line][column].x);
 
         if(clicked_on_the_board)
         {
             //runs on the array and finds the square the player clicked on by comparing the coordonites with each square
-            while(!found_clicked_square){
-                //in this ine the console shows an error but the action
-                //found_clicked_square = true;
-                //coulmn++;
-                //alert(coulmn);
-                if (x>first_board.arraySquares[line][column].x && x<first_board.arraySquares[line][column].x+square_size && y>first_board.arraySquares[line][column].y && y<first_board.arraySquares[line][column].y+square_size){
-                    isClickRight = true;
-                    found_clicked_square = true;
-                    //checks if the square has already been clicked on with the same img the player currently has, if so, it earases the square
-                    if(first_board.arraySquares[line][column].img == fill_img){
-                        first_board.arraySquares[line][column].img = empty_img;
-                        first_board.arraySquares[line][column].boolean = false;
+            for(line = 0; line<first_board.arraySquares.length; line++){
+                for(column = 0; column<first_board.arraySquares[0].length; column++){
+                    if (x>first_board.arraySquares[line][column].x && x<first_board.arraySquares[line][column].x+square_size && y>first_board.arraySquares[line][column].y && y<first_board.arraySquares[line][column].y+square_size){
+                        isClickRight = true;
+                        //checks if the square has already been clicked on with the same img the player currently has, if so, it earases the square
+                        if(first_board.arraySquares[line][column].img == fill_img){
+                            first_board.arraySquares[line][column].img = empty_img;
+                            first_board.arraySquares[line][column].boolean = false;
+                            column = first_board.arraySquares[0].length;
+                            line = first_board.arraySquares.length;
+                        }
+                        //else, it paints the sqaure with the img
+                        else{
+                            first_board.arraySquares[line][column].img = fill_img;
+                            first_board.arraySquares[line][column].boolean = is_filled;
+                            column = first_board.arraySquares[0].length;
+                            line = first_board.arraySquares.length;
+                        }
                     }
-                    //else, it paints the sqaure with the img
-                    else{
-                        first_board.arraySquares[line][column].img = fill_img;
-                        first_board.arraySquares[line][column].boolean = is_filled;
-                    }
-                }
-                if(column<first_board.arraySquares[0].length-1){
-                    column++;
-                }
-                else{
-                    column = 0;
-                    line++;
                 }
             }
 
