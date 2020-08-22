@@ -343,7 +343,7 @@ function fill_button(is_rect_pressed){
 
 function cleanButten()
 {
-    //מציג את כפתור מחיקת קנבס
+    // Displays the canvas delete button
     ctx.fillStyle = "black";
     ctx.fillRect(650, 20, 130, 70);
     ctx.lineWidth = 3;    
@@ -361,7 +361,6 @@ function finishButton()
     ctx.textAlign = "center";
     ctx.fillText("סיום השלב", 675, 730);
 
-
 }
 
 //fill_button(true);
@@ -373,21 +372,20 @@ function clickEvent(event) {
     var rect = c.getBoundingClientRect();
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;
-    var isClick = false;
-
+    var isClickRight = false; // Boolean variable At first it is assumed that if it is pressed on the screen it is incorrect and if it is a button or a square it is changed to correct, if it remains incorrect a message is sent to the player which buttons can be pressed
     if(instractionsWhereFrom == 'l'){
         if(inInstructionScreen1){
             if(x<730 && x>700 && y<100 && y>70){
                 inInstructionScreen1 = false;
                 levelTime = true;
                 draw_game_screen();
-                isClick = true;
+                isClickRight = true;
             }
             if(x<70 && x>60 && y<420 && y>380){
                 inInstructionScreen1 = false;
                 draw_game_screen();
                 instructionsScreen2();
-                isClick = true;
+                isClickRight = true;
             }
         }
         if(inInstructionScreen2){
@@ -395,12 +393,12 @@ function clickEvent(event) {
                 inInstructionScreen2 = false;
                 levelTime = true;
                 draw_game_screen();
-                isClick = true;
+                isClickRight = true;
             }
             if(x<745 && x>735 && y<420 && y>380){
                 inInstructionScreen2 = false;
                 instructionsScreen1();
-                isClick = true;
+                isClickRight = true;
             }
         }
     }
@@ -410,14 +408,14 @@ function clickEvent(event) {
                 inInstructionScreen1 = false;
                 openingTime = true;
                 openingPage();
-                isClick = true;
+                isClickRight = true;
             }
             if(x<70 && x>60 && y<420 && y>380){
                 inInstructionScreen1 = false;
                 openingPage();
                 openingTime = false;
                 instructionsScreen2();
-                isClick = true;
+                isClickRight = true;
             }
         }
         if(inInstructionScreen2){
@@ -425,13 +423,13 @@ function clickEvent(event) {
                 inInstructionScreen2 = false;
                 openingTime = true;
                 openingPage();
-                isClick = true;
+                isClickRight = true;
             }
             if(x<745 && x>735 && y<420 && y>380){
                 inInstructionScreen2 = false;
                 openingPage()
                 instructionsScreen1();
-                isClick = true;
+                isClickRight = true;
             }
         }
     }
@@ -441,13 +439,13 @@ function clickEvent(event) {
                 inInstructionScreen1 = false;
                 finishLTime = true;
                 FinishLevel();
-                isClick = true;
+                isClickRight = true;
             }
             if(x<70 && x>60 && y<420 && y>380){
                 inInstructionScreen1 = false;
                 FinishLevel();
                 instructionsScreen2();
-                isClick = true;
+                isClickRight = true;
             }
         }
         if(inInstructionScreen2){
@@ -455,13 +453,13 @@ function clickEvent(event) {
                 inInstructionScreen2 = false;
                 finishLTime = true;
                 FinishLevel();
-                isClick = true;
+                isClickRight = true;
             }
             if(x<745 && x>735 && y<420 && y>380){
                 inInstructionScreen2 = false;
                 FinishLevel();
                 instructionsScreen1();
-                isClick = true;
+                isClickRight = true;
             }
         }
     }
@@ -470,7 +468,7 @@ function clickEvent(event) {
     {
         //instractions button
         if (x > 10 && x < 160 && y > 10 && y < 110){
-            isClick = true;
+            isClickRight = true;
             draw_game_screen();
             instructionsScreen1();
             levelTime = false;
@@ -482,19 +480,19 @@ function clickEvent(event) {
             fill_button(true);
             fill_img = rect_img;
             is_filled = true;
-            isClick = true;
+            isClickRight = true;
         }
         if (x >= 210 && x < 270 && y >= 700 && y < 760){
             fill_button(false);
             fill_img = x_img;
             is_filled = false;
-            isClick = true;
+            isClickRight = true;
         }
         //clean board button
         if(x >= 650 && x < 780 && y >= 20 && y < 120 )
         {
             first_board.cleanBoard();
-            isClick = true;
+            isClickRight = true;
         }
         
         //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
@@ -516,7 +514,7 @@ function clickEvent(event) {
                 //coulmn++;
                 //alert(coulmn);
                 if (x>first_board.arraySquares[line][column].x && x<first_board.arraySquares[line][column].x+square_size && y>first_board.arraySquares[line][column].y && y<first_board.arraySquares[line][column].y+square_size){
-                    isClick = true;
+                    isClickRight = true;
                     found_clicked_square = true;
                     //checks if the square has already been clicked on with the same img the player currently has, if so, it earases the square
                     if(first_board.arraySquares[line][column].img == fill_img){
@@ -543,7 +541,7 @@ function clickEvent(event) {
         if(x > 600 && x < 750 && y > 670 && y < 770){
            
             FinishLevel(first_board.compareBool(Levels[counter_level]));
-            isClick =true;
+            isClickRight =true;
         }
     }
 
@@ -566,14 +564,14 @@ function clickEvent(event) {
             openingTime = false;
             levelTime= true;
             draw_game_screen();
-            isClick = true;
+            isClickRight = true;
 
 
         }
         if(x>710 && x<780 && y>20 && y<90)
         {
-            if(!isClick){
-                isClick = true;
+            if(!isClickRight){
+                isClickRight = true;
                 game_map_time = true;
                 openingTime = false;
                 ctx.clearRect(0,0,c.width,c.height);
@@ -589,7 +587,7 @@ function clickEvent(event) {
     {
         //instractions button
         if (x > 10 && x < 160 && y > 10 && y < 110){
-            isClick = true;
+            isClickRight = true;
             FinishLevel();
             finishLTime = false;
             instructionsScreen1();
@@ -601,13 +599,13 @@ function clickEvent(event) {
             finishLTime = false;
             levelTime= true;
             draw_game_screen();
-            isClick = true;
+            isClickRight = true;
 
 
         }
         if(x>710 && x<780 && y>20 && y<90)
         {
-            isClick = true;
+            isClickRight = true;
             game_map_time = true;
             finishLTime = false;
             ctx.clearRect(0,0,c.width,c.height);
@@ -626,15 +624,16 @@ function clickEvent(event) {
             {
                 if(counter_level >= i)
                 {
-                 isClick = true;
-                 counter_level = i;
-                 game_map_time = false;
-                 levelTime = true;
-                 draw_game_screen();
+                    isClickRight = true;
+                    counter_level = i;
+                    game_map_time = false;
+                    levelTime = true;
+                    draw_game_screen();
                  
                 }
-                else{
-                    isClick = true;
+                else
+                {
+                    isClickRight = true;
                     alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
                 }
             }
@@ -643,14 +642,14 @@ function clickEvent(event) {
                 {
                     if(counter_level >= i+7){
 
-                        isClick = true;
+                        isClickRight = true;
                             counter_level = i+7;
                             game_map_time = false;
                             levelTime = true;
                             draw_game_screen();
                     }
                         else{
-                            isClick = true;
+                            isClickRight = true;
                             alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
                         }
                     
@@ -674,7 +673,7 @@ function clickEvent(event) {
             {
                 if(counter_level >= i+3){
 
-                    isClick = true;
+                    isClickRight = true;
                         counter_level = i+3;
                         game_map_time = false;
                         levelTime = true;
@@ -682,7 +681,7 @@ function clickEvent(event) {
     
                 }
                 else{
-                    isClick = true;
+                    isClickRight = true;
                     alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
                 }
 
@@ -697,9 +696,9 @@ function clickEvent(event) {
     }
     
         
-    if(!isClick)
+    if(!isClickRight)
     {
-        //אם המשחק לחץ בעכבר על מקום שלא אמור ללחוץ כותב הודעה לידע אותו
+        // If the player clicks the mouse on a place that should not be clicked, writes a message informing him of what he needs to click on
         alert("לחצתם על מקום עם העכבר- לא קשור למשחק לחצתם על מקש מקלדת- לא קשור למשחק, השתמשו בכפתורי המשחק (לחץ על כפתור נקה לוח/ בחר מילוי משבצת ללוח/ לחץ על המשבצת הרצויה לצביעה בצבע או איקס/ לחץ על משבצת צבועה שהתחרטת ואת/ה רוצה שהמשבצת תיהיה לבנה/ סיום משחק");
     }
     else
