@@ -11,6 +11,8 @@ const button_img = document.getElementById("button_example")
 const rect_img = document.getElementById("rect_img");
 const x_img = document.getElementById("x_img");
 const empty_img = document.getElementById("empty_img");
+const clean_button_img = document.getElementById("clean");
+const finish_button_img = document.getElementById("finish");
 var fill_img = rect_img; //the img that will replace the empty image of a square objefct when the player clicks on the square
 var is_filled = true; //the bool value that will replace the square's bool value when the player clicks the square
 var first_board = new Board();
@@ -805,7 +807,9 @@ function instructionsScreen2(){
     ctx.fillText('(הציור שנמצא במשבצת זו (ריבוע או איקס',730,320);
     ctx.drawImage(button_img, 100, 330, 140, 70);
     ctx.fillText('.בכל שלב של המשחק תוכלו ללחוץ על כפתור "נקה לוח" ולהתחיל מחדש',730,430);
+    ctx.drawImage(clean_button_img, 100, 440, 140, 70);
     ctx.fillText('"כשסיימתם למלא את כל המשבצות הנדרשות, לחצו על כפתור "סיים משחק',730,560);
+    ctx.drawImage(finish_button_img, 100, 570, 140, 70);
 }
 
  //instructionsScreen1();
