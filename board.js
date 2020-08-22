@@ -1,6 +1,6 @@
 class Board {
     constructor() {
-        //יצירת מערך דו ממדי של אובייקט משבצת-הלוח
+        //Create a two-dimensional array of the object square - this is the board
         this.arraySquares = new Array(10);
         for(var i = 0; i < 10; i++)
         {
@@ -12,8 +12,8 @@ class Board {
         }
     }
     compareBool(arrayOfBool)
-    { //יצירת מערך דו ממדי בוליאני של כל המשבצות 
-        //לשנות את זה לפונקציית השוואה בין הבוליאני של המערך הזה למערך בוליאנים
+    {
+        // Function compares the two-dimensional Boolean array it received (step solution) to the Boolean property of the squares array
         var isEqual = true;
         for(var i = 0; i < 10; i++)
         {
@@ -22,14 +22,15 @@ class Board {
                 if(arrayOfBool[i][j] != this.arraySquares[i][j].boolean)
                 {
                     isEqual = false;
-                   //i = 10;
+                    i = 10;
+                    j = 10;
                 }  
             }
         } 
         return isEqual;
     } 
     cleanBoard()
-    {// מוחק לוח- התמונות של המשבצות ריקות, כל המשבצות false
+    {// Delete board -on click of a button Clear board all the pictures of squares becomes empty, the Boolean feature of the squares becomes false
         for(var i = 0; i < 10; i++)
         {
             for(var j = 0; j < 10; j++ )
@@ -41,7 +42,7 @@ class Board {
     }
     showBoard() 
     {
-        //הפונקציה עוברת על המערך של המשבצות ומפעילה על כל משבצת את פונקצית show
+        // The function goes over the array of squares and activates the show function on each square
         for(var i = 0; i < 10; i++)
         {
             for(var j = 0; j < 10; j++ )
