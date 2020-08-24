@@ -225,75 +225,138 @@ function FinishLevel(isok)
     ctx.fillStyle = "#000000";
     if(isok)
     {
-        levelTime=false;
-        finishLTime = true;
-        counter_level++;
-        ctx.clearRect(0,0,c.width,c.height);
-        
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, c.width ,c.height);
-        ctx.strokeStyle = "white";
-       /* ctx.font = "30px Arial";
-        ctx.textAlign = "center";
-        ctx.strokeText("you completed the level", 400, 150);
-        ctx.strokeText("good job", 400, 250);
-        ctx.strokeRect(200,400,400,150);
-        ctx.strokeText("click", 400, 450);
-        ctx.fillText("for the next level", 400, 520);
-        */
-        ctx.textAlign = "center";
-        ctx.font = "70px Arial";
-        ctx.fillStyle = "white";
-        ctx.strokeStyle = "white";
-        ctx.fillText("!!!! כל הכבוד", 400, 200);
-        ctx.font = "40px Arial";
-        ctx.fillText("סיימת את שלב מספר",400,270);
-        ctx.textAlign = "left";
-        ctx.fillText(counter_level,200,270);
-        ctx.textAlign = "center";
-        ctx.lineWidth = 5;
-        ctx.strokeRect(710,20,70,70); 
-        ctx.strokeRect(200,540,400,150);
-        ctx.font = "30px Arial";
-        ctx.fillText("לחצו", 400, 590);
-        ctx.fillText("לשלב הבא", 400, 660);
-        ctx.fillText("מפה",745,65);
-        open_img = document.getElementById("nono_img");
-        down_arrow = document.getElementById("downArrow_img");
-        ctx.drawImage(open_img, 100, 300 , 600, 25);
-        ctx.drawImage(open_img, 100, 100 , 600, 25);
-        ctx.drawImage(open_img, 100, 100, 25, 225);
-        ctx.drawImage(open_img, 675, 100, 25, 225);
-        for(i=0; i<10; i++){
-
-            if(counter_level > i)
-            {
-            ctx.fillRect(50 + i *70, 400, 50, 50);
+        if(counter_level != 9)
+        {
+            levelTime=false;
+            finishLTime = true;
+            counter_level++;
+            ctx.clearRect(0,0,c.width,c.height);
+            
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, c.width ,c.height);
+            ctx.strokeStyle = "white";
+           /* ctx.font = "30px Arial";
+            ctx.textAlign = "center";
+            ctx.strokeText("you completed the level", 400, 150);
+            ctx.strokeText("good job", 400, 250);
+            ctx.strokeRect(200,400,400,150);
+            ctx.strokeText("click", 400, 450);
+            ctx.fillText("for the next level", 400, 520);
+            */
+            ctx.textAlign = "center";
+            ctx.font = "70px Arial";
+            ctx.fillStyle = "white";
+            ctx.strokeStyle = "white";
+            ctx.fillText("!!!! כל הכבוד", 400, 200);
+            ctx.font = "40px Arial";
+            ctx.fillText("סיימת את שלב מספר",400,270);
+            ctx.textAlign = "left";
+            ctx.fillText(counter_level,200,270);
+            ctx.textAlign = "center";
+            ctx.lineWidth = 5;
+            ctx.strokeRect(710,20,70,70); 
+            ctx.strokeRect(200,540,400,150);
+            ctx.font = "30px Arial";
+            ctx.fillText("לחצו", 400, 590);
+            ctx.fillText("לשלב הבא", 400, 660);
+            ctx.fillText("מפה",745,65);
+            open_img = document.getElementById("nono_img");
+            down_arrow = document.getElementById("downArrow_img");
+            ctx.drawImage(open_img, 100, 300 , 600, 25);
+            ctx.drawImage(open_img, 100, 100 , 600, 25);
+            ctx.drawImage(open_img, 100, 100, 25, 225);
+            ctx.drawImage(open_img, 675, 100, 25, 225);
+            for(i=0; i<10; i++){
+    
+                if(counter_level > i)
+                {
+                ctx.fillRect(50 + i *70, 400, 50, 50);
+                }
+                else
+                {
+                ctx.strokeRect(50 + i*70, 400, 50, 50);
+                }
             }
-            else
-            {
-            ctx.strokeRect(50 + i*70, 400, 50, 50);
-            }
+           
+           /* var rectX = 50;
+            var rectY = 50;
+            var rectWidth = 50;
+            var rectHeight = 50;
+            var cornerRadius = 20;
+    
+    // Set faux rounded corners
+            context.lineJoin = "round";
+            context.lineWidth = cornerRadius;
+    
+    // Change origin and dimensions to match true size (a stroke makes the shape a bit larger)
+            context.strokeRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
+            context.fillRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
+            */
+            ctx.strokeStyle = "black";
+            ctx.fillStyle = "black";
+            first_board.cleanBoard();
+            instructionButton();
         }
-       
-       /* var rectX = 50;
-        var rectY = 50;
-        var rectWidth = 50;
-        var rectHeight = 50;
-        var cornerRadius = 20;
+        else
+        {
+            levelTime=false;
+            finishLTime = true;
+            counter_level++;
+            ctx.clearRect(0,0,c.width,c.height);
+            
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, c.width ,c.height);
+            ctx.strokeStyle = "white";
+           /* ctx.font = "30px Arial";
+            ctx.textAlign = "center";
+            ctx.strokeText("you completed the level", 400, 150);
+            ctx.strokeText("good job", 400, 250);
+            ctx.strokeRect(200,400,400,150);
+            ctx.strokeText("click", 400, 450);
+            ctx.fillText("for the next level", 400, 520);
+            */
+            ctx.textAlign = "center";
+            ctx.font = "70px Arial";
+            ctx.fillStyle = "white";
+            ctx.strokeStyle = "white";
+            ctx.fillText("!!!! כל הכבוד", 400, 200);
+            ctx.font = "40px Arial";
+            ctx.fillText("סיימת את שלב מספר",400,270);
+            ctx.textAlign = "left";
+            ctx.fillText(counter_level,200,270);
+            ctx.textAlign = "center";
+            ctx.lineWidth = 5;
+            ctx.strokeRect(710,20,70,70); 
+            // ctx.strokeRect(200,540,400,150);
+            ctx.font = "40px Arial";
+            // ctx.fillText("לחצו", 400, 590);
+            //ctx.fillText("לשלב הבא", 400, 660);
+            ctx.fillText("!!!!השלמתם את כל השלבים",400,500);
+            celeb_img = document.getElementById("cele_img");
+            ctx.drawImage(celeb_img, 300, 550 , 200, 200);
+            ctx.font = "30px Arial";
+            ctx.fillText("מפה",745,65);
+            open_img = document.getElementById("nono_img");
+            down_arrow = document.getElementById("downArrow_img");
+            ctx.drawImage(open_img, 100, 300 , 600, 25);
+            ctx.drawImage(open_img, 100, 100 , 600, 25);
+            ctx.drawImage(open_img, 100, 100, 25, 225);
+            ctx.drawImage(open_img, 675, 100, 25, 225);
+            /*for(i=0; i<10; i++){
+    
+                if(counter_level > i)
+                {
+                ctx.fillRect(50 + i *70, 400, 50, 50);
+                }
+                else
+                {
+                ctx.strokeRect(50 + i*70, 400, 50, 50);
+                }
+            }
+            */
+           
+        }
 
-// Set faux rounded corners
-        context.lineJoin = "round";
-        context.lineWidth = cornerRadius;
-
-// Change origin and dimensions to match true size (a stroke makes the shape a bit larger)
-        context.strokeRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
-        context.fillRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
-        */
-        ctx.strokeStyle = "black";
-        ctx.fillStyle = "black";
-        first_board.cleanBoard();
-        instructionButton();
     
     
     }
@@ -587,7 +650,7 @@ function clickEvent(event) {
     if(finishLTime)
     {
         //instractions button
-        if (x > 10 && x < 160 && y > 10 && y < 110){
+        if ((x > 10 && x < 160 && y > 10 && y < 110) && (counter_level != 10)){
             isClick = true;
             FinishLevel();
             finishLTime = false;
@@ -595,7 +658,7 @@ function clickEvent(event) {
             instractionsWhereFrom = 'f'
         }
 
-        if(x > 200 && x < 600 && y > 540 && y < 690)
+        if((x > 200 && x < 600 && y > 540 && y < 690) && (counter_level != 10))
         {
             finishLTime = false;
             levelTime= true;
@@ -611,11 +674,10 @@ function clickEvent(event) {
             finishLTime = false;
             ctx.clearRect(0,0,c.width,c.height);
             map_for_game();
-            
-            
-            
-
+          
         }
+        
+        
     }
     if(game_map_time)
     {
@@ -630,6 +692,8 @@ function clickEvent(event) {
                  game_map_time = false;
                  levelTime = true;
                  draw_game_screen();
+                 //redraw_borad();
+                 first_board.cleanBoard();
                  
                 }
                 else{
@@ -647,6 +711,8 @@ function clickEvent(event) {
                             game_map_time = false;
                             levelTime = true;
                             draw_game_screen();
+                            //redraw_borad();
+                            first_board.cleanBoard();
                     }
                         else{
                             isClick = true;
@@ -663,10 +729,6 @@ function clickEvent(event) {
             }
            
             
-            
-           
-        
-
         for(var i = 0; i<4; i++)
         {
             if(x>350 && x<450 && y>50 + 200*i  && y< 150 + 200*i )
@@ -678,6 +740,8 @@ function clickEvent(event) {
                         game_map_time = false;
                         levelTime = true;
                         draw_game_screen();
+                      //  redraw_borad();
+                      first_board.cleanBoard();
     
                 }
                 else{
