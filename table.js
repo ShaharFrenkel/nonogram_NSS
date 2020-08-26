@@ -551,24 +551,17 @@ function clickEvent(event) {
         }
         if(x > 275 && x < 525 && y > 650 && y < 770 && isChooseColor && !chooseComeFromOpen)
         {
-            //ctx.clearRect(0,0,c.width,c.height);
             finishLTime = true;
-            FinishLevel(true, false);
+            FinishLevel(true, true);
             chooseColorTime = false;
             isClickRight = true;
         }
         if( x > 125 && x < 225 && y > 300 && y < 400)
         {  
+            ctx.clearRect(start_point_x,start_point_y, 500, 500);
+            screenChooseColor();
             ctx.lineWidth = 5;
             ctx.strokeRect(125 , 300, square_size + 50, square_size + 50); 
-            ctx.lineWidth = 1;
-            ctx.strokeRect(275 , 300, square_size + 50, square_size + 50);   
-            ctx.strokeRect(425 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(575 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(125 , 500, square_size + 50, square_size + 50); 
-            ctx.strokeRect(275 , 500, square_size + 50, square_size + 50);   
-            ctx.strokeRect(425 , 500, square_size + 50, square_size + 50); 
-            ctx.strokeRect(575 , 500, square_size + 50, square_size + 50);
             rect_img = black_rect_img ;
             x_img = black_x_img;
             isClickRight = true;
@@ -576,16 +569,10 @@ function clickEvent(event) {
         }
         if( x > 275 && x < 375 && y > 300 && y < 400)
         {   
+            ctx.clearRect(start_point_x,start_point_y, 500, 500);
+            screenChooseColor();
             ctx.lineWidth = 5;
             ctx.strokeRect(275 , 300, square_size + 50, square_size + 50); 
-            ctx.lineWidth = 1;
-            ctx.strokeRect(125 , 300, square_size + 50, square_size + 50);       
-            ctx.strokeRect(425 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(575 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(125 , 500, square_size + 50, square_size + 50); 
-            ctx.strokeRect(275 , 500, square_size + 50, square_size + 50);   
-            ctx.strokeRect(425 , 500, square_size + 50, square_size + 50); 
-            ctx.strokeRect(575 , 500, square_size + 50, square_size + 50);
             fill_img = green_rect_img;
             rect_img = green_rect_img ;
             x_img = green_x_img;
@@ -593,17 +580,11 @@ function clickEvent(event) {
             isChooseColor = true;  
         }
         if( x > 425 && x < 525 && y > 300 && y < 400)
-        {     
+        {   
+            ctx.clearRect(start_point_x,start_point_y, 500, 500);
+            screenChooseColor(); 
             ctx.lineWidth = 5;
             ctx.strokeRect(425 , 300, square_size + 50, square_size + 50); 
-            ctx.lineWidth = 1;
-            ctx.strokeRect(125 , 300, square_size + 50, square_size + 50);       
-            ctx.strokeRect(275 , 300, square_size + 50, square_size + 50);            
-            ctx.strokeRect(575 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(125 , 500, square_size + 50, square_size + 50); 
-            ctx.strokeRect(275 , 500, square_size + 50, square_size + 50);   
-            ctx.strokeRect(425 , 500, square_size + 50, square_size + 50); 
-            ctx.strokeRect(575 , 500, square_size + 50, square_size + 50);
             fill_img = pink_rect_img;
             rect_img = pink_rect_img ;
             x_img = pink_x_img;
@@ -612,16 +593,10 @@ function clickEvent(event) {
         }
         if( x > 575 && x < 675 && y > 300 && y < 400)
         {    
+            ctx.clearRect(start_point_x,start_point_y, 500, 500);
+            screenChooseColor();
             ctx.lineWidth = 5;
             ctx.strokeRect(575 , 300, square_size + 50, square_size + 50); 
-            ctx.lineWidth = 1;
-            ctx.strokeRect(125 , 300, square_size + 50, square_size + 50);       
-            ctx.strokeRect(275 , 300, square_size + 50, square_size + 50);            
-            ctx.strokeRect(425 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(125 , 500, square_size + 50, square_size + 50); 
-            ctx.strokeRect(275 , 500, square_size + 50, square_size + 50);   
-            ctx.strokeRect(425 , 500, square_size + 50, square_size + 50); 
-            ctx.strokeRect(575 , 500, square_size + 50, square_size + 50);
             fill_img = purple_rect_img;
             rect_img = purple_rect_img ;
             x_img = purple_x_img;
@@ -630,16 +605,10 @@ function clickEvent(event) {
         }
         if( x > 125 && x < 225 && y > 500 && y < 600)
         {    
+            ctx.clearRect(start_point_x,start_point_y, 500, 500);
+            screenChooseColor();
             ctx.lineWidth = 5;
             ctx.strokeRect(125 , 500, square_size + 50, square_size + 50); 
-            ctx.lineWidth = 1;
-            ctx.strokeRect(125 , 300, square_size + 50, square_size + 50);       
-            ctx.strokeRect(275 , 300, square_size + 50, square_size + 50);            
-            ctx.strokeRect(425 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(575 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(275 , 500, square_size + 50, square_size + 50);   
-            ctx.strokeRect(425 , 500, square_size + 50, square_size + 50); 
-            ctx.strokeRect(575 , 500, square_size + 50, square_size + 50);
             fill_img = blue_rect_img;
             rect_img = blue_rect_img ;
             x_img = blue_x_img;
@@ -648,16 +617,10 @@ function clickEvent(event) {
         }
         if( x > 275 && x < 375 && y > 500 && y < 600)
         { 
+            ctx.clearRect(start_point_x,start_point_y, 500, 500);
+            screenChooseColor();
             ctx.lineWidth = 5;
             ctx.strokeRect(275 , 500, square_size + 50, square_size + 50);  
-            ctx.lineWidth = 1;
-            ctx.strokeRect(125 , 300, square_size + 50, square_size + 50);       
-            ctx.strokeRect(275 , 300, square_size + 50, square_size + 50);            
-            ctx.strokeRect(425 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(575 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(125 , 500, square_size + 50, square_size + 50);  
-            ctx.strokeRect(425 , 500, square_size + 50, square_size + 50); 
-            ctx.strokeRect(575 , 500, square_size + 50, square_size + 50);
             fill_img = pastel_rect_img;
             rect_img = pastel_rect_img ;
             x_img = pastel_x_img;
@@ -665,17 +628,11 @@ function clickEvent(event) {
             isChooseColor = true;  
         }
         if( x > 425 && x < 525 && y > 500 && y < 600)
-        {     
+        {    
+            ctx.clearRect(start_point_x,start_point_y, 500, 500);
+            screenChooseColor(); 
             ctx.lineWidth = 5;
             ctx.strokeRect(425 , 500, square_size + 50, square_size + 50); 
-            ctx.lineWidth = 1;
-            ctx.strokeRect(125 , 300, square_size + 50, square_size + 50);       
-            ctx.strokeRect(275 , 300, square_size + 50, square_size + 50);            
-            ctx.strokeRect(425 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(575 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(125 , 500, square_size + 50, square_size + 50);  
-            ctx.strokeRect(275 , 500, square_size + 50, square_size + 50);              
-            ctx.strokeRect(575 , 500, square_size + 50, square_size + 50);
             fill_img = yellow_rect_img;
             rect_img = yellow_rect_img ;
             x_img = yellow_x_img;
@@ -684,16 +641,10 @@ function clickEvent(event) {
         }
         if( x > 575 && x < 675 && y > 500 && y < 600)
         {    
+            ctx.clearRect(start_point_x,start_point_y, 500, 500);
+            screenChooseColor();
             ctx.lineWidth = 5;
             ctx.strokeRect(575 , 500, square_size + 50, square_size + 50);
-            ctx.lineWidth = 1;
-            ctx.strokeRect(125 , 300, square_size + 50, square_size + 50);       
-            ctx.strokeRect(275 , 300, square_size + 50, square_size + 50);            
-            ctx.strokeRect(425 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(575 , 300, square_size + 50, square_size + 50); 
-            ctx.strokeRect(125 , 500, square_size + 50, square_size + 50);  
-            ctx.strokeRect(275 , 500, square_size + 50, square_size + 50);              
-            ctx.strokeRect(425 , 500, square_size + 50, square_size + 50); 
             fill_img = mix_of_color_rect_img;
             rect_img = mix_of_color_rect_img ;
             x_img = mix_of_color_x_img;
