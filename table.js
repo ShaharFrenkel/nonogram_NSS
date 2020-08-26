@@ -544,6 +544,7 @@ function clickEvent(event) {
     {
         if(x > 275 && x < 525 && y > 650 && y < 770 && isChooseColor && chooseComeFromOpen)
         {
+            // If we click on the confirm("אשר") button which is a color selected and select a color and the selection comes from the opening screen then you will return to the opening screen when the color fill is changed
             openingPage();  
             openingTime = true;
             chooseColorTime = false;
@@ -551,6 +552,7 @@ function clickEvent(event) {
         }
         if(x > 275 && x < 525 && y > 650 && y < 770 && isChooseColor && !chooseComeFromOpen)
         {
+            // If we click on the confirm("אשר") button which is a color selected and the selection does not come from the opening screen (says the selection comes from a step-end screen) then you will return to the end-of-stage screen when the color fill is changed
             finishLTime = true;
             FinishLevel(true, true);
             chooseColorTime = false;
@@ -558,6 +560,7 @@ function clickEvent(event) {
         }
         if( x > 125 && x < 225 && y > 300 && y < 400)
         {  
+            // If you press the black color button the change to fill the square will be black
             ctx.clearRect(start_point_x,start_point_y, 500, 500);
             screenChooseColor();
             ctx.lineWidth = 5;
@@ -569,6 +572,7 @@ function clickEvent(event) {
         }
         if( x > 275 && x < 375 && y > 300 && y < 400)
         {   
+            // If we press the green color button the square fill change will be green
             ctx.clearRect(start_point_x,start_point_y, 500, 500);
             screenChooseColor();
             ctx.lineWidth = 5;
@@ -581,6 +585,7 @@ function clickEvent(event) {
         }
         if( x > 425 && x < 525 && y > 300 && y < 400)
         {   
+            // If we press the pink color button the change in the square fill will be pink
             ctx.clearRect(start_point_x,start_point_y, 500, 500);
             screenChooseColor(); 
             ctx.lineWidth = 5;
@@ -592,7 +597,8 @@ function clickEvent(event) {
             isChooseColor = true;  
         }
         if( x > 575 && x < 675 && y > 300 && y < 400)
-        {    
+        {  
+            // If you press the purple color button, the square fill will change to purple  
             ctx.clearRect(start_point_x,start_point_y, 500, 500);
             screenChooseColor();
             ctx.lineWidth = 5;
@@ -605,6 +611,7 @@ function clickEvent(event) {
         }
         if( x > 125 && x < 225 && y > 500 && y < 600)
         {    
+            // If you press the blue color button the change in the fill of the square will be blue
             ctx.clearRect(start_point_x,start_point_y, 500, 500);
             screenChooseColor();
             ctx.lineWidth = 5;
@@ -617,6 +624,7 @@ function clickEvent(event) {
         }
         if( x > 275 && x < 375 && y > 500 && y < 600)
         { 
+            // If we press the pastel color button changing the fill of the square will be pastel
             ctx.clearRect(start_point_x,start_point_y, 500, 500);
             screenChooseColor();
             ctx.lineWidth = 5;
@@ -629,6 +637,7 @@ function clickEvent(event) {
         }
         if( x > 425 && x < 525 && y > 500 && y < 600)
         {    
+            // If you press the yellow color button, the square fill will change to yellow
             ctx.clearRect(start_point_x,start_point_y, 500, 500);
             screenChooseColor(); 
             ctx.lineWidth = 5;
@@ -641,6 +650,7 @@ function clickEvent(event) {
         }
         if( x > 575 && x < 675 && y > 500 && y < 600)
         {    
+            // If you press the mix of color button, the square fill will change to mix of color
             ctx.clearRect(start_point_x,start_point_y, 500, 500);
             screenChooseColor();
             ctx.lineWidth = 5;
