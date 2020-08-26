@@ -23,6 +23,7 @@ const purple_x_img = document.getElementById("purple_x");
 const pastel_x_img = document.getElementById("pastel_x");
 const yellow_x_img = document.getElementById("yellow_x");
 const mix_of_color_x_img = document.getElementById("mix_of_color_x");
+const blue_x_img = document.getElementById("blue_x");
 var rect_img = document.getElementById("rect_img");
 var x_img = document.getElementById("x_img");
 const empty_img = document.getElementById("empty_img");
@@ -41,6 +42,7 @@ var game_map_time = false;
 var isClickRight = false; // Boolean variable At first it is assumed that if it is pressed on the screen it is incorrect and if it is a button or a square it is changed to correct, if it remains incorrect a message is sent to the player which buttons can be pressed
 var chooseColorTime = false;//bool that states if the player is currantly viewing the choose color screen
 var isChooseColor = false; // bool that check if the player choose the color
+var chooseComeFromOpen = true; //bool that states if the choose color button was pressed from opening screen  
 var instractionsWhereFrom = 'n';
 
 function drawTable(){
@@ -508,6 +510,7 @@ function clickEvent(event) {
     var rect = c.getBoundingClientRect();
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;
+    isClickRight = false;
        if(instractionsWhereFrom == 'l'){
         if(inInstructionScreen1){
             if(x<730 && x>700 && y<100 && y>70){
@@ -539,19 +542,23 @@ function clickEvent(event) {
     }
     if(chooseColorTime)
     {
-        if(x > 275 && x < 525 && y > 650 && y < 770 && isChooseColor)
+        if(x > 275 && x < 525 && y > 650 && y < 770 && isChooseColor && chooseComeFromOpen)
+        {
+            openingPage();  
+            openingTime = true;
+            chooseColorTime = false;
+            isClickRight = true;
+        }
+        if(x > 275 && x < 525 && y > 650 && y < 770 && isChooseColor && !chooseComeFromOpen)
         {
             //ctx.clearRect(0,0,c.width,c.height);
-            levelTime = true;
-            draw_game_screen();
-            isClickRight = true;
+            finishLTime = true;
+            FinishLevel(true, false);
             chooseColorTime = false;
             isClickRight = true;
         }
         if( x > 125 && x < 225 && y > 300 && y < 400)
-        {
-            isChooseColor = true; 
-            isClickRight = true;     
+        {  
             ctx.lineWidth = 5;
             ctx.strokeRect(125 , 300, square_size + 50, square_size + 50); 
             ctx.lineWidth = 1;
@@ -565,12 +572,10 @@ function clickEvent(event) {
             rect_img = black_rect_img ;
             x_img = black_x_img;
             isClickRight = true;
-
+            isChooseColor = true;  
         }
         if( x > 275 && x < 375 && y > 300 && y < 400)
-        { 
-            isChooseColor = true; 
-            isClickRight = true;     
+        {   
             ctx.lineWidth = 5;
             ctx.strokeRect(275 , 300, square_size + 50, square_size + 50); 
             ctx.lineWidth = 1;
@@ -585,11 +590,10 @@ function clickEvent(event) {
             rect_img = green_rect_img ;
             x_img = green_x_img;
             isClickRight = true;
+            isChooseColor = true;  
         }
         if( x > 425 && x < 525 && y > 300 && y < 400)
-        { 
-            isChooseColor = true; 
-            isClickRight = true;     
+        {     
             ctx.lineWidth = 5;
             ctx.strokeRect(425 , 300, square_size + 50, square_size + 50); 
             ctx.lineWidth = 1;
@@ -604,11 +608,10 @@ function clickEvent(event) {
             rect_img = pink_rect_img ;
             x_img = pink_x_img;
             isClickRight = true;
+            isChooseColor = true;  
         }
         if( x > 575 && x < 675 && y > 300 && y < 400)
-        { 
-            isChooseColor = true; 
-            isClickRight = true;     
+        {    
             ctx.lineWidth = 5;
             ctx.strokeRect(575 , 300, square_size + 50, square_size + 50); 
             ctx.lineWidth = 1;
@@ -623,11 +626,10 @@ function clickEvent(event) {
             rect_img = purple_rect_img ;
             x_img = purple_x_img;
             isClickRight = true;
+            isChooseColor = true;  
         }
         if( x > 125 && x < 225 && y > 500 && y < 600)
-        { 
-            isChooseColor = true; 
-            isClickRight = true;     
+        {    
             ctx.lineWidth = 5;
             ctx.strokeRect(125 , 500, square_size + 50, square_size + 50); 
             ctx.lineWidth = 1;
@@ -640,13 +642,12 @@ function clickEvent(event) {
             ctx.strokeRect(575 , 500, square_size + 50, square_size + 50);
             fill_img = blue_rect_img;
             rect_img = blue_rect_img ;
-            //שחר צריכה להוסיף תמונת איקס כחול !!!//x_img = blue_x_img;
+            x_img = blue_x_img;
             isClickRight = true;
+            isChooseColor = true;  
         }
         if( x > 275 && x < 375 && y > 500 && y < 600)
         { 
-            isChooseColor = true; 
-            isClickRight = true;     
             ctx.lineWidth = 5;
             ctx.strokeRect(275 , 500, square_size + 50, square_size + 50);  
             ctx.lineWidth = 1;
@@ -661,11 +662,10 @@ function clickEvent(event) {
             rect_img = pastel_rect_img ;
             x_img = pastel_x_img;
             isClickRight = true;
+            isChooseColor = true;  
         }
         if( x > 425 && x < 525 && y > 500 && y < 600)
-        { 
-            isChooseColor = true; 
-            isClickRight = true;     
+        {     
             ctx.lineWidth = 5;
             ctx.strokeRect(425 , 500, square_size + 50, square_size + 50); 
             ctx.lineWidth = 1;
@@ -680,11 +680,10 @@ function clickEvent(event) {
             rect_img = yellow_rect_img ;
             x_img = yellow_x_img;
             isClickRight = true;
+            isChooseColor = true;  
         }
         if( x > 575 && x < 675 && y > 500 && y < 600)
-        { 
-            isChooseColor = true; 
-            isClickRight = true;     
+        {    
             ctx.lineWidth = 5;
             ctx.strokeRect(575 , 500, square_size + 50, square_size + 50);
             ctx.lineWidth = 1;
@@ -699,6 +698,7 @@ function clickEvent(event) {
             rect_img = mix_of_color_rect_img ;
             x_img = mix_of_color_x_img;
             isClickRight = true;
+            isChooseColor = true;  
         }
     }
     if(instractionsWhereFrom == 'o'){
@@ -875,6 +875,7 @@ function clickEvent(event) {
             openingTime = false;
             isClickRight = true;
             screenChooseColor(); 
+            chooseComeFromOpen = true;
         }
         
     }
@@ -916,6 +917,7 @@ function clickEvent(event) {
             screenChooseColor(); 
             openingTime = false;
             isClickRight = true;
+            chooseComeFromOpen = false;
         }
     }
     if(game_map_time)
