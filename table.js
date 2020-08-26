@@ -11,6 +11,8 @@ const button_img = document.getElementById("button_example")
 const rect_img = document.getElementById("rect_img");
 const x_img = document.getElementById("x_img");
 const empty_img = document.getElementById("empty_img");
+const clean_button_img = document.getElementById("clean");
+const finish_button_img = document.getElementById("finish");
 var fill_img = rect_img; //the img that will replace the empty image of a square objefct when the player clicks on the square
 var is_filled = true; //the bool value that will replace the square's bool value when the player clicks the square
 var first_board = new Board();
@@ -59,17 +61,121 @@ var first_level = [
 var second_level = [
     [true, true, true, true, true, true, true, true, true, true],
     [true, false, false, false, false, false, false, false, false, true],
+    [true, false, false, true, true, false, true, true, false, true],
+    [true, false, false, false, true, false, true, false, false, true],
+    [true, false, false, false, true, false, true, true, false, true],
+    [true, false, true, false, true, false, false, true, false, true],
+    [true, false, true, true, true, false, true, true, false, true],
+    [true, true, false, false, false, false, false, false, true, true],
+    [false, true, true, true, false, false, true, true, true, false],
+    [false, false, false, true, true, true, true, false, false, false],
+];
+
+var third_level = [
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, false, false, false, true, true, false],
+    [false, false, false, false, false, false, true, true, true, false],
+    [false, true, false, false, false, true, true, true, true, false],
+    [false, true, true, false, true, true, false, true, true, false],
+    [false, true, false, true, true, false, false, true, true, false],
+    [false, true, true, false, true, true, false, true, true, false],
+    [false, true, false, false, false, true, true, true, true, false],
+    [false, false, false, false, false, false, true, true, true, false],
+    [false, false, false, false, false, false, false, true, true, false],
+];
+
+var fourth_level = [
+    [false, false, false, true, false, false, false, true, false, false],
+    [false, false, true, true, true, true, true, true, true, false],
+    [false, false, true, true, false, false, false, true, true, false],
+    [false, false, true, true, false, true, true, true, true, false],
+    [false, false, true, true, false, true, false, true, true, false],
+    [false, false, false, true, false, false, false, true, false, false],
+    [true, false, false, false, true, true, true, false, false, false],
+    [false, true, false, true, true, true, true, true, false, false],
+    [false, false, true, true, true, true, true, true, false, false],
+    [false, false, false, true, true, true, true, true, false, false],
+];
+
+var fifth_level = [
+    [false, false, false, false, false, false, true, true, true, true],
+    [false, false, false, false, false, false, true, false, false, true],
+    [false, false, false, false, false, false, false, false, false, true],
+    [true, false, false, false, false, false, true, false, false, true],
+    [true, false, false, false, false, false, true, false, true, true],
+    [true, true, false, true, false, true, true, false, true, true],
+    [false, true, true, true, true, true, false, false, true, true],
+    [false, false, false, false, false, false, false, false, false, true],
+    [false, false, false, false, false, false, true, false, false, true],
+    [false, false, false, false, false, false, true, true, true, true],
+];
+
+var sixth_level = [
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, true, true, true, true, true, true],
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, true, true, true, true, true, true, false],
+    [true, false, false, false, false, false, false, false, false, false],
+    [true, false, true, true, true, true, true, true, false, true],
     [true, false, false, false, false, false, false, false, false, true],
-    [true, false, false, false, false, false, false, false, false, true],
-    [true, false, false, false, false, false, false, false, false, true],
-    [true, false, false, false, false, false, false, false, false, true],
-    [true, false, false, false, false, false, false, false, false, true],
-    [true, false, false, false, false, false, false, false, false, true],
+    [true, false, true, true, true, true, true, true, false, true],
     [true, false, false, false, false, false, false, false, false, true],
     [true, true, true, true, true, true, true, true, true, true],
 ];
 
-var Levels = [first_level, second_level];
+var seventh_level = [
+    [true, true, true, true, false, false, false, false, false, false],
+    [true, false, false, false, false, false, false, false, false, false],
+    [true, false, false, false, false, false, false, false, false, false],
+    [true, false, false, false, false, false, false, false, false, false],
+    [true, false, false, false, false, false, true, false, true, false],
+    [true, false, false, false, false, true, true, true, true, true],
+    [true, true, true, true, false, false, true, false, true, false],
+    [false, false, false, false, false, false, true, false, true, false],
+    [false, false, false, false, false, true, true, true, true, true],
+    [false, false, false, false, false, false, true, false, true, false],
+];
+
+var eighth_level = [
+    [false, false, false, false, true, false, false, true, false, false],
+    [false, false, false, true, false, false, true, false, false, false],
+    [false, false, false, true, false, false, true, false, false, false],
+    [false, true, false, false, true, false, false, true, false, false],
+    [true, false, false, false, false, false, false, false, true, true],
+    [true, true, true, true, true, true, true, true, true, true],
+    [false, true, true, true, true, true, true, true, false, true],
+    [false, false, true, true, true, true, true, true, true, true],
+    [true, true, false, false, true, true, false, false, false, false],
+    [true, true, true, true, true, true, true, true, true, true],
+];
+
+var ninth_level = [
+    [false, false, false, false, false, false, false, false, false, false],
+    [false, false, false, false, true, true, true, true, false, false],
+    [false, false, false, true, true, true, false, true, true, false],
+    [false, false, true, true, true, true, true, true, false, false],
+    [false, false, true, true, false, false, false, false, false, false],
+    [false, false, true, true, false, false, false, false, false, false],
+    [false, true, true, true, true, true, true, true, true, false],
+    [false, true, true, true, true, true, true, true, true, false],
+    [true, true, true, true, true, true, true, true, true, true],
+    [true, true, true, true, true, true, true, true, true, true],
+];
+
+var tenth_level = [
+    [false, false, false, false, false, false, true, false, false, false],
+    [false, false, false, false, false, true, false, false, false, false],
+    [false, false, false, false, true, true, true, true, false, false],
+    [false, false, false, true, true, true, true, true, true, false],
+    [false, false, true, true, true, true, true, true, false, false],
+    [false, true, true, true, true, true, true, false, false, false],
+    [false, true, true, true, true, true, true, true, false, false],
+    [false, false, true, true, true, true, true, true, true, false],
+    [false, false, false, true, true, true, true, true, false, false],
+    [false, false, false, false, true, true, true, false, false, false],
+];
+
+var Levels = [first_level, second_level, third_level, fourth_level, fifth_level, sixth_level, seventh_level, eighth_level, ninth_level, tenth_level];
 counter_level = 0;
 
 
@@ -220,7 +326,7 @@ function openingPage(){
 }
 //openingPage();
 
-function FinishLevel(isok)
+function FinishLevel(isok, ininstruct)
 {
     ctx.fillStyle = "#000000";
     if(isok)
@@ -229,7 +335,9 @@ function FinishLevel(isok)
         {
             levelTime=false;
             finishLTime = true;
-            counter_level++;
+            if(!ininstruct){
+                counter_level++;
+            }
             ctx.clearRect(0,0,c.width,c.height);
             
             ctx.fillStyle = "black";
@@ -406,13 +514,14 @@ function fill_button(is_rect_pressed){
 
 function cleanButten()
 {
-    //מציג את כפתור מחיקת קנבס
+    // Displays the canvas delete button
     ctx.fillStyle = "black";
     ctx.fillRect(650, 20, 130, 70);
     ctx.lineWidth = 3;    
     ctx.strokeRect(650, 20, square_size+80, square_size+20);
     ctx.font = "25px Arial";
     ctx.fillStyle = "white";
+    ctx.textAlign = "center";
     ctx.fillText("נקה לוח",712,63);
 } 
 
@@ -422,7 +531,6 @@ function finishButton()
     ctx.strokeRect(600, 670, 150, 100);
     ctx.textAlign = "center";
     ctx.fillText("סיום השלב", 675, 730);
-
 
 }
 
@@ -435,21 +543,20 @@ function clickEvent(event) {
     var rect = c.getBoundingClientRect();
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;
-    var isClick = false;
-
+    var isClickRight = false; // Boolean variable At first it is assumed that if it is pressed on the screen it is incorrect and if it is a button or a square it is changed to correct, if it remains incorrect a message is sent to the player which buttons can be pressed
     if(instractionsWhereFrom == 'l'){
         if(inInstructionScreen1){
             if(x<730 && x>700 && y<100 && y>70){
                 inInstructionScreen1 = false;
                 levelTime = true;
                 draw_game_screen();
-                isClick = true;
+                isClickRight = true;
             }
             if(x<70 && x>60 && y<420 && y>380){
                 inInstructionScreen1 = false;
                 draw_game_screen();
                 instructionsScreen2();
-                isClick = true;
+                isClickRight = true;
             }
         }
         if(inInstructionScreen2){
@@ -457,12 +564,12 @@ function clickEvent(event) {
                 inInstructionScreen2 = false;
                 levelTime = true;
                 draw_game_screen();
-                isClick = true;
+                isClickRight = true;
             }
             if(x<745 && x>735 && y<420 && y>380){
                 inInstructionScreen2 = false;
                 instructionsScreen1();
-                isClick = true;
+                isClickRight = true;
             }
         }
     }
@@ -472,14 +579,14 @@ function clickEvent(event) {
                 inInstructionScreen1 = false;
                 openingTime = true;
                 openingPage();
-                isClick = true;
+                isClickRight = true;
             }
             if(x<70 && x>60 && y<420 && y>380){
                 inInstructionScreen1 = false;
                 openingPage();
                 openingTime = false;
                 instructionsScreen2();
-                isClick = true;
+                isClickRight = true;
             }
         }
         if(inInstructionScreen2){
@@ -487,13 +594,13 @@ function clickEvent(event) {
                 inInstructionScreen2 = false;
                 openingTime = true;
                 openingPage();
-                isClick = true;
+                isClickRight = true;
             }
             if(x<745 && x>735 && y<420 && y>380){
                 inInstructionScreen2 = false;
                 openingPage()
                 instructionsScreen1();
-                isClick = true;
+                isClickRight = true;
             }
         }
     }
@@ -502,28 +609,28 @@ function clickEvent(event) {
             if(x<730 && x>700 && y<100 && y>70){
                 inInstructionScreen1 = false;
                 finishLTime = true;
-                FinishLevel();
-                isClick = true;
+                FinishLevel(true, true);
+                isClickRight = true;
             }
             if(x<70 && x>60 && y<420 && y>380){
                 inInstructionScreen1 = false;
-                FinishLevel();
+                FinishLevel(true, true);
                 instructionsScreen2();
-                isClick = true;
+                isClickRight = true;
             }
         }
         if(inInstructionScreen2){
             if(x<730 && x>700 && y<100 && y>70){
                 inInstructionScreen2 = false;
                 finishLTime = true;
-                FinishLevel();
-                isClick = true;
+                FinishLevel(true, true);
+                isClickRight = true;
             }
             if(x<745 && x>735 && y<420 && y>380){
                 inInstructionScreen2 = false;
-                FinishLevel();
+                FinishLevel(true, true);
                 instructionsScreen1();
-                isClick = true;
+                isClickRight = true;
             }
         }
     }
@@ -532,7 +639,7 @@ function clickEvent(event) {
     {
         //instractions button
         if (x > 10 && x < 160 && y > 10 && y < 110){
-            isClick = true;
+            isClickRight = true;
             draw_game_screen();
             instructionsScreen1();
             levelTime = false;
@@ -544,19 +651,19 @@ function clickEvent(event) {
             fill_button(true);
             fill_img = rect_img;
             is_filled = true;
-            isClick = true;
+            isClickRight = true;
         }
         if (x >= 210 && x < 270 && y >= 700 && y < 760){
             fill_button(false);
             fill_img = x_img;
             is_filled = false;
-            isClick = true;
+            isClickRight = true;
         }
         //clean board button
-        if(x >= 650 && x < 780 && y >= 20 && y < 120 )
+        if(x >= 650 && x < 780 && y >= 20 && y < 120 && !isClickRight)
         {
             first_board.cleanBoard();
-            isClick = true;
+            isClickRight = true;
         }
         
         //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
@@ -564,39 +671,33 @@ function clickEvent(event) {
         var found_clicked_square = false;
         var line = 0;
         var column = 0;
-        //alert("x="+x+" y="+y+" "+ first_board.arraySquares[line][coulmn].x);
     
         //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
-        //alert("x="+x+" y="+y+" "+ first_board.arraySquares[line][column].x);
 
         if(clicked_on_the_board)
         {
+            
             //runs on the array and finds the square the player clicked on by comparing the coordonites with each square
-            while(!found_clicked_square){
-                //in this ine the console shows an error but the action
-                //found_clicked_square = true;
-                //coulmn++;
-                //alert(coulmn);
-                if (x>first_board.arraySquares[line][column].x && x<first_board.arraySquares[line][column].x+square_size && y>first_board.arraySquares[line][column].y && y<first_board.arraySquares[line][column].y+square_size){
-                    isClick = true;
-                    found_clicked_square = true;
-                    //checks if the square has already been clicked on with the same img the player currently has, if so, it earases the square
-                    if(first_board.arraySquares[line][column].img == fill_img){
-                        first_board.arraySquares[line][column].img = empty_img;
-                        first_board.arraySquares[line][column].boolean = false;
+            
+            for(line = 0; line<first_board.arraySquares.length; line++){
+                for(column = 0; column<first_board.arraySquares[0].length; column++){
+                    if (x>first_board.arraySquares[line][column].x && x<first_board.arraySquares[line][column].x+square_size && y>first_board.arraySquares[line][column].y && y<first_board.arraySquares[line][column].y+square_size){
+                        isClickRight = true;
+                        //checks if the square has already been clicked on with the same img the player currently has, if so, it earases the square
+                        if(first_board.arraySquares[line][column].img == fill_img){
+                            first_board.arraySquares[line][column].img = empty_img;
+                            first_board.arraySquares[line][column].boolean = false;
+                            column = first_board.arraySquares[0].length;
+                            line = first_board.arraySquares.length;
+                        }
+                        //else, it paints the sqaure with the img
+                        else{
+                            first_board.arraySquares[line][column].img = fill_img;
+                            first_board.arraySquares[line][column].boolean = is_filled;
+                            column = first_board.arraySquares[0].length;
+                            line = first_board.arraySquares.length;
+                        }
                     }
-                    //else, it paints the sqaure with the img
-                    else{
-                        first_board.arraySquares[line][column].img = fill_img;
-                        first_board.arraySquares[line][column].boolean = is_filled;
-                    }
-                }
-                if(column<first_board.arraySquares[0].length-1){
-                    column++;
-                }
-                else{
-                    column = 0;
-                    line++;
                 }
             }
 
@@ -604,8 +705,8 @@ function clickEvent(event) {
     
         if(x > 600 && x < 750 && y > 670 && y < 770){
            
-            FinishLevel(first_board.compareBool(Levels[counter_level]));
-            isClick =true;
+            FinishLevel(first_board.compareBool(Levels[counter_level]), false);
+            isClickRight =true;
         }
     }
 
@@ -628,14 +729,14 @@ function clickEvent(event) {
             openingTime = false;
             levelTime= true;
             draw_game_screen();
-            isClick = true;
+            isClickRight = true;
 
 
         }
         if(x>710 && x<780 && y>20 && y<90)
         {
-            if(!isClick){
-                isClick = true;
+            if(!isClickRight){
+                isClickRight = true;
                 game_map_time = true;
                 openingTime = false;
                 ctx.clearRect(0,0,c.width,c.height);
@@ -651,11 +752,13 @@ function clickEvent(event) {
     {
         //instractions button
         if ((x > 10 && x < 160 && y > 10 && y < 110) && (counter_level != 10)){
-            isClick = true;
-            FinishLevel();
+            isClickRight = true;
+            FinishLevel(true, true);
             finishLTime = false;
+            inInstructionScreen1 = true;
             instructionsScreen1();
-            instractionsWhereFrom = 'f'
+            instractionsWhereFrom = 'f';
+            isClick = true;
         }
 
         if((x > 200 && x < 600 && y > 540 && y < 690) && (counter_level != 10))
@@ -663,18 +766,21 @@ function clickEvent(event) {
             finishLTime = false;
             levelTime= true;
             draw_game_screen();
-            isClick = true;
+            isClickRight = true;
 
 
         }
         if(x>710 && x<780 && y>20 && y<90)
         {
-            isClick = true;
-            game_map_time = true;
-            finishLTime = false;
-            ctx.clearRect(0,0,c.width,c.height);
-            map_for_game();
-          
+            if(!isClickRight){
+                isClickRight = true;
+                game_map_time = true;
+                finishLTime = false;
+                ctx.clearRect(0,0,c.width,c.height);
+                map_for_game();
+            }
+                        
+
         }
         
         
@@ -687,7 +793,7 @@ function clickEvent(event) {
             {
                 if(counter_level >= i)
                 {
-                 isClick = true;
+                 isClickRight = true;
                  counter_level = i;
                  game_map_time = false;
                  levelTime = true;
@@ -696,8 +802,9 @@ function clickEvent(event) {
                  first_board.cleanBoard();
                  
                 }
-                else{
-                    isClick = true;
+                else
+                {
+                    isClickRight = true;
                     alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
                 }
             }
@@ -706,7 +813,7 @@ function clickEvent(event) {
                 {
                     if(counter_level >= i+7){
 
-                        isClick = true;
+                        isClickRight = true;
                             counter_level = i+7;
                             game_map_time = false;
                             levelTime = true;
@@ -715,7 +822,7 @@ function clickEvent(event) {
                             first_board.cleanBoard();
                     }
                         else{
-                            isClick = true;
+                            isClickRight = true;
                             alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
                         }
                     
@@ -735,7 +842,7 @@ function clickEvent(event) {
             {
                 if(counter_level >= i+3){
 
-                    isClick = true;
+                    isClickRight = true;
                         counter_level = i+3;
                         game_map_time = false;
                         levelTime = true;
@@ -745,7 +852,7 @@ function clickEvent(event) {
     
                 }
                 else{
-                    isClick = true;
+                    isClickRight = true;
                     alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
                 }
 
@@ -760,9 +867,9 @@ function clickEvent(event) {
     }
     
         
-    if(!isClick)
+    if(!isClickRight)
     {
-        //אם המשחק לחץ בעכבר על מקום שלא אמור ללחוץ כותב הודעה לידע אותו
+        // If the player clicks the mouse on a place that should not be clicked, writes a message informing him of what he needs to click on
         alert("לחצתם על מקום עם העכבר- לא קשור למשחק לחצתם על מקש מקלדת- לא קשור למשחק, השתמשו בכפתורי המשחק (לחץ על כפתור נקה לוח/ בחר מילוי משבצת ללוח/ לחץ על המשבצת הרצויה לצביעה בצבע או איקס/ לחץ על משבצת צבועה שהתחרטת ואת/ה רוצה שהמשבצת תיהיה לבנה/ סיום משחק");
     }
     else
@@ -863,7 +970,9 @@ function instructionsScreen2(){
     ctx.fillText('(הציור שנמצא במשבצת זו (ריבוע או איקס',730,320);
     ctx.drawImage(button_img, 100, 330, 140, 70);
     ctx.fillText('.בכל שלב של המשחק תוכלו ללחוץ על כפתור "נקה לוח" ולהתחיל מחדש',730,430);
+    ctx.drawImage(clean_button_img, 100, 440, 140, 70);
     ctx.fillText('"כשסיימתם למלא את כל המשבצות הנדרשות, לחצו על כפתור "סיים משחק',730,560);
+    ctx.drawImage(finish_button_img, 100, 570, 140, 70);
 }
 
  //instructionsScreen1();
