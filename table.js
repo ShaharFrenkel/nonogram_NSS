@@ -31,6 +31,7 @@ const clean_button_img = document.getElementById("clean");
 const finish_button_img = document.getElementById("finish");
 const choose_color_button_img = document.getElementById("choose_color");
 const map_button_img = document.getElementById("map_button");
+const title = document.getElementById("title_img");
 var fill_img = rect_img; //the img that will replace the empty image of a square objefct when the player clicks on the square
 var is_filled = true; //the bool value that will replace the square's bool value when the player clicks the square
 var first_board = new Board();
@@ -46,6 +47,15 @@ var chooseColorTime = false;//bool that states if the player is currantly viewin
 var isChooseColor = false; // bool that check if the player choose the color
 var chooseComeFromOpen = true; //bool that states if the choose color button was pressed from opening screen  
 var instractionsWhereFrom = 'n';
+
+
+//this.img = document.createElement("img"); 
+//this.img.src = "img/title_black.png";
+//var src = document.getElementById("blah");
+//src.appendChild(img);
+//blah.src = "img/X.png";
+//title.src = "img/X.png";
+
 
 function drawTable(){
     ctx.lineWidth = 1;
@@ -571,6 +581,7 @@ function clickEvent(event) {
             x_img = black_x_img;
             isClickRight = true;
             isChooseColor = true;  
+            title.src = "img/title_black.png"; 
         }
         if( x > 275 && x < 375 && y > 300 && y < 400)
         {   
@@ -583,7 +594,8 @@ function clickEvent(event) {
             rect_img = green_rect_img ;
             x_img = green_x_img;
             isClickRight = true;
-            isChooseColor = true;  
+            isChooseColor = true;
+            title.src = "img/title_green.png"; 
         }
         if( x > 425 && x < 525 && y > 300 && y < 400)
         {   
@@ -596,7 +608,8 @@ function clickEvent(event) {
             rect_img = pink_rect_img ;
             x_img = pink_x_img;
             isClickRight = true;
-            isChooseColor = true;  
+            isChooseColor = true;
+            title.src = "img/title_pink.png";   
         }
         if( x > 575 && x < 675 && y > 300 && y < 400)
         {  
@@ -609,7 +622,8 @@ function clickEvent(event) {
             rect_img = purple_rect_img ;
             x_img = purple_x_img;
             isClickRight = true;
-            isChooseColor = true;  
+            isChooseColor = true; 
+            title.src = "img/title_purple.png";  
         }
         if( x > 125 && x < 225 && y > 500 && y < 600)
         {    
@@ -622,7 +636,8 @@ function clickEvent(event) {
             rect_img = blue_rect_img ;
             x_img = blue_x_img;
             isClickRight = true;
-            isChooseColor = true;  
+            isChooseColor = true; 
+            title.src = "img/title_blue.png";
         }
         if( x > 275 && x < 375 && y > 500 && y < 600)
         { 
@@ -636,6 +651,7 @@ function clickEvent(event) {
             x_img = pastel_x_img;
             isClickRight = true;
             isChooseColor = true;  
+            title.src = "img/title_pastel.png";
         }
         if( x > 425 && x < 525 && y > 500 && y < 600)
         {    
@@ -648,7 +664,8 @@ function clickEvent(event) {
             rect_img = yellow_rect_img ;
             x_img = yellow_x_img;
             isClickRight = true;
-            isChooseColor = true;  
+            isChooseColor = true; 
+            title.src = "img/title_yellow.png";
         }
         if( x > 575 && x < 675 && y > 500 && y < 600)
         {    
@@ -662,6 +679,7 @@ function clickEvent(event) {
             x_img = mix_of_color_x_img;
             isClickRight = true;
             isChooseColor = true;  
+            title.src = "img/title_mixOfColors.png";
         }
     }
     if(instractionsWhereFrom == 'o'){
@@ -1176,4 +1194,3 @@ function instructionButton(){
 
 
 openingPage();
-
