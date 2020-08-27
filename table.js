@@ -829,8 +829,8 @@ function clickEvent(event) {
             instractionsWhereFrom = 'o';
         }
         
-        
-        if(x > 200 && x < 600 && y > 540 && y < 690)
+        //start game button
+        if(x > 200 && x < 600 && y > 540 && y < 690 &&!isClickRight)
         {
             openingTime = false;
             levelTime= true;
@@ -851,7 +851,8 @@ function clickEvent(event) {
             
             
         }
-        if(x > 320 && x < 460  && y > 10 && y < 220 )
+        //choose color button
+        if(x > 320 && x < 460  && y > 10 && y < 220)
         {
             openingTime = false;
             isClickRight = true;
@@ -873,8 +874,8 @@ function clickEvent(event) {
             instractionsWhereFrom = 'f';
             isClick = true;
         }
-
-        if(x > 200 && x < 600 && y > 540 && y < 690)
+        // start level button
+        if(x > 200 && x < 600 && y > 540 && y < 690 && !isClickRight)
         {
             finishLTime = false;
             levelTime= true;
