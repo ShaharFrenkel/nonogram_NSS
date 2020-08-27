@@ -29,6 +29,8 @@ var x_img = document.getElementById("x_img");
 const empty_img = document.getElementById("empty_img");
 const clean_button_img = document.getElementById("clean");
 const finish_button_img = document.getElementById("finish");
+const choose_color_button_img = document.getElementById("choose_color");
+const map_button_img = document.getElementById("map_button");
 var fill_img = rect_img; //the img that will replace the empty image of a square objefct when the player clicks on the square
 var is_filled = true; //the bool value that will replace the square's bool value when the player clicks the square
 var first_board = new Board();
@@ -731,7 +733,7 @@ function clickEvent(event) {
     if(levelTime)
     {
         //instractions button
-        if (x > 10 && x < 160 && y > 10 && y < 110){
+        if (x > 10 && x < 160 && y > 10 && y < 90){
             isClickRight = true;
             draw_game_screen();
             instructionsScreen1();
@@ -1064,14 +1066,24 @@ function instructionsScreen2(){
     ctx.textAlign = "right";
     ctx.fillText('במהלך המשחק תוכלו לסמן באיקס משבצות שאתם בטוחים שלא ימולאו בהמשך',730,200);
     ctx.fillText('(למשל משבצת אחת בסיום כל רצף)',730,230);
-    ctx.fillText('תוכלו לבחור האם לסמן באיקס או בריבוע על ידי לחיצה על הכפתור בתחתית',730,260);
-    ctx.fillText('אם תרצו למחוק משבצת מלאה, לחצו עליה כאשר הכפתור בתחתית עומד על',730,290);
-    ctx.fillText('(הציור שנמצא במשבצת זו (ריבוע או איקס',730,320);
-    ctx.drawImage(button_img, 100, 330, 140, 70);
-    ctx.fillText('.בכל שלב של המשחק תוכלו ללחוץ על כפתור "נקה לוח" ולהתחיל מחדש',730,430);
-    ctx.drawImage(clean_button_img, 100, 440, 140, 70);
-    ctx.fillText('"כשסיימתם למלא את כל המשבצות הנדרשות, לחצו על כפתור "סיים משחק',730,560);
-    ctx.drawImage(finish_button_img, 100, 570, 140, 70);
+    ctx.fillText('תוכלו לבחור האם לסמן באיקס או בריבוע על ידי',730,270);
+    ctx.fillText('לחיצה על הכפתור בתחתית',730,300);
+    ctx.fillText(' אם תרצו למחוק משבצת מלאה, לחצו עליה כאשר הכפתור עומד על הציור',730,340);
+    ctx.fillText('(שנמצא במשבצת זו (ריבוע או איקס',730,370);
+    ctx.drawImage(button_img, 100, 240, 140, 70);
+    ctx.fillText('בכל שלב של המשחק תוכלו ללחוץ על כפתור',730,420);
+    ctx.fillText('."נקה לוח" ולהתחיל מחדש',730,450);
+    ctx.drawImage(clean_button_img, 100, 395, 130, 60);
+    ctx.fillText('כשסיימתם למלא את כל המשבצות הנדרשות,',730,510);
+    ctx.fillText('"לחצו על כפתור "סיים משחק',730,540);
+    ctx.drawImage(finish_button_img, 100, 490, 130, 60);
+    ctx.fillText('במסך הפתיחה ובסיום כל שלב תוכלו לשנות את',730,600);
+    ctx.fillText('"צבע סימון המשבצות בכפתור "בחר צבע',730,630);
+    ctx.drawImage(choose_color_button_img, 100, 580, 130, 60);
+    ctx.fillText('במסך הפתיחה ובסיום כל שלב תוכלו להסתכל על',730,690);
+    ctx.fillText('"מפת שלבי המשחק בכפתור "מפה',730,720);
+    ctx.drawImage(map_button_img, 100, 670, 100, 60);
+
 }
 function screenChooseColor()
 {
@@ -1158,12 +1170,13 @@ ctx.strokeStyle = "black";
 function instructionButton(){
     ctx.beginPath();
     ctx.fillStyle = "#FFFFFF";
-    ctx.rect(10, 10, 150, 100);
+    start_point_x.lineWidth = 1;
+    ctx.rect(10, 10, 150, 80);
     ctx.fill();
     ctx.textAlign = "center";
     ctx.fillStyle = "#000000";
-    ctx.fillText("הוראות", 85, 50);
-    ctx.fillText("המשחק", 85, 80);
+    ctx.fillText("הוראות", 85, 40);
+    ctx.fillText("המשחק", 85, 72);
 }
 
 
