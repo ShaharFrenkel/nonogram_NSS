@@ -726,7 +726,7 @@ function clickEvent(event) {
     if(levelTime)
     {
         //instractions button
-        if (x > 10 && x < 160 && y > 10 && y < 110){
+        if (x > 10 && x < 160 && y > 10 && y < 90){
             isClickRight = true;
             draw_game_screen();
             instructionsScreen1();
@@ -1153,12 +1153,13 @@ ctx.strokeStyle = "black";
 function instructionButton(){
     ctx.beginPath();
     ctx.fillStyle = "#FFFFFF";
-    ctx.rect(10, 10, 150, 100);
+    start_point_x.lineWidth = 1;
+    ctx.rect(10, 10, 150, 80);
     ctx.fill();
     ctx.textAlign = "center";
     ctx.fillStyle = "#000000";
-    ctx.fillText("הוראות", 85, 50);
-    ctx.fillText("המשחק", 85, 80);
+    ctx.fillText("הוראות", 85, 40);
+    ctx.fillText("המשחק", 85, 72);
 }
 
 
