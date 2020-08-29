@@ -6,6 +6,6 @@ class Square {
       this.boolean = boolean;
     }
     show() {
-      ctx.drawImage(this.img, this.x, this.y, square_size, square_size);
+      ctx.drawImage(this.img, this.x, this.y, squareSize, squareSize);
     }
   }
