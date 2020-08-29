@@ -7,7 +7,7 @@ class Board {
             this.arraySquares[i] = new Array(10);
             for(var j = 0; j < 10; j++ )
             {
-                this.arraySquares[i][j]= new Square(start_point_x + 50*j, start_point_y + 50*i, empty_img, false);
+                this.arraySquares[i][j]= new Square(startPointX + 50*j, startPointY + 50*i, emptyImg, false);
             } 
         }
     }
@@ -35,7 +35,7 @@ class Board {
         {
             for(var j = 0; j < 10; j++ )
             {   
-                this.arraySquares[i][j].img = empty_img;
+                this.arraySquares[i][j].img = emptyImg;
                 this.arraySquares[i][j].boolean = false;
             }
         }     
