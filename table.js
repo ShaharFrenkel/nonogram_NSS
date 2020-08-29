@@ -714,7 +714,7 @@ function clickEvent(event) {
         
         //instractions button
         if (x > 10 && x < 160 && y > 10 && y < 110){
-            isClick = true;
+            isClickRight = true;
             openingPage();
             instructionsScreen1();
             openingTime = false;
@@ -758,7 +758,7 @@ function clickEvent(event) {
             inInstructionScreen1 = true;
             instructionsScreen1();
             instractionsWhereFrom = 'f';
-            isClick = true;
+            isClickright = true;
         }
 
         if((x > 200 && x < 600 && y > 540 && y < 690) && (counter_level != 10))
