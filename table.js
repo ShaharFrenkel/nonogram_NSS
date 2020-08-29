@@ -61,12 +61,14 @@ function drawTable(){
     ctx.lineWidth = 1;
     //בניית הטבלה של המשחק
     for (var i = start_point_x; i < 10 * square_size + 1 + start_point_x; i = i + square_size) {
+        ctx.beginPath();
         ctx.moveTo(i, start_point_y);
         ctx.lineTo(i, square_size * 10 + start_point_y);
         ctx.stroke();
     
     }
     for (var j = start_point_y; j < square_size * 10 + 1 + start_point_y; j = j + square_size) {
+        ctx.beginPath();
         ctx.moveTo(start_point_x, j);
         ctx.lineTo(square_size * 10 + start_point_x, j);
         ctx.stroke();
@@ -313,6 +315,7 @@ function writeSideNumbers(boolArray)
 //var board_for_open = [[new Square(335, 360, empty_img, false),new Square(400, 360, empty_img, false)],[new Square(335, 425, empty_img, false),new Square(400, 425, empty_img, false)]];
 function openingPage(){
     openingTime = true;
+    ctx.beginPath();
     ctx.clearRect(0,0,c.width,c.height);
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, c.width ,c.height);
@@ -1016,7 +1019,7 @@ function redraw_borad(){
 }
 
 function draw_game_screen(){
-    ctx.clearRect(0,0,800,800);
+    ctx.clearRect(0,0,c.width,c.height);
     redraw_borad();
     writeSideNumbers(Levels[counter_level]);
     fill_button(is_filled);
