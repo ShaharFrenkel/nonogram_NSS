@@ -975,17 +975,13 @@ function clickEvent(event) {
 
         }
         //map button
-        if(x>710 && x<780 && y>20 && y<90)
+        if(x>710 && x<780 && y>20 && y<90 && !isClickRight)
         {
-            if(!isClickRight){
-                isClickRight = true;
-                gameMapTime = true;
-                openingTime = false;
-                ctx.clearRect(0,0,c.width,c.height);
-                mapForGame();
-            }
-            
-            
+            isClickRight = true;
+            gameMapTime = true;
+            openingTime = false;
+            ctx.clearRect(0,0,c.width,c.height);
+            mapForGame();
         }
         //choose color button
         if(x > 320 && x < 460  && y > 10 && y < 220)
@@ -1077,7 +1073,6 @@ function clickEvent(event) {
                     counterLevel = i+7;
                     gameMapTime = false;
                     levelTime = true;
-                    //redraw_borad();
                     drawGameScreen();
                     gameBoard.cleanBoard();       
                 }
@@ -1091,7 +1086,6 @@ function clickEvent(event) {
                 
         }
         
-        //go back here
         for(var i = 0; i<4; i++)
         {
             if(x>350 && x<450 && y>50 + 200*i  && y< 150 + 200*i )
@@ -1130,15 +1124,10 @@ function clickEvent(event) {
     }
     else
     {
-        //if the player is in any of the special screens
-        if(finishLTime || inInstructionScreen1 || inInstructionScreen2 || gameMapTime || openingTime || chooseColorTime){
-            ctx.linewitdh = 1;
-        }
         //if the player is in the level screen and clicks on something the borad will update
-        else{
+        if(levelTime){
             redrawBorad();
         }
-    
     }
 }
 
@@ -1162,6 +1151,7 @@ function redrawBorad(){
 
 //draws graphics of the main game screen
 function drawGameScreen(){
+    ctx.linewitdh = 1;
     ctx.clearRect(0,0,c.width,c.height);
     redrawBorad();
     writeSideNumbers(Levels[counterLevel]);
