@@ -565,6 +565,11 @@ function clickEvent(event) {
             chooseColorTime = false;
             isClickRight = true;
         }
+        if(x > 275 && x < 525 && y > 650 && y < 770 && !isChooseColor)
+        {
+            isClickRight = true;
+            alert("לחצתם במסך בחירת צבעים על הכפתור אשר אך אף צבע לא נבחר, בחרו צבע אם אתם לא רוצים לשנות לחצו שחור ואז לחצו שוב על הכפתור אשר");
+        }
         if(x > 275 && x < 525 && y > 650 && y < 770 && isChooseColor && !chooseComeFromOpen)
         {
             // If we click on the confirm("אשר") button which is a color selected and the selection does not come from the opening screen (says the selection comes from a step-end screen) then you will return to the end-of-stage screen when the color fill is changed
