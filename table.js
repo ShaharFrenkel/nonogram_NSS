@@ -82,7 +82,7 @@ function drawTable(){
 
 }
 
-//מערך דו מימדי של המשחק
+//arrays of the levels of the game
 var firstLevel = [
     [false, false, false, false, true, true, false, false, false, false],
     [false, true, true, true, true, true, true, true, true, false],
@@ -591,14 +591,17 @@ function clickEvent(event) {
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;
     isClickRight = false;
-       if(instractionsWhereFrom == 'l'){
+    //in the event that the player clicked instructions from level screen, the instructions appear above that screen
+    if(instractionsWhereFrom == 'l'){
         if(inInstructionScreen1){
+            //close instructions when player presses on the X button
             if(x<730 && x>700 && y<100 && y>70){
                 inInstructionScreen1 = false;
                 levelTime = true;
                 drawGameScreen();
                 isClickRight = true;
             }
+            //go to instractions screen 2 when player presses the arrow on the side of the screen
             if(x<70 && x>60 && y<420 && y>380){
                 inInstructionScreen1 = false;
                 drawGameScreen();
@@ -607,12 +610,14 @@ function clickEvent(event) {
             }
         }
         if(inInstructionScreen2){
+            //close instructions when player presses on the X button
             if(x<730 && x>700 && y<100 && y>70){
                 inInstructionScreen2 = false;
                 levelTime = true;
                 drawGameScreen();
                 isClickRight = true;
             }
+            //go back to instractions screen 1 when player presses the arrow on the side of the screen
             if(x<745 && x>735 && y<420 && y>380){
                 inInstructionScreen2 = false;
                 instructionsScreen1();
@@ -620,6 +625,78 @@ function clickEvent(event) {
             }
         }
     }
+    //in the event that the player clicked instructions from openning screen, the instructions appear above that screen
+    if(instractionsWhereFrom == 'o'){
+        if(inInstructionScreen1){
+            //close instructions when player presses on the X button
+            if(x<730 && x>700 && y<100 && y>70){
+                inInstructionScreen1 = false;
+                openingTime = true;
+                openingPage();
+                isClickRight = true;
+            }
+            //go to instractions screen 2 when player presses the arrow on the side of the screen
+            if(x<70 && x>60 && y<420 && y>380){
+                inInstructionScreen1 = false;
+                openingPage();
+                openingTime = false;
+                instructionsScreen2();
+                isClickRight = true;
+            }
+        }
+        if(inInstructionScreen2){
+            //close instructions when player presses on the X button
+            if(x<730 && x>700 && y<100 && y>70){
+                inInstructionScreen2 = false;
+                openingTime = true;
+                openingPage();
+                isClickRight = true;
+            }
+            //go back to instractions screen 1 when player presses the arrow on the side of the screen
+            if(x<745 && x>735 && y<420 && y>380){
+                inInstructionScreen2 = false;
+                openingPage()
+                instructionsScreen1();
+                isClickRight = true;
+            }
+        }
+    }
+    //in the event that the player clicked instructions from final screen, the instructions appear above that screen
+    if(instractionsWhereFrom == 'f'){
+        if(inInstructionScreen1){
+            //close instructions when player presses on the X button
+            if(x<730 && x>700 && y<100 && y>70){
+                inInstructionScreen1 = false;
+                finishLTime = true;
+                FinishLevel(true, true);
+                isClickRight = true;
+            }
+            //go to instractions screen 2 when player presses the arrow on the side of the screen
+            if(x<70 && x>60 && y<420 && y>380){
+                inInstructionScreen1 = false;
+                FinishLevel(true, true);
+                instructionsScreen2();
+                isClickRight = true;
+            }
+        }
+        if(inInstructionScreen2){
+            //close instructions when player presses on the X button
+            if(x<730 && x>700 && y<100 && y>70){
+                inInstructionScreen2 = false;
+                finishLTime = true;
+                FinishLevel(true, true);
+                isClickRight = true;
+            }
+            //go back to instractions screen 1 when player presses the arrow on the side of the screen
+            if(x<745 && x>735 && y<420 && y>380){
+                inInstructionScreen2 = false;
+                FinishLevel(true, true);
+                instructionsScreen1();
+                isClickRight = true;
+            }
+        }
+    }
+    //actions that happen while in choose color screen
     if(chooseColorTime)
     {
         if(x > 275 && x < 525 && y > 650 && y < 770 && isChooseColor && chooseComeFromOpen)
@@ -630,6 +707,7 @@ function clickEvent(event) {
             chooseColorTime = false;
             isClickRight = true;
         }
+        //in case the player pressed confirm before pressing on a certain color, an alert will pop up
         if(x > 275 && x < 525 && y > 650 && y < 770 && !isChooseColor)
         {
             isClickRight = true;
@@ -755,67 +833,7 @@ function clickEvent(event) {
             title.src = "img/title_mixOfColors.png";
         }
     }
-    if(instractionsWhereFrom == 'o'){
-        if(inInstructionScreen1){
-            if(x<730 && x>700 && y<100 && y>70){
-                inInstructionScreen1 = false;
-                openingTime = true;
-                openingPage();
-                isClickRight = true;
-            }
-            if(x<70 && x>60 && y<420 && y>380){
-                inInstructionScreen1 = false;
-                openingPage();
-                openingTime = false;
-                instructionsScreen2();
-                isClickRight = true;
-            }
-        }
-        if(inInstructionScreen2){
-            if(x<730 && x>700 && y<100 && y>70){
-                inInstructionScreen2 = false;
-                openingTime = true;
-                openingPage();
-                isClickRight = true;
-            }
-            if(x<745 && x>735 && y<420 && y>380){
-                inInstructionScreen2 = false;
-                openingPage()
-                instructionsScreen1();
-                isClickRight = true;
-            }
-        }
-    }
-    if(instractionsWhereFrom == 'f'){
-        if(inInstructionScreen1){
-            if(x<730 && x>700 && y<100 && y>70){
-                inInstructionScreen1 = false;
-                finishLTime = true;
-                FinishLevel(true, true);
-                isClickRight = true;
-            }
-            if(x<70 && x>60 && y<420 && y>380){
-                inInstructionScreen1 = false;
-                FinishLevel(true, true);
-                instructionsScreen2();
-                isClickRight = true;
-            }
-        }
-        if(inInstructionScreen2){
-            if(x<730 && x>700 && y<100 && y>70){
-                inInstructionScreen2 = false;
-                finishLTime = true;
-                FinishLevel(true, true);
-                isClickRight = true;
-            }
-            if(x<745 && x>735 && y<420 && y>380){
-                inInstructionScreen2 = false;
-                FinishLevel(true, true);
-                instructionsScreen1();
-                isClickRight = true;
-            }
-        }
-    }
+    
     if(levelTime)
     {
         //instractions button
@@ -829,12 +847,14 @@ function clickEvent(event) {
 
         //x/fill button
         if (x >= 150 && x < 210 && y >= 700 && y < 760){
+            //the player chose rect
             fillButton(true);
             fillImg = rectImg;
             isFilled = true;
             isClickRight = true;
         }
         if (x >= 210 && x < 270 && y >= 700 && y < 760){
+            //the player chose X
             fillButton(false);
             fillImg = xImg;
             isFilled = false;
@@ -850,9 +870,6 @@ function clickEvent(event) {
         //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
         var clickedOnTheBoard = x>startPointX && x<startPointX+boardLenInSquares*squareSize && y>startPointY && y<startPointY+boardLenInSquares*squareSize;
         
-        var line = 0;
-        var column = 0;
-    
         //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
 
         if(clickedOnTheBoard)
@@ -883,14 +900,14 @@ function clickEvent(event) {
             }
 
         }
-    
+        //finish level button
         if(x > 600 && x < 750 && y > 670 && y < 770){
            
             FinishLevel(gameBoard.compareBool(Levels[counterLevel]), false);
             isClickRight =true;
         }
     }
-
+    //the actions that happen while in openning screen
     if(openingTime){
         
         //instractions button
@@ -912,17 +929,14 @@ function clickEvent(event) {
 
 
         }
-        if(x>710 && x<780 && y>20 && y<90)
+        //map button
+        if(x>710 && x<780 && y>20 && y<90 && !isClickRight)
         {
-            if(!isClickRight){
-                isClickRight = true;
-                gameMapTime = true;
-                openingTime = false;
-                ctx.clearRect(0,0,c.width,c.height);
-                mapForGame();
-            }
-            
-            
+            isClickRight = true;
+            gameMapTime = true;
+            openingTime = false;
+            ctx.clearRect(0,0,c.width,c.height);
+            mapForGame();
         }
         //choose color button
         if(x > 320 && x < 460  && y > 10 && y < 220)
@@ -934,7 +948,7 @@ function clickEvent(event) {
         }
         
     }
-
+    //the actions that happen while in finish level screen
     if(finishLTime)
     {
         //instractions button
@@ -958,6 +972,7 @@ function clickEvent(event) {
 
 
         }
+        //map button
         if(x>710 && x<780 && y>20 && y<90 && !isClickRight)
         {
             isClickRight = true;
@@ -967,6 +982,7 @@ function clickEvent(event) {
             mapForGame();
     
         }
+        //choose color button
         if(x > 320 && x < 460  && y > 10 && y < 220 )
         {
             ctx.clearRect(0,0,c.width,c.height);
@@ -978,8 +994,10 @@ function clickEvent(event) {
         
         
     }
+    //the actions that happen while in game map screen
     if(gameMapTime)
     {
+
         for(var i = 0; i<3; i++)
         {
             if(x>150 && x<250 && y>150 + 200*i  && y< 250 + 200*i )
@@ -1002,63 +1020,58 @@ function clickEvent(event) {
             }
            
             if(x>550 && x<650 && y>150 + 200*i  && y< 250 + 200*i )
+            {
+                if(counterLevel >= i+7)
                 {
-                    if(counterLevel >= i+7){
 
-                        isClickRight = true;
-                            counterLevel = i+7;
-                            gameMapTime = false;
-                            levelTime = true;
-                            //redraw_borad();
-                            drawGameScreen();
-                            gameBoard.cleanBoard();
-                            
-                    }
-                        else{
-                            isClickRight = true;
-                            alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
-                        }
+                    isClickRight = true;
+                    counterLevel = i+7;
+                    gameMapTime = false;
+                    levelTime = true;
+                    drawGameScreen();
+                    gameBoard.cleanBoard();       
+                }
+                else{
+                    isClickRight = true;
+                    alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
+                }
                     
                 
-                }
-           
-           
-            
-               
-                
             }
-           
-            
+                
+        }
+        
         for(var i = 0; i<4; i++)
         {
             if(x>350 && x<450 && y>50 + 200*i  && y< 150 + 200*i )
             {
-                if(counterLevel >= i+3){
-
-                    isClickRight = true;
+                if(x>350 && x<450 && y>50 + 200*i  && y< 150 + 200*i )
+                {
+                    if(counterLevel >= i+3)
+                    {
+                        isClickRight = true;
                         counterLevel = i+3;
                         gameMapTime = false;
                         levelTime = true;
                         drawGameScreen();
                         gameBoard.cleanBoard();
     
-                }
-                else{
-                    isClickRight = true;
-                    alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
-                }
+                    }
+                    else{
+                        isClickRight = true;
+                        alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
+                    }
 
-            }
+                }
             
             
            
+            }
+        
+        
+        
         }
-        
-        
-        
     }
-    
-        
     if(!isClickRight)
     {
         // If the player clicks the mouse on a place that should not be clicked, writes a message informing him of what he needs to click on
@@ -1066,15 +1079,13 @@ function clickEvent(event) {
     }
     else
     {
-        if(finishLTime || inInstructionScreen1 || inInstructionScreen2 || gameMapTime || openingTime || chooseColorTime){
-            ctx.linewitdh = 1;
-        }
-        else{
+        //if the player is in the level screen and clicks on something the borad will update
+        if(levelTime){
             redrawBorad();
         }
-    
     }
 }
+
 
 function keyDownHandler(event)
 {
@@ -1085,6 +1096,7 @@ c.addEventListener("click", clickEvent);
 
 document.addEventListener("keydown", keyDownHandler, false);
 
+//draws only the board of the game
 function redrawBorad(){
     ctx.clearRect(startPointX,startPointY, 500, 500);
     gameBoard.showBoard();
@@ -1092,7 +1104,9 @@ function redrawBorad(){
     drawTable();
 }
 
+//draws graphics of the main game screen
 function drawGameScreen(){
+    ctx.linewitdh = 1;
     ctx.clearRect(0,0,c.width,c.height);
     redrawBorad();
     writeSideNumbers(Levels[counterLevel]);
@@ -1101,7 +1115,7 @@ function drawGameScreen(){
     finishButton();
     instructionButton();
 }
-
+//draws graphic of insturctoins screen 1
 function instructionsScreen1(){
     inInstructionScreen1 = true;
     ctx.beginPath();
@@ -1134,7 +1148,7 @@ function instructionsScreen1(){
     ctx.fillText('.בין כל רצף מספרים חייבת להיות לפחות משבצת אחת ריקה',730,450);
     ctx.drawImage(example, 100, 470);
 }
-
+//draws graphic of insturctoins screen 2
 function instructionsScreen2(){
     inInstructionScreen2 = true;
     ctx.beginPath();
@@ -1176,6 +1190,7 @@ function instructionsScreen2(){
     ctx.drawImage(mapButtonImg, 100, 670, 100, 60);
 
 }
+//draws graphics of choose color screen
 function screenChooseColor()
 {
     ctx.fillStyle = "#a6a6a6";
@@ -1212,9 +1227,7 @@ function screenChooseColor()
     chooseColorTime = true;
 
 }
- //instructionsScreen1();
-//instructionsScreen2();
-
+//draws graphics of map screen
 function mapForGame()
 {
     ctx.clearRect(0,0,c.width,c.height);
@@ -1256,6 +1269,7 @@ function mapForGame()
     ctx.strokeStyle = "black";
 }
 
+//draws graphics of instructions button
 function instructionButton(){
     ctx.beginPath();
     ctx.fillStyle = "#FFFFFF";
@@ -1268,5 +1282,5 @@ function instructionButton(){
     ctx.fillText("המשחק", 85, 72);
 }
 
-
+//we activate the game by calling the function thet shows openning screen
 openingPage();
