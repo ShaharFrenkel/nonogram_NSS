@@ -239,13 +239,13 @@ function writeSideNumbers(boolArray)
                 {
                     counterx++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numberx, startPointX - counterx*30, startPointY+30 + j*50);
+                    ctx.fillText(numberx, startPointX - counterx*25, startPointY+32 + j*50);
                 }
                 if((i==0)&&(numberx>9))
                 {
                     counterx++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numberx, startPointX - counterx*30, startPointY+30 + j*50);
+                    ctx.fillText(numberx, startPointX - counterx*25 - 10, startPointY+32 + j*50);
                 }
             }
             else   
@@ -254,7 +254,7 @@ function writeSideNumbers(boolArray)
                 {
                     counterx++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numberx, startPointX - counterx*30, startPointY+30+ j*50);
+                    ctx.fillText(numberx, startPointX - counterx*25, startPointY+32+ j*50);
                     numberx = 0;
                 }
                 //תנאי זה לא נחוץ במקרה שלנו באלס כיוון שאין מספר הגדול מ9 שלא נכנס באיף הראשון 
@@ -263,7 +263,7 @@ function writeSideNumbers(boolArray)
                 {
                     counterx++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numberx, startPointX - counterx*30-18, startPointY+30+ j*50);
+                    ctx.fillText(numberx, startPointX - counterx*25-10, startPointY+32+ j*50);
                     numberx = 0;
                 }
             }
@@ -283,13 +283,13 @@ function writeSideNumbers(boolArray)
                 {
                     countery1++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numbery1, startPointX+35 + j*50,  startPointY -countery1*30+15 );
+                    ctx.fillText(numbery1, startPointX+25 + j*50,  startPointY -countery1*30+15 );
                 }
                 if((i==0)&&(numbery1>9))
                 {
                     countery1++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numbery1, startPointX+20 + j*50,  startPointY -countery1*30+15 );
+                    ctx.fillText(numbery1, startPointX+ 15 + j*50,  startPointY -countery1*30+15 );
                 }
                 
             }
@@ -299,7 +299,7 @@ function writeSideNumbers(boolArray)
                 {
                     countery1++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numbery1, startPointX+35 + j*50, startPointY -countery1*30 +15);
+                    ctx.fillText(numbery1, startPointX+25 + j*50, startPointY -countery1*30 +15);
                     numbery1 = 0;
                 }
                 //תנאי זה לא נחוץ במקרה שלנו באלס כיוון שאין מספר הגדול מ9 שלא נכנס באיף הראשון 
@@ -308,7 +308,7 @@ function writeSideNumbers(boolArray)
                 if((numbery1!=0)&&(numbery1>9)){
                     countery1++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numbery1, startPointX+20+ j*50, startPointY -countery1*30+15);
+                    ctx.fillText(numbery1, startPointX+15+ j*50, startPointY -countery1*30+15);
                     numbery1 = 0;
                 }
 
@@ -406,64 +406,22 @@ function FinishLevel(isok, ininstruct)
         ctx.fillText("לחצו", 400, 590);
         ctx.fillText("לשלב הבא", 400, 660);
         ctx.fillText("מפה",745,65);
+        //downArrow = document.getElementById("downArrow_img");
         ctx.drawImage(openImg, 100, 300 , 600, 25);
         ctx.drawImage(openImg, 100, 100 , 600, 25);
         ctx.drawImage(openImg, 100, 100, 25, 225);
         ctx.drawImage(openImg, 675, 100, 25, 225);
+        
         for(i=0; i<10; i++){
 
             if(counterLevel > i)
             {
             ctx.fillRect(50 + i *70, 400, 50, 50);
             }
-            ctx.clearRect(0,0,c.width,c.height);
+            ctx.strokeRect(50 + i*70, 400, 50,50);
+
+        }
             
-            ctx.fillStyle = "black";
-            ctx.fillRect(0, 0, c.width ,c.height);
-            ctx.strokeStyle = "white";
-           /* ctx.font = "30px Arial";
-            ctx.textAlign = "center";
-            ctx.strokeText("you completed the level", 400, 150);
-            ctx.strokeText("good job", 400, 250);
-            ctx.strokeRect(200,400,400,150);
-            ctx.strokeText("click", 400, 450);
-            ctx.fillText("for the next level", 400, 520);
-            */
-            ctx.textAlign = "center";
-            ctx.font = "70px Arial";
-            ctx.fillStyle = "white";
-            ctx.strokeStyle = "white";
-            ctx.fillText("!!!! כל הכבוד", 400, 200);
-            ctx.font = "40px Arial";
-            ctx.fillText("סיימת את שלב מספר",400,270);
-            ctx.textAlign = "left";
-            ctx.fillText(counterLevel,200,270);
-            ctx.textAlign = "center";
-            ctx.lineWidth = 5;
-            ctx.strokeRect(710,20,70,70); 
-            ctx.strokeRect(200,540,400,150);
-            ctx.font = "30px Arial";
-            ctx.fillText("לחצו", 400, 590);
-            ctx.fillText("לשלב הבא", 400, 660);
-            ctx.fillText("מפה",745,65);
-            open_img = document.getElementById("nono_img");
-            down_arrow = document.getElementById("downArrow_img");
-            ctx.drawImage(open_img, 100, 300 , 600, 25);
-            ctx.drawImage(open_img, 100, 100 , 600, 25);
-            ctx.drawImage(open_img, 100, 100, 25, 225);
-            ctx.drawImage(open_img, 675, 100, 25, 225);
-            for(i=0; i<10; i++){
-    
-                if(counterLevel > i)
-                {
-                ctx.fillRect(50 + i *70, 400, 50, 50);
-                }
-                else
-                {
-                ctx.strokeRect(50 + i*70, 400, 50, 50);
-                }
-            }
-           
            /* var rectX = 50;
             var rectY = 50;
             var rectWidth = 50;
@@ -478,6 +436,7 @@ function FinishLevel(isok, ininstruct)
             context.strokeRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
             context.fillRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
             */
+           
 
             ctx.strokeStyle = "black";
             ctx.fillStyle = "black";
@@ -485,7 +444,7 @@ function FinishLevel(isok, ininstruct)
             instructionButton();
             chooseColor();
         }
-        }
+        
         else
         {
             levelTime=false;
@@ -521,16 +480,14 @@ function FinishLevel(isok, ininstruct)
             // ctx.fillText("לחצו", 400, 590);
             //ctx.fillText("לשלב הבא", 400, 660);
             ctx.fillText("!!!!השלמתם את כל השלבים",400,500);
-            celeb_img = document.getElementById("cele_img");
-            ctx.drawImage(celeb_img, 300, 550 , 200, 200);
+            var celebImg = document.getElementById("cele_img");
+            ctx.drawImage(celebImg, 300, 550 , 200, 200);
             ctx.font = "30px Arial";
             ctx.fillText("מפה",745,65);
-            open_img = document.getElementById("nono_img");
-            down_arrow = document.getElementById("downArrow_img");
-            ctx.drawImage(open_img, 100, 300 , 600, 25);
-            ctx.drawImage(open_img, 100, 100 , 600, 25);
-            ctx.drawImage(open_img, 100, 100, 25, 225);
-            ctx.drawImage(open_img, 675, 100, 25, 225);
+            ctx.drawImage(openImg, 100, 300 , 600, 25);
+            ctx.drawImage(openImg, 100, 100 , 600, 25);
+            ctx.drawImage(openImg, 100, 100, 25, 225);
+            ctx.drawImage(openImg, 675, 100, 25, 225);
             /*for(i=0; i<10; i++){
     
                 if(counter_level > i)
