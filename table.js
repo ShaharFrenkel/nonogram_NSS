@@ -368,10 +368,10 @@ function FinishLevel(isok, ininstruct)
     ctx.fillStyle = "#000000";
     if(isok)
     {
-        if(counter_level != 9)
+        if(counterLevel != 9)
         {
             if(!ininstruct){
-            counter_level++;
+            counterLevel++;
             levelTime = false;
             finishLTime = true;
             }
@@ -406,8 +406,6 @@ function FinishLevel(isok, ininstruct)
         ctx.fillText("לחצו", 400, 590);
         ctx.fillText("לשלב הבא", 400, 660);
         ctx.fillText("מפה",745,65);
-        openImg = document.getElementById("nono_img");
-        downArrow = document.getElementById("downArrow_img");
         ctx.drawImage(openImg, 100, 300 , 600, 25);
         ctx.drawImage(openImg, 100, 100 , 600, 25);
         ctx.drawImage(openImg, 100, 100, 25, 225);
@@ -439,7 +437,7 @@ function FinishLevel(isok, ininstruct)
             ctx.font = "40px Arial";
             ctx.fillText("סיימת את שלב מספר",400,270);
             ctx.textAlign = "left";
-            ctx.fillText(counter_level,200,270);
+            ctx.fillText(counterLevel,200,270);
             ctx.textAlign = "center";
             ctx.lineWidth = 5;
             ctx.strokeRect(710,20,70,70); 
@@ -456,7 +454,7 @@ function FinishLevel(isok, ininstruct)
             ctx.drawImage(open_img, 675, 100, 25, 225);
             for(i=0; i<10; i++){
     
-                if(counter_level > i)
+                if(counterLevel > i)
                 {
                 ctx.fillRect(50 + i *70, 400, 50, 50);
                 }
@@ -492,7 +490,7 @@ function FinishLevel(isok, ininstruct)
         {
             levelTime=false;
             finishLTime = true;
-            counter_level++;
+            counterLevel++;
             ctx.clearRect(0,0,c.width,c.height);
             
             ctx.fillStyle = "black";
@@ -514,7 +512,7 @@ function FinishLevel(isok, ininstruct)
             ctx.font = "40px Arial";
             ctx.fillText("סיימת את שלב מספר",400,270);
             ctx.textAlign = "left";
-            ctx.fillText(counter_level,200,270);
+            ctx.fillText(counterLevel,200,270);
             ctx.textAlign = "center";
             ctx.lineWidth = 5;
             ctx.strokeRect(710,20,70,70); 
@@ -997,7 +995,7 @@ function clickEvent(event) {
     if(finishLTime)
     {
         //instractions button
-        if ((x > 10 && x < 160 && y > 10 && y < 110) && (counter_level != 10)){
+        if ((x > 10 && x < 160 && y > 10 && y < 110) && (counterLevel != 10)){
             isClickRight = true;
             FinishLevel(true, true);
             finishLTime = false;
