@@ -36,6 +36,17 @@ const cleanButtonImg = document.getElementById("clean");
 const finishButtonImg = document.getElementById("finish");
 const chooseColorButtonImg = document.getElementById("choose_color");
 const mapButtonImg = document.getElementById("map_button");
+
+const sec_lev_img = document.getElementById("sec_lev");
+const thi_lev_img = document.getElementById("thi_lev");
+const for_lev_img = document.getElementById("for_lev");
+const fif_lev_img = document.getElementById("fif_lev");
+const six_lev_img = document.getElementById("six_lev");
+const sev_lev_img = document.getElementById("sev_lev");
+const eig_lev_img = document.getElementById("eig_lev");
+const nin_lev_img = document.getElementById("nin_lev");
+const ten_lev_img = document.getElementById("ten_lev");
+
 const title = document.getElementById("title_img");
 var fillImg = rectImg; //the img that will replace the empty image of a square objefct when the player clicks on the square
 var isFilled = true; //the bool value that will replace the square's bool value when the player clicks the square
@@ -214,7 +225,7 @@ var tenthLevel = [
 ];
 
 var Levels = [firstLevel, secondLevel, thirdLevel, fourthLevel, fifthLevel, sixthLevel, seventhLevel, eighthLevel, ninthLevel, tenthLevel];
-var counterLevel = 1;
+var counterLevel = 9;
 
 
 function writeSideNumbers(boolArray)
@@ -1237,7 +1248,18 @@ function mapForGame()
     ctx.strokeStyle = "white";
 
     ctx.drawImage(finish1Img, 150, 150, 100, 100);
-    ctx.drawImage(finish2Img, 150, 350, 100, 100);   
+    ctx.drawImage(sec_lev_img, 150, 350, 100, 100);
+    ctx.drawImage(thi_lev_img, 150, 550, 100, 100);
+    ctx.drawImage(for_lev_img, 350, 50, 100, 100);
+    ctx.drawImage(fif_lev_img, 350, 250, 100, 100);
+    ctx.drawImage(six_lev_img, 350, 450, 100, 100);
+    ctx.drawImage(sev_lev_img, 350, 650, 100, 100);
+    ctx.drawImage(eig_lev_img, 550, 150, 100, 100);
+    ctx.drawImage(nin_lev_img, 550, 350, 100, 100);
+    ctx.drawImage(ten_lev_img, 550, 550, 100, 100);
+
+
+
     for(var i = 0; i<3; i++){
         ctx.strokeRect(150, 150 +200*i, 100,100);
         ctx.fillText(i+1,200,130 + 200*i);
