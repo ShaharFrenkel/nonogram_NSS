@@ -225,7 +225,7 @@ var tenthLevel = [
 ];
 
 var Levels = [firstLevel, secondLevel, thirdLevel, fourthLevel, fifthLevel, sixthLevel, seventhLevel, eighthLevel, ninthLevel, tenthLevel];
-var counterLevel = 9;
+var counterLevel = 0;
 
 
 function writeSideNumbers(boolArray)
