@@ -370,7 +370,8 @@ function FinishLevel(isok, ininstruct)
     {
         levelTime = false;
         finishLTime = true;
-        if(!ininstruct){
+        if(!ininstruct)
+        {
             counterLevel++;
         }
         
