@@ -7,12 +7,10 @@ const startPointX = 150;
 const startPointY = 150;
 var boardLenInSquares = 10;
 const openImg = document.getElementById("nono_img");
-const downArrow = document.getElementById("downArrow_img");
 const coverImg = document.getElementById("cover");
-const finish1Img = document.getElementById("finish_1");
-const finish2Img = document.getElementById("finish_2");
 const example = document.getElementById("nonogram_example");
 const buttonImg = document.getElementById("button_example");
+//x and rect color images
 const blackRectImg = document.getElementById("rect_img");
 const blackXImg = document.getElementById("x_img");
 const greenRectImg = document.getElementById("green");
@@ -36,16 +34,17 @@ const cleanButtonImg = document.getElementById("clean");
 const finishButtonImg = document.getElementById("finish");
 const chooseColorButtonImg = document.getElementById("choose_color");
 const mapButtonImg = document.getElementById("map_button");
-
-const sec_lev_img = document.getElementById("sec_lev");
-const thi_lev_img = document.getElementById("thi_lev");
-const for_lev_img = document.getElementById("for_lev");
-const fif_lev_img = document.getElementById("fif_lev");
-const six_lev_img = document.getElementById("six_lev");
-const sev_lev_img = document.getElementById("sev_lev");
-const eig_lev_img = document.getElementById("eig_lev");
-const nin_lev_img = document.getElementById("nin_lev");
-const ten_lev_img = document.getElementById("ten_lev");
+//levels solution images for map
+const firLevImg = document.getElementById("fir_lev");
+const secLevImg = document.getElementById("sec_lev");
+const thiLevImg = document.getElementById("thi_lev");
+const fourLevImg = document.getElementById("for_lev");
+const fifLevImg = document.getElementById("fif_lev");
+const sixLevImg = document.getElementById("six_lev");
+const sevLevImg = document.getElementById("sev_lev");
+const eigLevImg = document.getElementById("eig_lev");
+const ninLevImg = document.getElementById("nin_lev");
+const tenLevImg = document.getElementById("ten_lev");
 
 const title = document.getElementById("title_img");
 var fillImg = rectImg; //the img that will replace the empty image of a square objefct when the player clicks on the square
@@ -65,17 +64,9 @@ var chooseComeFromOpen = true; //bool that states if the choose color button was
 var instractionsWhereFrom = 'n';
 
 
-//this.img = document.createElement("img"); 
-//this.img.src = "img/title_black.png";
-//var src = document.getElementById("blah");
-//src.appendChild(img);
-//blah.src = "img/X.png";
-//title.src = "img/X.png";
-
-
 function drawTable(){
+    //draws outline of table
     ctx.lineWidth = 1;
-    //בניית הטבלה של המשחק
     for (var i = startPointX; i < 10 * squareSize + 1 + startPointX; i = i + squareSize) {
         ctx.beginPath();
         ctx.moveTo(i, startPointY);
@@ -89,8 +80,6 @@ function drawTable(){
         ctx.lineTo(squareSize * 10 + startPointX, j);
         ctx.stroke();
     }
-   
-
 }
 
 //arrays of the levels of the game
@@ -225,18 +214,19 @@ var tenthLevel = [
 ];
 
 var Levels = [firstLevel, secondLevel, thirdLevel, fourthLevel, fifthLevel, sixthLevel, seventhLevel, eighthLevel, ninthLevel, tenthLevel];
-var counterLevel = 10;
+var counterLevel = 0;
 
 
 function writeSideNumbers(boolArray)
 {
-    //הוספת המספרים לטבלה לפי שלב כללי
+    //writing side and above numbers algorithem
+    //the functions goes over the boolean arrays of the levels(first in each line and then in each coulmn) and counts the sequences of true cells
     ctx.fillStyle = "black";
     var counterx = 0;
     var numberx = 0;
     var countery1 = 0;
     var numbery1 = 0;
-
+    //side numbers
     for( j=9; j>-1; j--)
     {   
         counterx = 0;
@@ -268,8 +258,7 @@ function writeSideNumbers(boolArray)
                     ctx.fillText(numberx, startPointX - counterx*25, startPointY+32+ j*50);
                     numberx = 0;
                 }
-                //תנאי זה לא נחוץ במקרה שלנו באלס כיוון שאין מספר הגדול מ9 שלא נכנס באיף הראשון 
-                // אך כדי לאפשר לעשות משחק עם לוח גדול יותר זה כן נחוץ פה
+                //this condition is unnecessery for the current levels but is there to allow inserting levels with bigger boards
                 if((numberx>9)&&(numberx!=0))
                 {
                     counterx++;
@@ -280,7 +269,7 @@ function writeSideNumbers(boolArray)
             }
         }
     }
-
+    //above numbers
     for(j=9; j>-1; j--)
     {
         countery1 = 0;
@@ -313,9 +302,7 @@ function writeSideNumbers(boolArray)
                     ctx.fillText(numbery1, startPointX+25 + j*50, startPointY -countery1*30 +15);
                     numbery1 = 0;
                 }
-                //תנאי זה לא נחוץ במקרה שלנו באלס כיוון שאין מספר הגדול מ9 שלא נכנס באיף הראשון 
-                // אך כדי לאפשר לעשות משחק עם לוח גדול יותר זה כן נחוץ פה
-
+                //this condition is unnecessery for the current levels but is there to allow inserting levels with bigger boards
                 if((numbery1!=0)&&(numbery1>9)){
                     countery1++;
                     ctx.font = "30px Arial";
@@ -328,7 +315,7 @@ function writeSideNumbers(boolArray)
     }
 }
 
-//var board_for_open = [[new Square(335, 360, empty_img, false),new Square(400, 360, empty_img, false)],[new Square(335, 425, empty_img, false),new Square(400, 425, empty_img, false)]];
+//draws graphics for opening page
 function openingPage(){
     openingTime = true;
     ctx.beginPath();
@@ -372,83 +359,56 @@ function openingPage(){
     instructionButton();
     chooseColor();
 }
-//openingPage();
-
-function FinishLevel(isok, ininstruct)
+//draws graphics for finish level page
+function FinishLevel(isOk, ininstruct)
 {
     ctx.fillStyle = "#000000";
-    if(isok)
+    if(isOk)
     {
+        //only if the level is not the final one, the function will add 1 to the level counter and allow to go to the next level
         if(counterLevel != 9)
         {
-            if(!ininstruct){
-            counterLevel++;
-            levelTime = false;
-            finishLTime = true;
-            }
-        
-        ctx.clearRect(0,0,c.width,c.height);
-        
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, c.width ,c.height);
-        ctx.strokeStyle = "white";
-       /* ctx.font = "30px Arial";
-        ctx.textAlign = "center";
-        ctx.strokeText("you completed the level", 400, 150);
-        ctx.strokeText("good job", 400, 250);
-        ctx.strokeRect(200,400,400,150);
-        ctx.strokeText("click", 400, 450);
-        ctx.fillText("for the next level", 400, 520);
-        */
-        ctx.textAlign = "center";
-        ctx.font = "70px Arial";
-        ctx.fillStyle = "white";
-        ctx.strokeStyle = "white";
-        ctx.fillText("!!!! כל הכבוד", 400, 200);
-        ctx.font = "40px Arial";
-        ctx.fillText("סיימת את שלב מספר",400,270);
-        ctx.textAlign = "left";
-        ctx.fillText(counterLevel,200,270);
-        ctx.textAlign = "center";
-        ctx.lineWidth = 5;
-        ctx.strokeRect(710,20,70,70); 
-        ctx.strokeRect(200,540,400,150);
-        ctx.font = "30px Arial";
-        ctx.fillText("לחצו", 400, 590);
-        ctx.fillText("לשלב הבא", 400, 660);
-        ctx.fillText("מפה",745,65);
-        //downArrow = document.getElementById("downArrow_img");
-        ctx.drawImage(openImg, 100, 300 , 600, 25);
-        ctx.drawImage(openImg, 100, 100 , 600, 25);
-        ctx.drawImage(openImg, 100, 100, 25, 225);
-        ctx.drawImage(openImg, 675, 100, 25, 225);
-        
-        for(i=0; i<10; i++){
-
-            if(counterLevel > i)
+            if(!ininstruct)
             {
-            ctx.fillRect(50 + i *70, 400, 50, 50);
+                counterLevel++;
+                levelTime = false;
+                finishLTime = true;
             }
-            ctx.strokeRect(50 + i*70, 400, 50,50);
-
-        }
-            
-           /* var rectX = 50;
-            var rectY = 50;
-            var rectWidth = 50;
-            var rectHeight = 50;
-            var cornerRadius = 20;
-    
-    // Set faux rounded corners
-            context.lineJoin = "round";
-            context.lineWidth = cornerRadius;
-    
-    // Change origin and dimensions to match true size (a stroke makes the shape a bit larger)
-            context.strokeRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
-            context.fillRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
-            */
-           
-
+        
+            ctx.clearRect(0,0,c.width,c.height);
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, c.width ,c.height);
+            ctx.strokeStyle = "white";
+            ctx.textAlign = "center";
+            ctx.font = "70px Arial";
+            ctx.fillStyle = "white";
+            ctx.strokeStyle = "white";
+            ctx.fillText("!!!! כל הכבוד", 400, 200);
+            ctx.font = "40px Arial";
+            ctx.fillText("סיימת את שלב מספר",400,270);
+            ctx.textAlign = "left";
+            ctx.fillText(counterLevel,200,270);
+            ctx.textAlign = "center";
+            ctx.lineWidth = 5;
+            ctx.strokeRect(710,20,70,70); 
+            ctx.strokeRect(200,540,400,150);
+            ctx.font = "30px Arial";
+            ctx.fillText("לחצו", 400, 590);
+            ctx.fillText("לשלב הבא", 400, 660);
+            ctx.fillText("מפה",745,65);
+            ctx.drawImage(openImg, 100, 300 , 600, 25);
+            ctx.drawImage(openImg, 100, 100 , 600, 25);
+            ctx.drawImage(openImg, 100, 100, 25, 225);
+            ctx.drawImage(openImg, 675, 100, 25, 225);
+            //graphics that show the player which level he is on and how many levels are left
+            for(i=0; i<10; i++)
+            {
+                if(counterLevel > i)
+                {
+                    ctx.fillRect(50 + i *70, 400, 50, 50);
+                }
+                ctx.strokeRect(50 + i*70, 400, 50,50);
+            }
             ctx.strokeStyle = "black";
             ctx.fillStyle = "black";
             gameBoard.cleanBoard();
@@ -466,14 +426,6 @@ function FinishLevel(isok, ininstruct)
             ctx.fillStyle = "black";
             ctx.fillRect(0, 0, c.width ,c.height);
             ctx.strokeStyle = "white";
-           /* ctx.font = "30px Arial";
-            ctx.textAlign = "center";
-            ctx.strokeText("you completed the level", 400, 150);
-            ctx.strokeText("good job", 400, 250);
-            ctx.strokeRect(200,400,400,150);
-            ctx.strokeText("click", 400, 450);
-            ctx.fillText("for the next level", 400, 520);
-            */
             ctx.textAlign = "center";
             ctx.font = "70px Arial";
             ctx.fillStyle = "white";
@@ -486,10 +438,7 @@ function FinishLevel(isok, ininstruct)
             ctx.textAlign = "center";
             ctx.lineWidth = 5;
             ctx.strokeRect(710,20,70,70); 
-            // ctx.strokeRect(200,540,400,150);
             ctx.font = "40px Arial";
-            // ctx.fillText("לחצו", 400, 590);
-            //ctx.fillText("לשלב הבא", 400, 660);
             ctx.fillText("!!!!השלמתם את כל השלבים",400,500);
             var celebImg = document.getElementById("cele_img");
             ctx.drawImage(celebImg, 300, 550 , 200, 200);
@@ -499,40 +448,23 @@ function FinishLevel(isok, ininstruct)
             ctx.drawImage(openImg, 100, 100 , 600, 25);
             ctx.drawImage(openImg, 100, 100, 25, 225);
             ctx.drawImage(openImg, 675, 100, 25, 225);
-            /*for(i=0; i<10; i++){
-    
-                if(counter_level > i)
-                {
-                ctx.fillRect(50 + i *70, 400, 50, 50);
-                }
-                else
-                {
-                ctx.strokeRect(50 + i*70, 400, 50, 50);
-                }
-            }
-            */
            
         }
-
-    
     
     }
-
+    //if the player didn't solve the level correctly
     else
     {
         alert("זאת לא התשובה הנכונה, נסו שוב!");
-
     }
-    
 }
+
+//draws graphics of map button
 function mapButton()
 {
     ctx.strokeStyle = "white";
     ctx.strokeRect = (770,30,70,70);
 }
-
-
-//writeSideNumbers(first_level);
 
 //display of a x/rect button
 function fillButton(isRectPressed){
@@ -548,6 +480,7 @@ function fillButton(isRectPressed){
         ctx.strokeRect(210, 700, squareSize+10, squareSize+10);
         
     }
+    //if the x was pressed
     else{
         ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(210, 700,60, 60);
@@ -561,9 +494,9 @@ function fillButton(isRectPressed){
     ctx.stroke();
 }
 
-function cleanButten()
+//draws graphics of clean board button
+function cleanButton()
 {
-    // Displays the canvas delete button
     ctx.fillStyle = "black";
     ctx.fillRect(650, 20, 130, 70);
     ctx.lineWidth = 3;    
@@ -572,10 +505,10 @@ function cleanButten()
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
     ctx.fillText("נקה לוח",712,63);
-} 
+}
+//draws graphics of choose color button
 function chooseColor()
 {
-    // Displays the canvas choose color button
     ctx.fillStyle = "#ff0088";
     ctx.fillRect(320,10,140,80);
     ctx.textAlign = "center";
@@ -583,18 +516,15 @@ function chooseColor()
     ctx.font = "25px Arial";
     ctx.fillText("בחירת צבע",390,58);
 }
+//draws graphics of finish button
 function finishButton()
 {
     ctx.fillStyle = "black";
     ctx.strokeRect(600, 670, 150, 100);
     ctx.textAlign = "center";
     ctx.fillText("סיום השלב", 675, 730);
-
 }
 
-//fillButton(true);
-//cleanButten();
-//finishButton();
 
 function clickEvent(event) {
     //gets the coordenits of the mouse click and the canvas position on screen and detirmins x and y within canvas
@@ -844,7 +774,7 @@ function clickEvent(event) {
             title.src = "img/title_mixOfColors.png";
         }
     }
-    
+    //actions that happen while in the games levels
     if(levelTime)
     {
         //instractions button
@@ -877,17 +807,11 @@ function clickEvent(event) {
             gameBoard.cleanBoard();
             isClickRight = true;
         }
-        
-        //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
         var clickedOnTheBoard = x>startPointX && x<startPointX+boardLenInSquares*squareSize && y>startPointY && y<startPointY+boardLenInSquares*squareSize;
-        
         //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
-
         if(clickedOnTheBoard)
         {
-            
             //runs on the array and finds the square the player clicked on by comparing the coordonites with each square
-            
             for(line = 0; line<gameBoard.arraySquares.length; line++){
                 for(column = 0; column<gameBoard.arraySquares[0].length; column++){
                     if (x>gameBoard.arraySquares[line][column].x && x<gameBoard.arraySquares[line][column].x+squareSize && y>gameBoard.arraySquares[line][column].y && y<gameBoard.arraySquares[line][column].y+squareSize){
@@ -937,8 +861,6 @@ function clickEvent(event) {
             levelTime= true;
             drawGameScreen();
             isClickRight = true;
-
-
         }
         //map button
         if(x>710 && x<780 && y>20 && y<90 && !isClickRight)
@@ -980,8 +902,6 @@ function clickEvent(event) {
             levelTime= true;
             drawGameScreen();
             isClickRight = true;
-
-
         }
         //map button
         if(x>710 && x<780 && y>20 && y<90 && !isClickRight)
@@ -991,7 +911,6 @@ function clickEvent(event) {
             finishLTime = false;
             ctx.clearRect(0,0,c.width,c.height);
             mapForGame();
-    
         }
         //choose color button
         if(x > 320 && x < 460  && y > 10 && y < 220 )
@@ -1008,9 +927,10 @@ function clickEvent(event) {
     //the actions that happen while in game map screen
     if(gameMapTime)
     {
-
+        
         for(var i = 0; i<3; i++)
         {
+            //three boxes from the left coulmn
             if(x>150 && x<250 && y>150 + 200*i  && y< 250 + 200*i )
             {
                 if(counterLevel >= i)
@@ -1020,8 +940,7 @@ function clickEvent(event) {
                     gameMapTime = false;
                     levelTime = true;
                     drawGameScreen();
-                    gameBoard.cleanBoard();
-                 
+                    gameBoard.cleanBoard();            
                 }
                 else
                 {
@@ -1029,12 +948,11 @@ function clickEvent(event) {
                     alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
                 }
             }
-           
+            //three boxes from the right coulmn
             if(x>550 && x<650 && y>150 + 200*i  && y< 250 + 200*i )
             {
                 if(counterLevel >= i+7)
                 {
-
                     isClickRight = true;
                     counterLevel = i+7;
                     gameMapTime = false;
@@ -1051,7 +969,7 @@ function clickEvent(event) {
             }
                 
         }
-        
+        // four boxes from the middle coulmn
         for(var i = 0; i<4; i++)
         {
             if(x>350 && x<450 && y>50 + 200*i  && y< 150 + 200*i )
@@ -1072,15 +990,8 @@ function clickEvent(event) {
                         isClickRight = true;
                         alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
                     }
-
                 }
-            
-            
-           
             }
-        
-        
-        
         }
     }
     if(!isClickRight)
@@ -1122,7 +1033,7 @@ function drawGameScreen(){
     redrawBorad();
     writeSideNumbers(Levels[counterLevel]);
     fillButton(isFilled);
-    cleanButten();
+    cleanButton();
     finishButton();
     instructionButton();
 }
@@ -1246,20 +1157,21 @@ function mapForGame()
     ctx.fillRect(0,0,c.width,c.height);
     ctx.fillStyle = "white";
     ctx.strokeStyle = "white";
+    // drwas images of the levels
+    ctx.drawImage(firLevImg, 150, 150, 100, 100);
+    ctx.drawImage(secLevImg, 150, 350, 100, 100);
+    ctx.drawImage(thiLevImg, 150, 550, 100, 100);
+    ctx.drawImage(fourLevImg, 350, 50, 100, 100);
+    ctx.drawImage(fifLevImg, 350, 250, 100, 100);
+    ctx.drawImage(sixLevImg, 350, 450, 100, 100);
+    ctx.drawImage(sevLevImg, 350, 650, 100, 100);
+    ctx.drawImage(eigLevImg, 550, 150, 100, 100);
+    ctx.drawImage(ninLevImg, 550, 350, 100, 100);
+    ctx.drawImage(tenLevImg, 550, 550, 100, 100);
 
-    ctx.drawImage(finish1Img, 150, 150, 100, 100);
-    ctx.drawImage(sec_lev_img, 150, 350, 100, 100);
-    ctx.drawImage(thi_lev_img, 150, 550, 100, 100);
-    ctx.drawImage(for_lev_img, 350, 50, 100, 100);
-    ctx.drawImage(fif_lev_img, 350, 250, 100, 100);
-    ctx.drawImage(six_lev_img, 350, 450, 100, 100);
-    ctx.drawImage(sev_lev_img, 350, 650, 100, 100);
-    ctx.drawImage(eig_lev_img, 550, 150, 100, 100);
-    ctx.drawImage(nin_lev_img, 550, 350, 100, 100);
-    ctx.drawImage(ten_lev_img, 550, 550, 100, 100);
-
-
+    //draws x above the ones not solved yet
     ctx.globalAlpha = 1;
+    //left coulmn
     for(var i = 0; i<3; i++){
         ctx.strokeRect(150, 150 +200*i, 100,100);
         ctx.fillText(i+1,200,130 + 200*i);
@@ -1269,6 +1181,7 @@ function mapForGame()
            ctx.drawImage(coverImg,150, 150 +200*i, 100,100);
        }
     }
+    //right coulmn
     for(var i = 0; i<3; i++){
         ctx.strokeRect(550, 150 +200*i, 100,100);
         ctx.fillText(i+8,600,130 + 200*i);
@@ -1278,7 +1191,7 @@ function mapForGame()
             ctx.drawImage(coverImg,550, 150 +200*i, 100,100);
         }
     }
-    
+    //middle coulmn
     for(var i = 0; i<4; i++){
         ctx.strokeRect(350, 50 +200*i, 100,100);
         ctx.fillText(i+4,400,30 + 200*i);
@@ -1304,5 +1217,5 @@ function instructionButton(){
     ctx.fillText("המשחק", 85, 72);
 }
 
-//we activate the game by calling the function thet shows openning screen
+//we activate the game by calling the function that shows openning screen
 openingPage();
