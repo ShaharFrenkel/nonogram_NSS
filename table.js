@@ -36,6 +36,17 @@ const cleanButtonImg = document.getElementById("clean");
 const finishButtonImg = document.getElementById("finish");
 const chooseColorButtonImg = document.getElementById("choose_color");
 const mapButtonImg = document.getElementById("map_button");
+
+const sec_lev_img = document.getElementById("sec_lev");
+const thi_lev_img = document.getElementById("thi_lev");
+const for_lev_img = document.getElementById("for_lev");
+const fif_lev_img = document.getElementById("fif_lev");
+const six_lev_img = document.getElementById("six_lev");
+const sev_lev_img = document.getElementById("sev_lev");
+const eig_lev_img = document.getElementById("eig_lev");
+const nin_lev_img = document.getElementById("nin_lev");
+const ten_lev_img = document.getElementById("ten_lev");
+
 const title = document.getElementById("title_img");
 var fillImg = rectImg; //the img that will replace the empty image of a square objefct when the player clicks on the square
 var isFilled = true; //the bool value that will replace the square's bool value when the player clicks the square
@@ -82,7 +93,7 @@ function drawTable(){
 
 }
 
-//מערך דו מימדי של המשחק
+//arrays of the levels of the game
 var firstLevel = [
     [false, false, false, false, true, true, false, false, false, false],
     [false, true, true, true, true, true, true, true, true, false],
@@ -214,7 +225,7 @@ var tenthLevel = [
 ];
 
 var Levels = [firstLevel, secondLevel, thirdLevel, fourthLevel, fifthLevel, sixthLevel, seventhLevel, eighthLevel, ninthLevel, tenthLevel];
-var counterLevel = 0;
+var counterLevel = 10;
 
 
 function writeSideNumbers(boolArray)
@@ -239,13 +250,13 @@ function writeSideNumbers(boolArray)
                 {
                     counterx++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numberx, startPointX - counterx*30, startPointY+30 + j*50);
+                    ctx.fillText(numberx, startPointX - counterx*25, startPointY+32 + j*50);
                 }
                 if((i==0)&&(numberx>9))
                 {
                     counterx++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numberx, startPointX - counterx*30, startPointY+30 + j*50);
+                    ctx.fillText(numberx, startPointX - counterx*25 - 10, startPointY+32 + j*50);
                 }
             }
             else   
@@ -254,7 +265,7 @@ function writeSideNumbers(boolArray)
                 {
                     counterx++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numberx, startPointX - counterx*30, startPointY+30+ j*50);
+                    ctx.fillText(numberx, startPointX - counterx*25, startPointY+32+ j*50);
                     numberx = 0;
                 }
                 //תנאי זה לא נחוץ במקרה שלנו באלס כיוון שאין מספר הגדול מ9 שלא נכנס באיף הראשון 
@@ -263,7 +274,7 @@ function writeSideNumbers(boolArray)
                 {
                     counterx++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numberx, startPointX - counterx*30-18, startPointY+30+ j*50);
+                    ctx.fillText(numberx, startPointX - counterx*25-10, startPointY+32+ j*50);
                     numberx = 0;
                 }
             }
@@ -283,13 +294,13 @@ function writeSideNumbers(boolArray)
                 {
                     countery1++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numbery1, startPointX+35 + j*50,  startPointY -countery1*30+15 );
+                    ctx.fillText(numbery1, startPointX+25 + j*50,  startPointY -countery1*30+15 );
                 }
                 if((i==0)&&(numbery1>9))
                 {
                     countery1++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numbery1, startPointX+20 + j*50,  startPointY -countery1*30+15 );
+                    ctx.fillText(numbery1, startPointX+ 15 + j*50,  startPointY -countery1*30+15 );
                 }
                 
             }
@@ -299,7 +310,7 @@ function writeSideNumbers(boolArray)
                 {
                     countery1++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numbery1, startPointX+35 + j*50, startPointY -countery1*30 +15);
+                    ctx.fillText(numbery1, startPointX+25 + j*50, startPointY -countery1*30 +15);
                     numbery1 = 0;
                 }
                 //תנאי זה לא נחוץ במקרה שלנו באלס כיוון שאין מספר הגדול מ9 שלא נכנס באיף הראשון 
@@ -308,7 +319,7 @@ function writeSideNumbers(boolArray)
                 if((numbery1!=0)&&(numbery1>9)){
                     countery1++;
                     ctx.font = "30px Arial";
-                    ctx.fillText(numbery1, startPointX+20+ j*50, startPointY -countery1*30+15);
+                    ctx.fillText(numbery1, startPointX+15+ j*50, startPointY -countery1*30+15);
                     numbery1 = 0;
                 }
 
@@ -368,12 +379,13 @@ function FinishLevel(isok, ininstruct)
     ctx.fillStyle = "#000000";
     if(isok)
     {
-        levelTime = false;
-        finishLTime = true;
-        if(!ininstruct)
+        if(counterLevel != 9)
         {
+            if(!ininstruct){
             counterLevel++;
-        }
+            levelTime = false;
+            finishLTime = true;
+            }
         
         ctx.clearRect(0,0,c.width,c.height);
         
@@ -405,43 +417,104 @@ function FinishLevel(isok, ininstruct)
         ctx.fillText("לחצו", 400, 590);
         ctx.fillText("לשלב הבא", 400, 660);
         ctx.fillText("מפה",745,65);
-        openImg = document.getElementById("nono_img");
-        downArrow = document.getElementById("downArrow_img");
+        //downArrow = document.getElementById("downArrow_img");
         ctx.drawImage(openImg, 100, 300 , 600, 25);
         ctx.drawImage(openImg, 100, 100 , 600, 25);
         ctx.drawImage(openImg, 100, 100, 25, 225);
         ctx.drawImage(openImg, 675, 100, 25, 225);
+        
         for(i=0; i<10; i++){
 
             if(counterLevel > i)
             {
             ctx.fillRect(50 + i *70, 400, 50, 50);
             }
-            else
-            {
-            ctx.strokeRect(50 + i*70, 400, 50, 50);
-            }
+            ctx.strokeRect(50 + i*70, 400, 50,50);
+
         }
-       
-       /* var rectX = 50;
-        var rectY = 50;
-        var rectWidth = 50;
-        var rectHeight = 50;
-        var cornerRadius = 20;
+            
+           /* var rectX = 50;
+            var rectY = 50;
+            var rectWidth = 50;
+            var rectHeight = 50;
+            var cornerRadius = 20;
+    
+    // Set faux rounded corners
+            context.lineJoin = "round";
+            context.lineWidth = cornerRadius;
+    
+    // Change origin and dimensions to match true size (a stroke makes the shape a bit larger)
+            context.strokeRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
+            context.fillRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
+            */
+           
 
-// Set faux rounded corners
-        context.lineJoin = "round";
-        context.lineWidth = cornerRadius;
+            ctx.strokeStyle = "black";
+            ctx.fillStyle = "black";
+            gameBoard.cleanBoard();
+            instructionButton();
+            chooseColor();
+        }
+        
+        else
+        {
+            levelTime=false;
+            finishLTime = true;
+            counterLevel++;
+            ctx.clearRect(0,0,c.width,c.height);
+            
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, c.width ,c.height);
+            ctx.strokeStyle = "white";
+           /* ctx.font = "30px Arial";
+            ctx.textAlign = "center";
+            ctx.strokeText("you completed the level", 400, 150);
+            ctx.strokeText("good job", 400, 250);
+            ctx.strokeRect(200,400,400,150);
+            ctx.strokeText("click", 400, 450);
+            ctx.fillText("for the next level", 400, 520);
+            */
+            ctx.textAlign = "center";
+            ctx.font = "70px Arial";
+            ctx.fillStyle = "white";
+            ctx.strokeStyle = "white";
+            ctx.fillText("!!!! כל הכבוד", 400, 200);
+            ctx.font = "40px Arial";
+            ctx.fillText("סיימת את שלב מספר",400,270);
+            ctx.textAlign = "left";
+            ctx.fillText(counterLevel,183,270);
+            ctx.textAlign = "center";
+            ctx.lineWidth = 5;
+            ctx.strokeRect(710,20,70,70); 
+            // ctx.strokeRect(200,540,400,150);
+            ctx.font = "40px Arial";
+            // ctx.fillText("לחצו", 400, 590);
+            //ctx.fillText("לשלב הבא", 400, 660);
+            ctx.fillText("!!!!השלמתם את כל השלבים",400,500);
+            var celebImg = document.getElementById("cele_img");
+            ctx.drawImage(celebImg, 300, 550 , 200, 200);
+            ctx.font = "30px Arial";
+            ctx.fillText("מפה",745,65);
+            ctx.drawImage(openImg, 100, 300 , 600, 25);
+            ctx.drawImage(openImg, 100, 100 , 600, 25);
+            ctx.drawImage(openImg, 100, 100, 25, 225);
+            ctx.drawImage(openImg, 675, 100, 25, 225);
+            /*for(i=0; i<10; i++){
+    
+                if(counter_level > i)
+                {
+                ctx.fillRect(50 + i *70, 400, 50, 50);
+                }
+                else
+                {
+                ctx.strokeRect(50 + i*70, 400, 50, 50);
+                }
+            }
+            */
+           
+        }
 
-// Change origin and dimensions to match true size (a stroke makes the shape a bit larger)
-        context.strokeRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
-        context.fillRect(rectX+(cornerRadius/2), rectY+(cornerRadius/2), rectWidth-cornerRadius, rectHeight-cornerRadius);
-        */
-        ctx.strokeStyle = "black";
-        ctx.fillStyle = "black";
-        gameBoard.cleanBoard();
-        instructionButton();
-        chooseColor();
+    
     
     }
 
@@ -529,14 +602,17 @@ function clickEvent(event) {
     var x = event.clientX - rect.left;
     var y = event.clientY - rect.top;
     isClickRight = false;
-       if(instractionsWhereFrom == 'l'){
+    //in the event that the player clicked instructions from level screen, the instructions appear above that screen
+    if(instractionsWhereFrom == 'l'){
         if(inInstructionScreen1){
+            //close instructions when player presses on the X button
             if(x<730 && x>700 && y<100 && y>70){
                 inInstructionScreen1 = false;
                 levelTime = true;
                 drawGameScreen();
                 isClickRight = true;
             }
+            //go to instractions screen 2 when player presses the arrow on the side of the screen
             if(x<70 && x>60 && y<420 && y>380){
                 inInstructionScreen1 = false;
                 drawGameScreen();
@@ -545,12 +621,14 @@ function clickEvent(event) {
             }
         }
         if(inInstructionScreen2){
+            //close instructions when player presses on the X button
             if(x<730 && x>700 && y<100 && y>70){
                 inInstructionScreen2 = false;
                 levelTime = true;
                 drawGameScreen();
                 isClickRight = true;
             }
+            //go back to instractions screen 1 when player presses the arrow on the side of the screen
             if(x<745 && x>735 && y<420 && y>380){
                 inInstructionScreen2 = false;
                 instructionsScreen1();
@@ -558,6 +636,78 @@ function clickEvent(event) {
             }
         }
     }
+    //in the event that the player clicked instructions from openning screen, the instructions appear above that screen
+    if(instractionsWhereFrom == 'o'){
+        if(inInstructionScreen1){
+            //close instructions when player presses on the X button
+            if(x<730 && x>700 && y<100 && y>70){
+                inInstructionScreen1 = false;
+                openingTime = true;
+                openingPage();
+                isClickRight = true;
+            }
+            //go to instractions screen 2 when player presses the arrow on the side of the screen
+            if(x<70 && x>60 && y<420 && y>380){
+                inInstructionScreen1 = false;
+                openingPage();
+                openingTime = false;
+                instructionsScreen2();
+                isClickRight = true;
+            }
+        }
+        if(inInstructionScreen2){
+            //close instructions when player presses on the X button
+            if(x<730 && x>700 && y<100 && y>70){
+                inInstructionScreen2 = false;
+                openingTime = true;
+                openingPage();
+                isClickRight = true;
+            }
+            //go back to instractions screen 1 when player presses the arrow on the side of the screen
+            if(x<745 && x>735 && y<420 && y>380){
+                inInstructionScreen2 = false;
+                openingPage()
+                instructionsScreen1();
+                isClickRight = true;
+            }
+        }
+    }
+    //in the event that the player clicked instructions from final screen, the instructions appear above that screen
+    if(instractionsWhereFrom == 'f'){
+        if(inInstructionScreen1){
+            //close instructions when player presses on the X button
+            if(x<730 && x>700 && y<100 && y>70){
+                inInstructionScreen1 = false;
+                finishLTime = true;
+                FinishLevel(true, true);
+                isClickRight = true;
+            }
+            //go to instractions screen 2 when player presses the arrow on the side of the screen
+            if(x<70 && x>60 && y<420 && y>380){
+                inInstructionScreen1 = false;
+                FinishLevel(true, true);
+                instructionsScreen2();
+                isClickRight = true;
+            }
+        }
+        if(inInstructionScreen2){
+            //close instructions when player presses on the X button
+            if(x<730 && x>700 && y<100 && y>70){
+                inInstructionScreen2 = false;
+                finishLTime = true;
+                FinishLevel(true, true);
+                isClickRight = true;
+            }
+            //go back to instractions screen 1 when player presses the arrow on the side of the screen
+            if(x<745 && x>735 && y<420 && y>380){
+                inInstructionScreen2 = false;
+                FinishLevel(true, true);
+                instructionsScreen1();
+                isClickRight = true;
+            }
+        }
+    }
+    //actions that happen while in choose color screen
     if(chooseColorTime)
     {
         if(x > 275 && x < 525 && y > 650 && y < 770 && isChooseColor && chooseComeFromOpen)
@@ -568,6 +718,7 @@ function clickEvent(event) {
             chooseColorTime = false;
             isClickRight = true;
         }
+        //in case the player pressed confirm before pressing on a certain color, an alert will pop up
         if(x > 275 && x < 525 && y > 650 && y < 770 && !isChooseColor)
         {
             isClickRight = true;
@@ -693,67 +844,7 @@ function clickEvent(event) {
             title.src = "img/title_mixOfColors.png";
         }
     }
-    if(instractionsWhereFrom == 'o'){
-        if(inInstructionScreen1){
-            if(x<730 && x>700 && y<100 && y>70){
-                inInstructionScreen1 = false;
-                openingTime = true;
-                openingPage();
-                isClickRight = true;
-            }
-            if(x<70 && x>60 && y<420 && y>380){
-                inInstructionScreen1 = false;
-                openingPage();
-                openingTime = false;
-                instructionsScreen2();
-                isClickRight = true;
-            }
-        }
-        if(inInstructionScreen2){
-            if(x<730 && x>700 && y<100 && y>70){
-                inInstructionScreen2 = false;
-                openingTime = true;
-                openingPage();
-                isClickRight = true;
-            }
-            if(x<745 && x>735 && y<420 && y>380){
-                inInstructionScreen2 = false;
-                openingPage()
-                instructionsScreen1();
-                isClickRight = true;
-            }
-        }
-    }
-    if(instractionsWhereFrom == 'f'){
-        if(inInstructionScreen1){
-            if(x<730 && x>700 && y<100 && y>70){
-                inInstructionScreen1 = false;
-                finishLTime = true;
-                FinishLevel(true, true);
-                isClickRight = true;
-            }
-            if(x<70 && x>60 && y<420 && y>380){
-                inInstructionScreen1 = false;
-                FinishLevel(true, true);
-                instructionsScreen2();
-                isClickRight = true;
-            }
-        }
-        if(inInstructionScreen2){
-            if(x<730 && x>700 && y<100 && y>70){
-                inInstructionScreen2 = false;
-                finishLTime = true;
-                FinishLevel(true, true);
-                isClickRight = true;
-            }
-            if(x<745 && x>735 && y<420 && y>380){
-                inInstructionScreen2 = false;
-                FinishLevel(true, true);
-                instructionsScreen1();
-                isClickRight = true;
-            }
-        }
-    }
+    
     if(levelTime)
     {
         //instractions button
@@ -767,12 +858,14 @@ function clickEvent(event) {
 
         //x/fill button
         if (x >= 150 && x < 210 && y >= 700 && y < 760){
+            //the player chose rect
             fillButton(true);
             fillImg = rectImg;
             isFilled = true;
             isClickRight = true;
         }
         if (x >= 210 && x < 270 && y >= 700 && y < 760){
+            //the player chose X
             fillButton(false);
             fillImg = xImg;
             isFilled = false;
@@ -788,9 +881,6 @@ function clickEvent(event) {
         //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
         var clickedOnTheBoard = x>startPointX && x<startPointX+boardLenInSquares*squareSize && y>startPointY && y<startPointY+boardLenInSquares*squareSize;
         
-        var line = 0;
-        var column = 0;
-    
         //check if player clicked on a square, if so change its img and bool value acording to the button pressed in the fill/x option bottom of the screen
 
         if(clickedOnTheBoard)
@@ -821,14 +911,14 @@ function clickEvent(event) {
             }
 
         }
-    
+        //finish level button
         if(x > 600 && x < 750 && y > 670 && y < 770){
            
             FinishLevel(gameBoard.compareBool(Levels[counterLevel]), false);
             isClickRight =true;
         }
     }
-
+    //the actions that happen while in openning screen
     if(openingTime){
         
         //instractions button
@@ -850,17 +940,14 @@ function clickEvent(event) {
 
 
         }
-        if(x>710 && x<780 && y>20 && y<90)
+        //map button
+        if(x>710 && x<780 && y>20 && y<90 && !isClickRight)
         {
-            if(!isClickRight){
-                isClickRight = true;
-                gameMapTime = true;
-                openingTime = false;
-                ctx.clearRect(0,0,c.width,c.height);
-                mapForGame();
-            }
-            
-            
+            isClickRight = true;
+            gameMapTime = true;
+            openingTime = false;
+            ctx.clearRect(0,0,c.width,c.height);
+            mapForGame();
         }
         //choose color button
         if(x > 320 && x < 460  && y > 10 && y < 220)
@@ -872,21 +959,22 @@ function clickEvent(event) {
         }
         
     }
-
+    //the actions that happen while in finish level screen
     if(finishLTime)
     {
         //instractions button
-        if (x > 10 && x < 160 && y > 10 && y < 110){
+        if ((x > 10 && x < 160 && y > 10 && y < 110) && (counterLevel != 10)){
             isClickRight = true;
             FinishLevel(true, true);
             finishLTime = false;
             inInstructionScreen1 = true;
             instructionsScreen1();
             instractionsWhereFrom = 'f';
-            isClick = true;
+            isClickright = true;
         }
+
+        if((x > 200 && x < 600 && y > 540 && y < 690) && (counterLevel != 10) && (!isClickRight))
         // start level button
-        if(x > 200 && x < 600 && y > 540 && y < 690 && !isClickRight)
         {
             finishLTime = false;
             levelTime= true;
@@ -895,6 +983,7 @@ function clickEvent(event) {
 
 
         }
+        //map button
         if(x>710 && x<780 && y>20 && y<90 && !isClickRight)
         {
             isClickRight = true;
@@ -904,6 +993,7 @@ function clickEvent(event) {
             mapForGame();
     
         }
+        //choose color button
         if(x > 320 && x < 460  && y > 10 && y < 220 )
         {
             ctx.clearRect(0,0,c.width,c.height);
@@ -912,9 +1002,13 @@ function clickEvent(event) {
             isClickRight = true;
             chooseComeFromOpen = false;
         }
+        
+        
     }
+    //the actions that happen while in game map screen
     if(gameMapTime)
     {
+
         for(var i = 0; i<3; i++)
         {
             if(x>150 && x<250 && y>150 + 200*i  && y< 250 + 200*i )
@@ -926,6 +1020,7 @@ function clickEvent(event) {
                     gameMapTime = false;
                     levelTime = true;
                     drawGameScreen();
+                    gameBoard.cleanBoard();
                  
                 }
                 else
@@ -936,63 +1031,58 @@ function clickEvent(event) {
             }
            
             if(x>550 && x<650 && y>150 + 200*i  && y< 250 + 200*i )
-                {
-                    if(counterLevel >= i+7){
-
-                        isClickRight = true;
-                            counterLevel = i+7;
-                            gameMapTime = false;
-                            levelTime = true;
-                            drawGameScreen();
-                    }
-                        else{
-                            isClickRight = true;
-                            alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
-                        }
-                    
-                
-                }
-           
-           
-            
-               
-                
-            }
-           
-            
-            
-           
-        
-
-        for(var i = 0; i<4; i++)
-        {
-            if(x>350 && x<450 && y>50 + 200*i  && y< 150 + 200*i )
             {
-                if(counterLevel >= i+3){
+                if(counterLevel >= i+7)
+                {
 
                     isClickRight = true;
-                        counterLevel = i+3;
-                        gameMapTime = false;
-                        levelTime = true;
-                        drawGameScreen();
-    
+                    counterLevel = i+7;
+                    gameMapTime = false;
+                    levelTime = true;
+                    drawGameScreen();
+                    gameBoard.cleanBoard();       
                 }
                 else{
                     isClickRight = true;
                     alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
                 }
-
+                    
+                
             }
+                
+        }
+        
+        for(var i = 0; i<4; i++)
+        {
+            if(x>350 && x<450 && y>50 + 200*i  && y< 150 + 200*i )
+            {
+                if(x>350 && x<450 && y>50 + 200*i  && y< 150 + 200*i )
+                {
+                    if(counterLevel >= i+3)
+                    {
+                        isClickRight = true;
+                        counterLevel = i+3;
+                        gameMapTime = false;
+                        levelTime = true;
+                        drawGameScreen();
+                        gameBoard.cleanBoard();
+    
+                    }
+                    else{
+                        isClickRight = true;
+                        alert("עוד לא עברתם את השלבים הקודמים הנחוצים לשלב זה");
+                    }
+
+                }
             
             
            
+            }
+        
+        
+        
         }
-        
-        
-        
     }
-    
-        
     if(!isClickRight)
     {
         // If the player clicks the mouse on a place that should not be clicked, writes a message informing him of what he needs to click on
@@ -1000,15 +1090,13 @@ function clickEvent(event) {
     }
     else
     {
-        if(finishLTime || inInstructionScreen1 || inInstructionScreen2 || gameMapTime || openingTime || chooseColorTime){
-            ctx.linewitdh = 1;
-        }
-        else{
+        //if the player is in the level screen and clicks on something the borad will update
+        if(levelTime){
             redrawBorad();
         }
-    
     }
 }
+
 
 function keyDownHandler(event)
 {
@@ -1019,6 +1107,7 @@ c.addEventListener("click", clickEvent);
 
 document.addEventListener("keydown", keyDownHandler, false);
 
+//draws only the board of the game
 function redrawBorad(){
     ctx.clearRect(startPointX,startPointY, 500, 500);
     gameBoard.showBoard();
@@ -1026,7 +1115,9 @@ function redrawBorad(){
     drawTable();
 }
 
+//draws graphics of the main game screen
 function drawGameScreen(){
+    ctx.linewitdh = 1;
     ctx.clearRect(0,0,c.width,c.height);
     redrawBorad();
     writeSideNumbers(Levels[counterLevel]);
@@ -1035,7 +1126,7 @@ function drawGameScreen(){
     finishButton();
     instructionButton();
 }
-
+//draws graphic of insturctoins screen 1
 function instructionsScreen1(){
     inInstructionScreen1 = true;
     ctx.beginPath();
@@ -1068,7 +1159,7 @@ function instructionsScreen1(){
     ctx.fillText('.בין כל רצף מספרים חייבת להיות לפחות משבצת אחת ריקה',730,450);
     ctx.drawImage(example, 100, 470);
 }
-
+//draws graphic of insturctoins screen 2
 function instructionsScreen2(){
     inInstructionScreen2 = true;
     ctx.beginPath();
@@ -1110,6 +1201,7 @@ function instructionsScreen2(){
     ctx.drawImage(mapButtonImg, 100, 670, 100, 60);
 
 }
+//draws graphics of choose color screen
 function screenChooseColor()
 {
     ctx.fillStyle = "#a6a6a6";
@@ -1146,9 +1238,7 @@ function screenChooseColor()
     chooseColorTime = true;
 
 }
- //instructionsScreen1();
-//instructionsScreen2();
-
+//draws graphics of map screen
 function mapForGame()
 {
     ctx.clearRect(0,0,c.width,c.height);
@@ -1158,7 +1248,18 @@ function mapForGame()
     ctx.strokeStyle = "white";
 
     ctx.drawImage(finish1Img, 150, 150, 100, 100);
-    ctx.drawImage(finish2Img, 150, 350, 100, 100);   
+    ctx.drawImage(sec_lev_img, 150, 350, 100, 100);
+    ctx.drawImage(thi_lev_img, 150, 550, 100, 100);
+    ctx.drawImage(for_lev_img, 350, 50, 100, 100);
+    ctx.drawImage(fif_lev_img, 350, 250, 100, 100);
+    ctx.drawImage(six_lev_img, 350, 450, 100, 100);
+    ctx.drawImage(sev_lev_img, 350, 650, 100, 100);
+    ctx.drawImage(eig_lev_img, 550, 150, 100, 100);
+    ctx.drawImage(nin_lev_img, 550, 350, 100, 100);
+    ctx.drawImage(ten_lev_img, 550, 550, 100, 100);
+
+
+    ctx.globalAlpha = 1;
     for(var i = 0; i<3; i++){
         ctx.strokeRect(150, 150 +200*i, 100,100);
         ctx.fillText(i+1,200,130 + 200*i);
@@ -1190,6 +1291,7 @@ function mapForGame()
     ctx.strokeStyle = "black";
 }
 
+//draws graphics of instructions button
 function instructionButton(){
     ctx.beginPath();
     ctx.fillStyle = "#FFFFFF";
@@ -1202,5 +1304,5 @@ function instructionButton(){
     ctx.fillText("המשחק", 85, 72);
 }
 
-
+//we activate the game by calling the function thet shows openning screen
 openingPage();
