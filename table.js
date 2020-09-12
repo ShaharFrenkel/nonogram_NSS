@@ -225,7 +225,7 @@ var tenthLevel = [
 ];
 
 var Levels = [firstLevel, secondLevel, thirdLevel, fourthLevel, fifthLevel, sixthLevel, seventhLevel, eighthLevel, ninthLevel, tenthLevel];
-var counterLevel = 0;
+var counterLevel = 10;
 
 
 function writeSideNumbers(boolArray)
@@ -482,7 +482,7 @@ function FinishLevel(isok, ininstruct)
             ctx.font = "40px Arial";
             ctx.fillText("סיימת את שלב מספר",400,270);
             ctx.textAlign = "left";
-            ctx.fillText(counterLevel,200,270);
+            ctx.fillText(counterLevel,183,270);
             ctx.textAlign = "center";
             ctx.lineWidth = 5;
             ctx.strokeRect(710,20,70,70); 
@@ -1259,7 +1259,7 @@ function mapForGame()
     ctx.drawImage(ten_lev_img, 550, 550, 100, 100);
 
 
-
+    ctx.globalAlpha = 1;
     for(var i = 0; i<3; i++){
         ctx.strokeRect(150, 150 +200*i, 100,100);
         ctx.fillText(i+1,200,130 + 200*i);
